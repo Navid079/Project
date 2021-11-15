@@ -1,9 +1,13 @@
 const express = require('express');
 const mongoose = require('mongoose');
 
+const authShopRouter = require('./routes/authShop');
+
 const app = express();
 
 app.use(express.json());
+
+app.use('/shop', authShopRouter);
 
 mongoose
   .connect('mongodb://localhost:27017/theProject')
