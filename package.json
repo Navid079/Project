@@ -1,0 +1,20 @@
+{
+  "name": "theproject",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "start": "nodemon app.js",
+    "test": "echo test not implemented"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "bcrypt": "^5.0.1",
+    "express": "^4.17.1",
+    "mongoose": "^5.13.13"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.15"
+  }
+}
