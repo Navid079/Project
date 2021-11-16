@@ -113,7 +113,7 @@ Table of contents:
       "phone": "01234567890",
       "email": "foo@bar.baz",
       "password": "aweakpasswordwithnouppercase",
-      "confirm": "AWEAKPASSWORDWITHNOLOWERCASE":
+      "confirm": "AWEAKPASSWORDWITHNOLOWERCASE"
       
     }
   }
