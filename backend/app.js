@@ -14,6 +14,7 @@ app.use((err, req, res, next) => {
   if (!status) {
     status = 500;
   }
+  
   const response = { message: 'An error occured', data: {} };
   if (err.messages) response.data.messages = err.messages;
   if (err.values) response.data.values = err.values;
