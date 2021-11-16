@@ -1,17 +1,23 @@
+// Third-party libraries
 const express = require('express');
 const { body } = require('express-validator');
 
+// Database models
 const User = require('../models/User');
 const authShopController = require('../controllers/authShop');
 
+// Utility functions
 const isPhoneNumber = require('../utils/isPhoneNumber');
 const isEmail = require('../utils/isEmail');
 const isStrongPassword = require('../utils/isStrongPassword');
 
 const router = express.Router();
 
+// POST /shop/signup
+// This endpoint is used for signing up of sellers
 router.post(
   '/signup',
+  // ========== Validation ========== //
   [
     body('data')
       .custom(data => {
@@ -69,6 +75,7 @@ router.post(
         return true;
       }),
   ],
+  // ========== End of Validation ========== //
   authShopController.postShopSignup
 );
 

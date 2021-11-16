@@ -1,8 +1,13 @@
+//Third-party libraries
 const mongoose = require('mongoose');
 
 const Schema = mongoose.Schema;
 
+// User model schema
+// This schema is used for seller users
+// Name must be changed to be more appropriate 
 const User = new Schema({
+  // Schema Version is used for determining need for online migrations
   schemaVersion: {
     type: String,
     default: 'V0.1-1.0',

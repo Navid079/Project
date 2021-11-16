@@ -1,11 +1,16 @@
+// Third-party libraries
 const { validationResult } = require('express-validator');
 const bcrypt = require('bcrypt');
 
+// Database models
 const User = require('../models/User');
 
+// POST /shop/signup
+// This middleware controls signing up of sellers
 exports.postShopSignup = (req, res, next) => {
   const data = req.body.data;
 
+  // Checking for validation errors
   const errors = validationResult(req);
   let statusCode;
   let messages = [];
@@ -34,6 +39,7 @@ exports.postShopSignup = (req, res, next) => {
     throw error;
   }
 
+  // Encrypting password and sending response to client
   bcrypt
     .hash(data.password, 12)
     .then(hashedPassword => {
