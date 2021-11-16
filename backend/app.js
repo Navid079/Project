@@ -2,6 +2,9 @@
 const express = require('express');
 const mongoose = require('mongoose');
 
+// Routers import
+const authShopRouter = require('./routes/authShop');
+
 const app = express();
 
 // express.json() is used to parse request bodies.

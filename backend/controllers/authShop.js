@@ -62,3 +62,48 @@ exports.postShopSignup = (req, res, next) => {
     })
     .catch(err => next(err));
 };
+
+exports.postShopLogin = (req, res, next) => {
+  const data = req.body.data;
+
+  const searchConfig = {};
+  searchConfig[data.userType] = data.user;
+  let fetchedUser;
+
+  User.findOne(searchConfig)
+    .then(user => {
+      if (!user) {
+        const error = new Error();
+        error.statusCode = 404;
+        error.messages = ['User not found'];
+        error.conflicts = ['user'];
+        error.values = { user: data.user };
+
+        throw error;
+      }
+      fetchedUser = user;
+      return bcrypt.compare(data.password, user.password);
+    })
+    .then(result => {
+      if (!result) {
+        const error = new Error();
+        error.statusCode = 401;
+        error.messages = ['Wrong password'];
+        error.conflicts = ['password'];
+        error.values = { password: data.password };
+
+        throw error;
+      }
+      res.status(200).json({
+        message: 'Logged in successfully',
+        data: {
+          user: {
+            name: fetchedUser.name,
+            email: fetchedUser.email,
+            phone: fetchedUser.phone,
+          },
+        },
+      });
+    })
+    .catch(err => next(err));
+};

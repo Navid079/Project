@@ -79,4 +79,6 @@ router.post(
   authShopController.postShopSignup
 );
 
+router.post('/login', authShopController.postShopLogin)
+
 module.exports = router;
