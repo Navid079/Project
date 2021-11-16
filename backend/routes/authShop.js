@@ -79,6 +79,43 @@ router.post(
   authShopController.postShopSignup
 );
 
-router.post('/login', authShopController.postShopLogin)
+router.post(
+  '/login',
+  [
+    body('data')
+      .custom(data => {
+        //Data is not correct
+        if (!data.user) throw new Error('422~Data is not correct~user');
+        if (!data.password) throw new Error('422~Data is not correct~password');
+        if (!data.userType) throw new Error('422~Data is not correct~userType');
+        return true;
+      })
+      .custom(data => {
+        //Not a username Type
+        if (data.userType != 'email' && data.userType != 'phone')
+          throw new Error('422~Unknown username type~userType');
+        return true;
+      })
+      .custom(data => {
+        //Not a phone number
+        if (data.userType === 'phone' && !isPhoneNumber(data.user))
+          throw new Error('422~Not a phone number~user');
+        return true;
+      })
+      .custom(data => {
+        //Not an email address
+        if (data.userType === 'email' && !isEmail(data.user))
+          throw new Error('422~Not an email address~user');
+        return true;
+      })
+      .custom(data => {
+        //Password invalid (due to weakness)
+        if (!isStrongPassword(data.password))
+          throw new Error('401~Wrong password~password');
+          return true;
+      })
+  ],
+  authShopController.postShopLogin
+);
 
 module.exports = router;
