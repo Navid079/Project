@@ -10,8 +10,6 @@ app.use(express.json());
 app.use('/shop', authShopRouter);
 
 app.use((err, req, res, next) => {
-  console.log(err);
-
   let status = err.statusCode;
   if (!status) {
     status = 500;
@@ -25,7 +23,7 @@ app.use((err, req, res, next) => {
 });
 
 mongoose
-  .connect('mongodb://localhost:27017/theProject')
+  .connect('mongodb://localhost:27017/theProject', { useNewUrlParser: true })
   .then(result => {
     app.listen(3000);
     console.log('Connected');

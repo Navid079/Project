@@ -12,7 +12,8 @@ exports.postShopSignup = (req, res, next) => {
   let conflicts = [];
   if (!errors.isEmpty()) {
     for (let error of errors.array()) {
-      const [fetchedStatusCode, fetchedMessage, fetchedConflict] = error.msg.split('~');
+      const [fetchedStatusCode, fetchedMessage, fetchedConflict] =
+        error.msg.split('~');
       if (statusCode && statusCode != fetchedStatusCode) {
         break;
       }
@@ -37,7 +38,6 @@ exports.postShopSignup = (req, res, next) => {
     .save()
     .then(result => {
       console.log('User created');
-      console.log(result);
       res.status(201).json({
         message: 'User created',
         data: {

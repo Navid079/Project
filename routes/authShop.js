@@ -9,16 +9,17 @@ const router = express.Router();
 
 router.post(
   '/signup',
-  [body('data').custom(data => {
-    // Email Already Registered
-    if (!data.email) return true;
-    return User.findOne({ email: data.email }).then(user => {
-      if (user) {
-        return Promise.reject('409~Email already registered~email');
-      }
-    });
-    return true;
-  })],
+  [
+    body('data').custom(data => {
+      // Email Already Registered
+      if (!data.email) return true;
+      return User.findOne({ email: data.email }).then(user => {
+        if (user) {
+          return Promise.reject('409~Email already registered~email');
+        }
+      });
+    }),
+  ],
   authShopController.postShopSignup
 );
 
