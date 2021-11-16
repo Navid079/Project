@@ -63,9 +63,12 @@ exports.postShopSignup = (req, res, next) => {
     .catch(err => next(err));
 };
 
+// POST /shop/login
+// This middleware controls logging in of sellers
 exports.postShopLogin = (req, res, next) => {
   const data = req.body.data;
 
+  // Checking for validation errors
   const errors = validationResult(req);
   let statusCode;
   let messages = [];
@@ -98,6 +101,7 @@ exports.postShopLogin = (req, res, next) => {
   searchConfig[data.userType] = data.user;
   let fetchedUser;
 
+  // Authenticating and sending reponse to client
   User.findOne(searchConfig)
     .then(user => {
       if (!user) {

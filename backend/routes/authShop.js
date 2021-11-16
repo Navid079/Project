@@ -79,9 +79,12 @@ router.post(
   authShopController.postShopSignup
 );
 
+// POST /shop/login
+// This endpoint is used for logging in of sellers
 router.post(
   '/login',
   [
+    // ========== Validation ========== //
     body('data')
       .custom(data => {
         //Data is not correct
@@ -112,9 +115,10 @@ router.post(
         //Password invalid (due to weakness)
         if (!isStrongPassword(data.password))
           throw new Error('401~Wrong password~password');
-          return true;
-      })
+        return true;
+      }),
   ],
+  // ========== End of Validation ========== //
   authShopController.postShopLogin
 );
 
