@@ -6,7 +6,7 @@ const bcrypt = require('bcrypt');
 const User = require('../models/User');
 
 //Utility functions
-const phoneNormalizer = require('../utils/phoneNormalizer')
+const phoneNormalizer = require('../utils/phoneNormalizer');
 
 // POST /shop/signup
 // This middleware controls signing up of sellers
@@ -17,8 +17,12 @@ exports.postShopSignup = (req, res, next) => {
   bcrypt
     .hash(data.password, 12)
     .then(hashedPassword => {
-      const user = new User({ ...data });
-      user.password = hashedPassword;
+      const user = new User({
+        name: data.name,
+        phone: phoneNormalizer(data.phone),
+        email: data.email,
+        password: hashedPassword
+      });
       return user.save();
     })
     .then(result => {
@@ -29,7 +33,7 @@ exports.postShopSignup = (req, res, next) => {
           user: {
             name: result.name,
             email: result.email,
-            phone: phoneNormalizer(result.phone),
+            phone: result.phone,
           },
         },
       });
@@ -43,7 +47,7 @@ exports.postShopLogin = (req, res, next) => {
   const data = req.body.data;
 
   // Normalize phone number (as it is saved this way in database)
-  if(data.userType === "phone") data.user = phoneNormalizer(data.user);
+  if (data.userType === 'phone') data.user = phoneNormalizer(data.user);
 
   const searchConfig = {};
   searchConfig[data.userType] = data.user;
