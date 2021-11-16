@@ -1,6 +1,6 @@
 const { validationResult } = require('express-validator');
 
-const User = require('../models/User');
+const User = require('../backend/models/User');
 
 exports.postShopSignup = (req, res, next) => {
   const data = req.body.data;
