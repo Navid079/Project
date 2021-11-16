@@ -4,7 +4,10 @@ const { body } = require('express-validator');
 
 // Database models
 const User = require('../models/User');
+
+// Controller and middlewares
 const authShopController = require('../controllers/authShop');
+const validation = require('../middlewares/validation');
 
 // Utility functions
 const isPhoneNumber = require('../utils/isPhoneNumber');
@@ -73,7 +76,7 @@ router.post(
         if (data.password !== data.confirm)
           throw new Error("422~Passwords don't match~confirm");
         return true;
-      }),
+      }), validation
   ],
   // ========== End of Validation ========== //
   authShopController.postShopSignup
@@ -116,7 +119,7 @@ router.post(
         if (!isStrongPassword(data.password))
           throw new Error('401~Wrong password~password');
         return true;
-      }),
+      }), validation
   ],
   // ========== End of Validation ========== //
   authShopController.postShopLogin

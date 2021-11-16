@@ -5,39 +5,13 @@ const bcrypt = require('bcrypt');
 // Database models
 const User = require('../models/User');
 
+//Utility functions
+const phoneNormalizer = require('../utils/phoneNormalizer')
+
 // POST /shop/signup
 // This middleware controls signing up of sellers
 exports.postShopSignup = (req, res, next) => {
   const data = req.body.data;
-
-  // Checking for validation errors
-  const errors = validationResult(req);
-  let statusCode;
-  let messages = [];
-  let values = {};
-  let conflicts = [];
-  if (!errors.isEmpty()) {
-    for (let error of errors.array()) {
-      const [fetchedStatusCode, fetchedMessage, fetchedConflict] =
-        error.msg.split('~');
-      if (statusCode && statusCode != fetchedStatusCode) {
-        break;
-      }
-      statusCode = fetchedStatusCode;
-
-      messages.push(fetchedMessage);
-      conflicts.push(fetchedConflict);
-      values[fetchedConflict] = data[fetchedConflict];
-    }
-
-    const error = new Error();
-    error.statusCode = statusCode;
-    error.messages = messages;
-    error.values = values;
-    error.conflicts = conflicts;
-
-    throw error;
-  }
 
   // Encrypting password and sending response to client
   bcrypt
@@ -55,7 +29,7 @@ exports.postShopSignup = (req, res, next) => {
           user: {
             name: result.name,
             email: result.email,
-            phone: result.phone,
+            phone: phoneNormalizer(result.phone),
           },
         },
       });
@@ -68,34 +42,8 @@ exports.postShopSignup = (req, res, next) => {
 exports.postShopLogin = (req, res, next) => {
   const data = req.body.data;
 
-  // Checking for validation errors
-  const errors = validationResult(req);
-  let statusCode;
-  let messages = [];
-  let values = {};
-  let conflicts = [];
-  if (!errors.isEmpty()) {
-    for (let error of errors.array()) {
-      const [fetchedStatusCode, fetchedMessage, fetchedConflict] =
-        error.msg.split('~');
-      if (statusCode && statusCode != fetchedStatusCode) {
-        break;
-      }
-      statusCode = fetchedStatusCode;
-
-      messages.push(fetchedMessage);
-      conflicts.push(fetchedConflict);
-      values[fetchedConflict] = data[fetchedConflict];
-    }
-
-    const error = new Error();
-    error.statusCode = statusCode;
-    error.messages = messages;
-    error.values = values;
-    error.conflicts = conflicts;
-
-    throw error;
-  }
+  // Normalize phone number (as it is saved this way in database)
+  if(data.userType === "phone") data.user = phoneNormalizer(data.user);
 
   const searchConfig = {};
   searchConfig[data.userType] = data.user;
