@@ -2,10 +2,10 @@ const express = require('express');
 const { body } = require('express-validator');
 
 const User = require('../models/User');
+const authShopController = require('../controllers/authShop');
 
 const isPhoneNumber = require('../utils/isPhoneNumber');
-
-const authShopController = require('../controllers/authShop');
+const isEmail = require('../utils/isEmail');
 
 const router = express.Router();
 
@@ -34,6 +34,11 @@ router.post(
         //Not a phone number
         if (!isPhoneNumber(data.phone))
           throw new Error('422~Not a phone number~phone');
+      })
+      .custom(data => {
+        //Not an email address
+        if (!isEmail(data.email))
+          throw new Error('422~Not an email address~email');
       }),
   ],
   authShopController.postShopSignup
