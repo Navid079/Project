@@ -97,6 +97,12 @@ router.post(
         return true;
       })
       .custom(data => {
+        //Password invalid (due to weakness)
+        if (!isStrongPassword(data.password))
+          throw new Error('401~Wrong password~password');
+        return true;
+      })
+      .custom(data => {
         //Not a username Type
         if (data.userType != 'email' && data.userType != 'phone')
           throw new Error('422~Unknown username type~userType');
@@ -112,12 +118,6 @@ router.post(
         //Not an email address
         if (data.userType === 'email' && !isEmail(data.user))
           throw new Error('422~Not an email address~user');
-        return true;
-      })
-      .custom(data => {
-        //Password invalid (due to weakness)
-        if (!isStrongPassword(data.password))
-          throw new Error('401~Wrong password~password');
         return true;
       }), validation
   ],

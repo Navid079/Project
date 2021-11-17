@@ -1,7 +1,8 @@
 API Documentation
 ================
 Table of contents:  
-[Signup as a seller](#signup-as-a-seller)
+[Signup as a seller](#signup-as-a-seller)  
+[Login as a seller](#login-as-a-seller)
 
 # Signup as a seller
 ## Endpoint: 
@@ -114,8 +115,116 @@ Table of contents:
       "email": "foo@bar.baz",
       "password": "aweakpasswordwithnouppercase",
       "confirm": "AWEAKPASSWORDWITHNOLOWERCASE"
-      
     }
   }
 }
 ```
+
+# Login as a seller
+## Endpoint:
+`/shop/login`
+## Request body JSON
+```json
+{
+  "message": "This message will be logged in server's console",
+  "data": {
+    "user": "09123456789",
+    "userType": "phone",
+    "password": "FooBarIsAStrongPassword1!",
+  }
+}
+OR
+{
+  "message": "This message will be logged in server's console",
+  "data": {
+    "user": "foo@bar.com",
+    "userType": "email",
+    "password": "FooBarIsAStrongPassword1!",
+  }
+}
+```
+### note
+1. You can use email or phone number to login
+
+## Responses
+### 200 OK
+```json
+{
+  "message": "Logged in successfully",
+  "data": {
+    "user": {
+      "name": {
+        "first": "foo",
+        "last": "bar"
+      },
+      "email": "foo@bar.com",
+      "phone": "09123456789",
+    }
+  }
+}
+```
+### 401 Unauthorized
+```json
+{
+  "message": "An error occured",
+  "data": {
+    "messages": ["Wrong password"],
+      "conflicts": ["password"],
+      "values": {
+        "password": "ThisIsNotThePassword(0)"
+      }
+    }
+  }
+}
+```
+### 404 Not Found
+```json
+{
+  "message": "An error occured",
+  "data": {
+    "messages": ["User not found"],
+      "conflicts": ["user"],
+      "values": {
+        "user": "+989110002233"
+      }
+    }
+  }
+}
+```
+### 422 Unprocessable Entity
+```json
+{
+  "message": "An error occured",
+  "data": {
+    "messages": [
+      "Data is not correct",
+      "Data is not correct",
+      "Data is not correct",
+    ],
+    "conflicts": ["user", "password", "userType"],
+    "values": { }
+  }
+}
+```
+### 422 Unprocessable Entity
+```json
+{
+  "message": "An error occured",
+  "data": {
+    "messages": [
+      "Not a username type",
+      "Not a phone number",
+      "Not an email address"
+    ],
+    "conflicts": [
+      "userType",
+      "phone",
+      "email"
+    ],
+    "values": {
+      "userType": "emoile",
+      "phone": "01234567890",
+      "email": "foo@bar.baz",
+    }
+  }
+}
