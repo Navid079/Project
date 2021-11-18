@@ -169,10 +169,9 @@ OR
   "message": "An error occured",
   "data": {
     "messages": ["Wrong password"],
-      "conflicts": ["password"],
-      "values": {
-        "password": "ThisIsNotThePassword(0)"
-      }
+    "conflicts": ["password"],
+    "values": {
+      "password": "ThisIsNotThePassword(0)"
     }
   }
 }
@@ -183,10 +182,9 @@ OR
   "message": "An error occured",
   "data": {
     "messages": ["User not found"],
-      "conflicts": ["user"],
-      "values": {
-        "user": "+989110002233"
-      }
+    "conflicts": ["user"],
+    "values": {
+      "user": "+989110002233"
     }
   }
 }
