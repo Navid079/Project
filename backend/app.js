@@ -24,6 +24,7 @@ app.use((err, req, res, next) => {
 
   const response = { message: 'An error occured', data: {} };
   if (err.messages) response.data.messages = err.messages;
+  else response.data.messages = err.stack;
   if (err.values) response.data.values = err.values;
   if (err.conflicts) response.data.conflicts = err.conflicts;
 

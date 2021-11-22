@@ -33,6 +33,7 @@ router.post(
           typeof data.name.last !== 'string'
         )
           throw new Error('422~Data is not correct~name');
+        if (!data.devId) throw new Error('422~Data is not correct~devId');
         if (!data.phone) throw new Error('422~Data is not correct~phone');
         if (!data.password) throw new Error('422~Data is not correct~password');
         if (!data.confirm) throw new Error('422~Data is not correct~confirm');
@@ -91,6 +92,7 @@ router.post(
     body('data')
       .custom(data => {
         //Data is not correct
+        if (!data.devId) throw new Error('422~Data is not correct~devId');
         if (!data.user) throw new Error('422~Data is not correct~user');
         if (!data.password) throw new Error('422~Data is not correct~password');
         if (!data.userType) throw new Error('422~Data is not correct~userType');

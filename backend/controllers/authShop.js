@@ -7,6 +7,7 @@ const User = require('../models/User');
 
 //Utility functions
 const phoneNormalizer = require('../utils/phoneNormalizer');
+const createJWT = require('../utils/createJWT');
 
 // POST /shop/signup
 // This middleware controls signing up of sellers
@@ -21,7 +22,7 @@ exports.postShopSignup = (req, res, next) => {
         name: data.name,
         phone: phoneNormalizer(data.phone),
         email: data.email,
-        password: hashedPassword
+        password: hashedPassword,
       });
       return user.save();
     })
@@ -35,6 +36,7 @@ exports.postShopSignup = (req, res, next) => {
             email: result.email,
             phone: result.phone,
           },
+          token: createJWT(result._id, data.devId),
         },
       });
     })
@@ -78,6 +80,10 @@ exports.postShopLogin = (req, res, next) => {
 
         throw error;
       }
+      return createJWT(fetchedUser._id, data.devId);
+    })
+    .then(token => {
+      console.log(token);
       res.status(200).json({
         message: 'Logged in successfully',
         data: {
@@ -86,6 +92,7 @@ exports.postShopLogin = (req, res, next) => {
             email: fetchedUser.email,
             phone: fetchedUser.phone,
           },
+          token: token,
         },
       });
     })
