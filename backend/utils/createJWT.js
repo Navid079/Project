@@ -12,8 +12,8 @@ module.exports = async (usrId, devId) => {
     usrId: usrId,
   })
     .setProtectedHeader({ alg: 'RS256' })
-    .setExpirationTime('15m')
     .setIssuer('theProject@email.com')
+    .setIssuedAt()
     .setAudience(`${devId}`)
     .sign(key);
   return token;

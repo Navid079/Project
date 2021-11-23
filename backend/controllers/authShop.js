@@ -123,3 +123,57 @@ exports.postShopLogin = (req, res, next) => {
     })
     .catch(err => next(err));
 };
+
+// POST /shop/refresh
+// This middleware controls signing up of sellers
+exports.postShopRefresh = (req, res, next) => {
+  const data = req.body.data;
+  const token = req.body.data.compiledToken;
+  const refresh = data.compiledRefresh;
+
+  const createdTime = token.iat * 1000;
+  const now = +new Date();
+
+  const tokenAge = Math.floor((now - createdTime) / 60000);
+
+  if (tokenAge < 15) {
+    const error = new Error();
+    error.statusCode = 425;
+    error.messages = ['Token is not Expired Yet'];
+    error.conflicts = ['token'];
+    error.values = { token: data.token };
+
+    throw error
+  }
+
+  let fetchedUser;
+
+  User.findById(refresh.usrId)
+    .then(user => {
+      fetchedUser = user;
+      if (!user || user.password != refresh.password) {
+        const error = new Error();
+        error.statusCode = 401;
+        error.messages = ['Invalid Refresh Token'];
+        error.conflicts = ['refresh'];
+        error.values = { refresh: data.refresh };
+      }
+
+      return createJWT(user._id, data.devId);
+    })
+    .then(token => {
+      res.status(200).json({
+        message: 'Token Refreshed',
+        data: {
+          user: {
+            name: fetchedUser.name,
+            email: fetchedUser.email,
+            phone: fetchedUser.phone,
+          },
+          token: token,
+          refresh: data.refresh,
+        },
+      });
+    })
+    .catch(err => next(err));
+};

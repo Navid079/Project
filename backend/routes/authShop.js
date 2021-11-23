@@ -130,4 +130,25 @@ router.post(
   authShopController.postShopLogin
 );
 
+router.post('/test', authentication.tokenCompiler);
+
+router.post(
+  '/refresh',
+  [
+    // ========== Validation ========== //
+    body('data').custom(data => {
+      //Data is not correct
+      if (!data.devId) throw new Error('422~Data is not correct~devId');
+      if (!data.token) throw new Error('422~Data is not correct~token');
+      if (!data.refresh) throw new Error('422~Data is not correct~refresh');
+      return true;
+    }),
+    validation,
+  ],
+  // ========== End of Validation ========== //
+  authentication.refreshCompiler,
+  authentication.tokenCompiler,
+  authShopController.postShopRefresh
+);
+
 module.exports = router;
