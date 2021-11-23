@@ -8,6 +8,7 @@ const User = require('../models/User');
 // Controller and middlewares
 const authShopController = require('../controllers/authShop');
 const validation = require('../middlewares/validation');
+const authentication = require('../middlewares/authentication');
 
 // Utility functions
 const isPhoneNumber = require('../utils/isPhoneNumber');
@@ -77,7 +78,8 @@ router.post(
         if (data.password !== data.confirm)
           throw new Error("422~Passwords don't match~confirm");
         return true;
-      }), validation
+      }),
+    validation,
   ],
   // ========== End of Validation ========== //
   authShopController.postShopSignup
@@ -121,7 +123,8 @@ router.post(
         if (data.userType === 'email' && !isEmail(data.user))
           throw new Error('422~Not an email address~user');
         return true;
-      }), validation
+      }),
+    validation,
   ],
   // ========== End of Validation ========== //
   authShopController.postShopLogin
