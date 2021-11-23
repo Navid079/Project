@@ -8,6 +8,7 @@ const User = require('../models/User');
 // Controller and middlewares
 const authShopController = require('../controllers/authShop');
 const validation = require('../middlewares/validation');
+const authentication = require('../middlewares/authentication');
 
 // Utility functions
 const isPhoneNumber = require('../utils/isPhoneNumber');
@@ -33,6 +34,7 @@ router.post(
           typeof data.name.last !== 'string'
         )
           throw new Error('422~Data is not correct~name');
+        if (!data.devId) throw new Error('422~Data is not correct~devId');
         if (!data.phone) throw new Error('422~Data is not correct~phone');
         if (!data.password) throw new Error('422~Data is not correct~password');
         if (!data.confirm) throw new Error('422~Data is not correct~confirm');
@@ -76,7 +78,8 @@ router.post(
         if (data.password !== data.confirm)
           throw new Error("422~Passwords don't match~confirm");
         return true;
-      }), validation
+      }),
+    validation,
   ],
   // ========== End of Validation ========== //
   authShopController.postShopSignup
@@ -91,6 +94,7 @@ router.post(
     body('data')
       .custom(data => {
         //Data is not correct
+        if (!data.devId) throw new Error('422~Data is not correct~devId');
         if (!data.user) throw new Error('422~Data is not correct~user');
         if (!data.password) throw new Error('422~Data is not correct~password');
         if (!data.userType) throw new Error('422~Data is not correct~userType');
@@ -119,10 +123,32 @@ router.post(
         if (data.userType === 'email' && !isEmail(data.user))
           throw new Error('422~Not an email address~user');
         return true;
-      }), validation
+      }),
+    validation,
   ],
   // ========== End of Validation ========== //
   authShopController.postShopLogin
+);
+
+router.post('/test', authentication.tokenCompiler);
+
+router.post(
+  '/refresh',
+  [
+    // ========== Validation ========== //
+    body('data').custom(data => {
+      //Data is not correct
+      if (!data.devId) throw new Error('422~Data is not correct~devId');
+      if (!data.token) throw new Error('422~Data is not correct~token');
+      if (!data.refresh) throw new Error('422~Data is not correct~refresh');
+      return true;
+    }),
+    validation,
+  ],
+  // ========== End of Validation ========== //
+  authentication.refreshCompiler,
+  authentication.tokenCompiler,
+  authShopController.postShopRefresh
 );
 
 module.exports = router;

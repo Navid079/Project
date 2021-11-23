@@ -1,1 +1,4 @@
 node_modules
+keypair.pem
+pkcs8.key
+publickey.cert

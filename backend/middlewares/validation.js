@@ -1,7 +1,9 @@
 // Third-party libraries
-const { validationResult } = require('express-validator')
+const { validationResult } = require('express-validator');
 
 module.exports = (req, res, next) => {
+  const data = req.body.data;
+  
   // Checking for validation errors
   const errors = validationResult(req);
   let statusCode;
@@ -27,7 +29,8 @@ module.exports = (req, res, next) => {
     error.messages = messages;
     error.values = values;
     error.conflicts = conflicts;
-
+    
     throw error;
   }
-}
+  next();
+};
