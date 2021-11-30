@@ -1,0 +1,16 @@
+
+:root {
+  --clr-primary-5: #324E7B;
+  --clr-white: #fff;
+  --clr-black: #000;
+  
+  --fnt-primary: 'BTraffic', sans-serif;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+
+  font-family: var(--fnt-primary);
+}
