@@ -1,9 +1,10 @@
 #Back-End
 
-node_modules
-keypair.pem
-pkcs8.key
-publickey.cert
+*/node_modules
+*/keypair.pem
+*/pkcs8.key
+*/publickey.cert
+*/secret.key
 
 # Front-End
 # See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
