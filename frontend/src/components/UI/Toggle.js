@@ -15,7 +15,7 @@ const Toggle = props => {
   };
 
   return (
-    <div className="toggle">
+    <div className={`toggle ${props.className}`}>
       <div className="toggle__toggler" ref={toggler} />
       <button className="toggle__toggle-button active" onClick={toggleHandler}>
         {props.left}

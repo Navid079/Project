@@ -1,0 +1,11 @@
+.text-input-o {
+  display: flex;
+}
+
+.text-input-o__icon {
+  width: 3rem;
+  height: 3rem;
+  color: var(--clr-primary-5);
+  display: block;
+  margin-right: 1rem;
+}
