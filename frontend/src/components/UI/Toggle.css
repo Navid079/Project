@@ -14,6 +14,8 @@
   border: none;
   font-size: 1.5rem;
   cursor: pointer;
+  position: relative;
+  z-index: 1;
 }
 
 .toggle__toggler {
@@ -21,11 +23,10 @@
   width: 55%;
   height: 100%;
   background-color: var(--clr-primary-5);
-  outline: 4px solid var(--clr-primary-5);
+  outline: 3px solid var(--clr-primary-5);
   outline-offset: -1px;
   border-radius: inherit;
   position: absolute;
-  z-index: -1;
 }
 
 .right {

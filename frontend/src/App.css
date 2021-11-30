@@ -1,6 +1,7 @@
 
 :root {
   --clr-primary-5: #324E7B;
+  --clr-secondary-5: #EFF6FF;
   --clr-white: #fff;
   --clr-black: #000;
   
@@ -13,4 +14,13 @@
   box-sizing: border-box;
 
   font-family: var(--fnt-primary);
+}
+
+.container {
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: var(--clr-primary-5);
 }
