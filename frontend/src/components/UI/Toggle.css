@@ -23,8 +23,8 @@
   width: 55%;
   height: 100%;
   background-color: var(--clr-primary-5);
-  outline: 3px solid var(--clr-primary-5);
-  outline-offset: -1px;
+  outline: 4px solid var(--clr-primary-5);
+  outline-offset: -2px;
   border-radius: inherit;
   position: absolute;
 }
