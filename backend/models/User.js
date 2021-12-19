@@ -5,16 +5,20 @@ const Schema = mongoose.Schema;
 
 // User model schema
 // This schema is used for seller users
-// Name must be changed to be more appropriate 
+// Name must be changed to be more appropriate
 const User = new Schema({
   // Schema Version is used for determining need for online migrations
   schemaVersion: {
     type: String,
-    default: 'V0.1-1.0',
+    default: 'V0.1-2.0',
+  },
+  username: {
+    type: String,
+    required: true,
   },
   name: {
     type: Object,
-    required: true,
+    required: false,
   },
   phone: {
     type: String,
@@ -39,6 +43,10 @@ const User = new Schema({
   category: {
     type: String,
     default: 'none',
+  },
+  validated: {
+    type: Boolean,
+    default: false,
   },
 });
 
