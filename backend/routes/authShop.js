@@ -26,14 +26,7 @@ router.post(
     body('data')
       .custom(data => {
         //Data is not correct
-        if (
-          !data.name ||
-          !data.name.first ||
-          !data.name.last ||
-          typeof data.name.first !== 'string' ||
-          typeof data.name.last !== 'string'
-        )
-          throw new Error('422~Data is not correct~name');
+        if (!data.username) throw new Error('422~Data is not correct~username');
         if (!data.devId) throw new Error('422~Data is not correct~devId');
         if (!data.phone) throw new Error('422~Data is not correct~phone');
         if (!data.password) throw new Error('422~Data is not correct~password');
@@ -108,7 +101,7 @@ router.post(
       })
       .custom(data => {
         //Not a username Type
-        if (data.userType != 'email' && data.userType != 'phone')
+        if (data.userType != 'email' && data.userType != 'phone' && data.userType != 'username')
           throw new Error('422~Unknown username type~userType');
         return true;
       })
