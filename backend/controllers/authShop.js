@@ -23,7 +23,7 @@ exports.postShopSignup = (req, res, next) => {
     .hash(data.password, 12)
     .then(hashedPassword => {
       const user = new User({
-        name: data.name,
+        username: data.username,
         phone: phoneNormalizer(data.phone),
         email: data.email,
         password: hashedPassword,
@@ -112,7 +112,7 @@ exports.postShopLogin = (req, res, next) => {
         message: 'Logged in successfully',
         data: {
           user: {
-            name: fetchedUser.name,
+            username: fetchedUser.username,
             email: fetchedUser.email,
             phone: fetchedUser.phone,
           },
