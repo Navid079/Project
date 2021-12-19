@@ -1,0 +1,39 @@
+.toggle {
+  width: 15rem;
+  height: 3rem;
+  border: 0.175rem solid var(--clr-primary-5);
+  border-radius: 100px;
+  position: relative;
+  background-color: transparent;
+}
+
+.toggle__toggle-button {
+  width: 50%;
+  height: 100%;
+  background-color: transparent;
+  border: none;
+  font-size: 1.5rem;
+  cursor: pointer;
+  position: relative;
+  z-index: 1;
+}
+
+.toggle__toggler {
+  transition: all 200ms linear;
+  width: 55%;
+  height: 100%;
+  background-color: var(--clr-primary-5);
+  outline: 4px solid var(--clr-primary-5);
+  outline-offset: -2px;
+  border-radius: inherit;
+  position: absolute;
+}
+
+.right {
+  transform: translateX(81.81818%);
+}
+
+.active {
+  color: var(--clr-white);
+  cursor: default;
+}
