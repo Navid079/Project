@@ -1,4 +1,49 @@
+/* 
+  ===================
+  =     Imports     =
+  ===================
+*/
 @font-face {
-  font-family: 'BTraffic';
-  src: url('./fonts/B Traffic.ttf');
+  font-family: "BTraffic";
+  src: url("./fonts/B Traffic.ttf");
+}
+
+/* 
+  ===================
+  =    Variables    =
+  ===================
+*/
+:root {
+  /* 
+  ====================
+  =  Primary Colors  =
+  ====================
+  */
+  /* --clr-primary-1:; */
+  /* --clr-primary-2:; */
+  /* --clr-primary-3:; */
+  /* --clr-primary-4:; */
+  --clr-primary-5: #324e7b;
+  /* --clr-primary-6:; */
+  /* --clr-primary-7:; */
+  /* --clr-primary-8:; */
+  /* --clr-primary-9:; */
+  /* --clr-primary-10:; */
+
+  /* 
+  ====================
+  =   Other Colors   =
+  ====================
+  */
+  --clr-error: #f00;
+  --clr-white: #eff6ff;
+  /* --clr-white: #E5E5E5; */
+  /* --clr-black:; */
+
+  /* 
+  ===================
+  =    Typefaces    =
+  ===================
+  */
+  --fnt-primary: "BTraffic" sans-serif;
 }
