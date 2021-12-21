@@ -23,4 +23,9 @@
   justify-content: center;
   align-items: center;
   background-color: var(--clr-primary-5);
+ 
+}
+.main{
+  width: 100vw;
+  height: 100vh;
 }
