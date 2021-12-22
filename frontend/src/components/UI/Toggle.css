@@ -1,6 +1,6 @@
 .toggle {
-  width: 15rem;
-  height: 3rem;
+  width: var(--tgl-width);
+  height: var(--tgl-height);
   border: 0.175rem solid var(--clr-primary-5);
   border-radius: 100px;
   position: relative;
@@ -12,7 +12,7 @@
   height: 100%;
   background-color: transparent;
   border: none;
-  font-size: 1.5rem;
+  font-size: var(--tgl-font-size);
   cursor: pointer;
   position: relative;
   z-index: 1;
