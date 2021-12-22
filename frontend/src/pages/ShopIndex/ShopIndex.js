@@ -67,24 +67,8 @@ export default function ShopIndex() {
               type="password"
               placeholder="تایید گذرواژه"
             />
-          <a href="#">حساب کاربری دارید؟</a>
           <Button className="">ثبت</Button>
-
-          <span className="signup-forms__warnig-region--error-required-field"></span>
-
-          <input type="hidden" value={"temp"} />
-          {/* for backend */}
         </form>
-
-        <div className="signup-forms__warnig-region">
-          <a href="#">حساب کاربری ندارید؟</a>
-          <span className="signup-forms__warnig-region--errorUsername"></span>
-          <span className="signup-forms__warnig-region--errorPasword"></span>
-        </div>
-      </div>
-
-      <div className="enter-button">
-        <Button className="">ورود</Button>
       </div>
     </div>
   );
