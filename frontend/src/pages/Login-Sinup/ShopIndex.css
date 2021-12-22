@@ -20,14 +20,14 @@
   --tgl-font-size: 1rem;
 }
 
-.shop-index__signup-controls{
+.shop-index__signup-controls {
   display: flex;
   flex-direction: column;
   align-items: center;
   margin-top: 1rem;
 }
 
-.shop-index__signup-txt-input{
+.shop-index__signup-txt-input {
   --txt-width: 60%;
   --txt-height: 2rem;
   margin-bottom: 1rem;

@@ -7,28 +7,30 @@
 }
 
 .icon-input__icon {
-  width: var(--txt-height);
-  height: var(--txt-height);
+  width: 100%;
+  height: 100%;
   color: var(--clr-primary-5);
-  display: block;
-  margin: 0 1rem;
-  flex-shrink: 0;
 }
 
-.icon-input__exclamation-container {
+.icon-input__icon-container {
   display: flex;
   width: var(--txt-height);
   height: var(--txt-height);
   flex-shrink: 0;
   margin: 0 1rem;
-  color: var(--clr-error);
   justify-content: flex-end;
   align-items: center;
 }
 
 .icon-input__exclamation {
+  color: var(--clr-error);
   width: 60%;
   height: 60%;
+  visibility: hidden;
+}
+
+.icon-input__exclamation--show{
+  visibility: visible;
 }
 
 .icon-input__input {
