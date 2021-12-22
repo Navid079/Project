@@ -67,8 +67,12 @@ export default function ShopIndex() {
             type="password"
             placeholder="تایید گذرواژه"
           />
-          <button className="shop-index__signup-link">حساب کاربری دارید؟</button>
-          <Button className="">ثبت</Button>
+          <button className="shop-index__signup-link">
+            حساب کاربری دارید؟
+          </button>
+          <div className="shop-index__signup-submit-container">
+            <Button className="shop-index__signup-submit">ثبت</Button>
+          </div>
         </form>
       </div>
     </div>
