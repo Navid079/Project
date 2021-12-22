@@ -5,7 +5,13 @@ import IconInput from "../../components/UI/TextInput/IconInput";
 import Button from "../../components/UI/Button/Button";
 import Toggle from "../../components/UI/Toggle";
 
-export default function EnterPage() {
+export default function ShopIndex() {
+  
+  const toggleHandler = (position) => {
+    // will be added
+    // position argument can be "left" or "right"
+  }
+  
   return (
     <div className="shop-index">
       <div className="shop-index__wave--mobile" />
@@ -13,6 +19,7 @@ export default function EnterPage() {
         className="shop-index__toggle"
         leftLabel="ورود"
         rightLabel="ثبت نام"
+        onToggle={toggleHandler}
       />
       <div className="input-forms">
         <div className="input-forms__login-form"></div>
