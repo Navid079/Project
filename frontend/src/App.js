@@ -1,11 +1,11 @@
-import EnterPage from './pages/Login-Sinup/EnterPage';
+import ShopIndex from './pages/Login-Sinup/ShopIndex';
 
 import './App.css';
 
 function App() {
   return (
     <div className='main'>
-      <EnterPage />
+      <ShopIndex />
     </div>
   );
 }

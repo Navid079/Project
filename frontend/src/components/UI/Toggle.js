@@ -1,7 +1,7 @@
 import { useRef } from 'react';
 import './Toggle.css';
 
-const Toggle = ({ className, left, right, onToggle }) => {
+const Toggle = ({ className, leftLabel, rightLabel, onToggle }) => {
   const toggler = useRef();
 
   const toggleHandler = event => {
@@ -20,10 +20,10 @@ const Toggle = ({ className, left, right, onToggle }) => {
     <div className={`toggle ${className}`}>
       <div className="toggle__toggler" ref={toggler} />
       <button className="toggle__toggle-button active" onClick={toggleHandler}>
-        {left}
+        {leftLabel}
       </button>
       <button className="toggle__toggle-button" onClick={toggleHandler}>
-        {right}
+        {rightLabel}
       </button>
     </div>
   );

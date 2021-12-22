@@ -1,14 +1,19 @@
 import React from "react";
 
-import "./EnterPage.css";
-import IconInput from "./../../components/UI/TextInput/IconInput";
-import Button from "./../../components/UI/Button/Button";
+import "./ShopIndex.css";
+import IconInput from "../../components/UI/TextInput/IconInput";
+import Button from "../../components/UI/Button/Button";
+import Toggle from "../../components/UI/Toggle";
 
 export default function EnterPage() {
   return (
-    <>
-      <div className="shape"></div>
-      <div className="toggle">{/* <Toggle/> */}</div>
+    <div className="shop-index">
+      <div className="shop-index__wave--mobile" />
+      <Toggle
+        className="shop-index__toggle"
+        leftLabel="ورود"
+        rightLabel="ثبت نام"
+      />
       <div className="input-forms">
         <div className="input-forms__login-form"></div>
         <div className="input-forms__signup-form">
@@ -68,6 +73,6 @@ export default function EnterPage() {
       <div className="enter-button">
         <Button className="">ورود</Button>
       </div>
-    </>
+    </div>
   );
 }
