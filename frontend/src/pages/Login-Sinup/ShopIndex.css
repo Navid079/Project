@@ -27,6 +27,12 @@
   margin-top: 1rem;
 }
 
+.shop-index__signup-txt-input{
+  --txt-width: 60%;
+  --txt-height: 2rem;
+  margin-bottom: 1rem;
+}
+
 /* ======================================================== */
 .input-forms {
   width: 100%;

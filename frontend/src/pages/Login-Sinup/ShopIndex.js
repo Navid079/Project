@@ -1,7 +1,7 @@
 import React from "react";
 
 import "./ShopIndex.css";
-import IconInput from "../../components/UI/TextInput/IconInput";
+import IconInput from "../../components/ShopIndex/IconInput";
 import Button from "../../components/UI/Button/Button";
 import Toggle from "../../components/UI/Toggle";
 
@@ -34,38 +34,39 @@ export default function ShopIndex() {
           <IconInput
             icon="healthicons:ui-user-profile-outline"
             flipped={true}
-            className="input-forms__signup-forms__username"
+            className="shop-index__signup-txt-input"
             type="text"
             placeholder="نام کاربری"
           />
           <IconInput
             icon="akar-icons:phone"
             flipped={true}
-            className="input-forms__signup-forms__tel"
+            className="shop-index__signup-txt-input"
             type="tel"
             placeholder="تلفن همراه"
           />
           <IconInput
             icon="mdi-light:email"
             flipped={true}
-            className="input-forms__signup-forms__email"
+            className="shop-index__signup-txt-input"
             type="email"
             placeholder="ایمیل"
           />
-          <div className="input-forms__signup-forms__password-container">
+          {/* <div className="shop-index__signup-password-container">
             <IconInput
               icon="carbon:password"
               flipped={true}
-              className="input-forms__signup-forms__password"
+              className="shop-index__signup-password"
               type="password"
               placeholder="گذرواژه"
             />
             <IconInput
-              className="input-forms__signup-forms__confirm-password"
+              flipped={true}
+              className="shop-index__signup-confirm-password"
               type="password"
               placeholder="تایید گذرواژه"
             />
-          </div>
+          </div> */}
           <a href="#">حساب کاربری دارید؟</a>
           <Button className="">ثبت</Button>
 

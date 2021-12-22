@@ -1,0 +1,36 @@
+.icon-input {
+  display: flex;
+}
+
+.flipped {
+  flex-direction: row-reverse;
+}
+
+.icon-input__icon {
+  width: var(--txt-height);
+  height: var(--txt-height);
+  color: var(--clr-primary-5);
+  display: block;
+  margin: 0 1rem;
+  flex-shrink: 0;
+}
+
+.icon-input__exclamation-container {
+  display: flex;
+  width: var(--txt-height);
+  height: var(--txt-height);
+  flex-shrink: 0;
+  margin: 0 1rem;
+  color: var(--clr-error);
+  justify-content: flex-end;
+  align-items: center;
+}
+
+.icon-input__exclamation {
+  width: 60%;
+  height: 60%;
+}
+
+.icon-input__input {
+  flex-shrink: 0;
+}
