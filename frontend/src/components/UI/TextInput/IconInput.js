@@ -8,7 +8,7 @@ const IconInput = ({ className, iconClassName, inputClassName, placeholder, type
     <div className={`icon-input ${flipped ? 'flipped' : ''} ${className || ''}`}>
       <Icon className={`icon-input__icon ${iconClassName || ''}`} icon={icon} />
       <TextInput
-        className={`icon-input-__input ${inputClassName || ''}`}
+        className={`icon-input__input ${inputClassName || ''}`}
         type={type}
         placeholder={placeholder || ''}
       />
