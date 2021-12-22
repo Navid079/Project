@@ -33,6 +33,7 @@
   --txt-width: 60vw;
   --txt-height: 2rem;
   margin-bottom: 1rem;
+  --txt-font-size: 1rem;
 }
 
 .shop-index__signup-link {
@@ -56,4 +57,27 @@
   --btn-height: 2rem;
   --btn-font-size: 1.5rem;
   transform: translateX(-40%);
+}
+
+@media screen and (min-width: 768px) {
+  .shop-index__toggle{
+    --tgl-height: 3rem;
+    --tgl-width: 15rem;
+    --tgl-font-size: 1.5rem;
+  }
+  .shop-index__signup-txt-input{
+    --txt-width: 45vw;
+    --txt-height: 3rem;
+    --txt-font-size: 1.5rem;
+  }
+  .shop-index__signup-link {
+    font-size: 1.5rem;
+  }
+  .shop-index__signup-submit {
+    --btn-height: 3rem;
+    --btn-width: 13rem;
+    --btn-font-size: 2rem;
+    transform: translateX(-20%);
+  }
+  
 }
