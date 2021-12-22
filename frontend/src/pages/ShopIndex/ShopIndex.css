@@ -2,16 +2,22 @@
   display: flex;
   flex-direction: column;
   background-color: var(--clr-white);
-  padding-bottom: 5rem;
+  width: 100%;
 }
 
-.shop-index__wave--mobile {
+.shop-index__wave {
   width: 100%;
   height: calc(288 / 320 * 100vw);
   background-image: url(../../images/wave-mobile.svg);
   background-repeat: no-repeat;
   background-position: bottom;
   background-size: cover;
+}
+
+.shop-index__body {
+  display: flex;
+  flex-direction: column;
+  padding-bottom: 5rem;
 }
 
 .shop-index__toggle {
@@ -33,6 +39,7 @@
   --txt-width: 60vw;
   --txt-height: 2rem;
   margin-bottom: 1rem;
+  --txt-font-size: 1rem;
 }
 
 .shop-index__signup-link {
@@ -56,4 +63,118 @@
   --btn-height: 2rem;
   --btn-font-size: 1.5rem;
   transform: translateX(-40%);
+}
+
+/* 
+==========================
+=   Tablet Media Query   =
+==========================
+*/
+@media screen and (min-width: 768px) {
+  .shop-index__toggle {
+    --tgl-height: 3rem;
+    --tgl-width: 15rem;
+    --tgl-font-size: 1.5rem;
+  }
+  .shop-index__signup-txt-input {
+    --txt-width: 45vw;
+    --txt-height: 3rem;
+    --txt-font-size: 1.5rem;
+  }
+  .shop-index__signup-link {
+    font-size: 1.5rem;
+  }
+  .shop-index__signup-submit {
+    --btn-height: 3rem;
+    --btn-width: 13rem;
+    --btn-font-size: 2rem;
+    transform: translateX(-20%);
+  }
+}
+
+/* 
+==========================
+=     PC Media Query     =
+==========================
+*/
+@media screen and (min-width: 1024px) {
+  .shop-index {
+    border: 1px solid var(--clr-white);
+    flex-direction: row;
+    height: 80vh;
+    width: calc(100vw - 10vh);
+    border-radius: 100px;
+  }
+  .shop-index__wave {
+    width: 50%;
+    height: 100%;
+    background-image: url(../../images/wave-pc.svg);
+    background-position: right;
+    border-top-left-radius: inherit;
+    border-bottom-left-radius: inherit;
+  }
+  .shop-index__body {
+    width: 50%;
+  }
+  .shop-index__toggle {
+    margin-top: 5rem;
+    margin-bottom: 3rem;
+    align-self: flex-end;
+    transform: translateX(-30%);
+  }
+  .shop-index__signup-txt-input {
+    --txt-width: 30vw;
+  }
+  .shop-index__signup-link {
+    width: 30vw;
+  }
+
+  .shop-index__signup-submit-container {
+    width: 30vw;
+  }
+  .shop-index__signup-submit {
+    transform: translateX(-40%);
+  }
+}
+
+@media screen and (min-width: 1440px) {
+  .shop-index__wave {
+    background-size: contain;
+    background-position: left;
+  }
+}
+
+/* 
+==========================
+= Ultra Wide Media Query =
+==========================
+*/
+@media screen and (min-width: 2560px) {
+  .shop-index {
+    border-radius: 150px;
+  }
+  .shop-index__toggle {
+    --tgl-width: 40rem;
+    --tgl-height: 6rem;
+    --tgl-font-size: 3rem;
+  }
+  .shop-index__signup-txt-input {
+    --txt-width: 50rem;
+    --txt-height: 6rem;
+    margin-bottom: 2.5rem;
+    --txt-font-size: 3rem;
+  }
+  .shop-index__signup-link {
+    font-size: 3rem;
+    width: 50rem;
+  }
+  .shop-index__signup-submit-container {
+    width: 50rem;
+  }
+  .shop-index__signup-submit {
+    --btn-width: 25rem;
+    --btn-height: 6rem;
+    --btn-font-size: 3rem;
+    transform: translateX(-85%);
+  }
 }

@@ -14,67 +14,69 @@ export default function ShopIndex() {
   return (
     <div className="shop-index">
       {/* =========         WAVE         ========= */}
-      <div className="shop-index__wave--mobile" />
+      <div className="shop-index__wave" />
 
-      {/* =========        TOGGLE        ========= */}
-      <Toggle
-        className="shop-index__toggle"
-        leftLabel="ورود"
-        rightLabel="ثبت نام"
-        onToggle={toggleHandler}
-      />
+      <main className="shop-index__body">
+        {/* =========        TOGGLE        ========= */}
+        <Toggle
+          className="shop-index__toggle"
+          leftLabel="ورود"
+          rightLabel="ثبت نام"
+          onToggle={toggleHandler}
+        />
 
-      {/* =========    FORM CONTAINERS    ========= */}
-      <div className="shop-index__controls">
-        {/* ========= LOGIN FORM CONTAINER ========= */}
-        <form className="shop-index__login-controls"></form>
+        {/* =========    FORM CONTAINERS    ========= */}
+        <div className="shop-index__controls">
+          {/* ========= LOGIN FORM CONTAINER ========= */}
+          <form className="shop-index__login-controls"></form>
 
-        {/* ========= SIGNUP FORM CONTAINER ========= */}
-        <form className="shop-index__signup-controls">
-          <IconInput
-            icon="healthicons:ui-user-profile-outline"
-            error={true /*example*/}
-            flipped={true}
-            className="shop-index__signup-txt-input"
-            type="text"
-            placeholder="نام کاربری"
-          />
-          <IconInput
-            icon="akar-icons:phone"
-            error={false /*example*/}
-            flipped={true}
-            className="shop-index__signup-txt-input"
-            placeholder="تلفن همراه"
-          />
-          <IconInput
-            icon="mdi-light:email"
-            error={true /*example*/}
-            flipped={true}
-            className="shop-index__signup-txt-input"
-            type="email"
-            placeholder="ایمیل"
-          />
-          <IconInput
-            icon="carbon:password"
-            flipped={true}
-            className="shop-index__signup-txt-input"
-            type="password"
-            placeholder="گذرواژه"
-          />
-          <IconInput
-            flipped={true}
-            className="shop-index__signup-txt-input"
-            type="password"
-            placeholder="تایید گذرواژه"
-          />
-          <button className="shop-index__signup-link">
-            حساب کاربری دارید؟
-          </button>
-          <div className="shop-index__signup-submit-container">
-            <Button className="shop-index__signup-submit">ثبت</Button>
-          </div>
-        </form>
-      </div>
+          {/* ========= SIGNUP FORM CONTAINER ========= */}
+          <form className="shop-index__signup-controls">
+            <IconInput
+              icon="healthicons:ui-user-profile-outline"
+              error={true /*example*/}
+              flipped={true}
+              className="shop-index__signup-txt-input"
+              type="text"
+              placeholder="نام کاربری"
+            />
+            <IconInput
+              icon="akar-icons:phone"
+              error={false /*example*/}
+              flipped={true}
+              className="shop-index__signup-txt-input"
+              placeholder="تلفن همراه"
+            />
+            <IconInput
+              icon="mdi-light:email"
+              error={true /*example*/}
+              flipped={true}
+              className="shop-index__signup-txt-input"
+              type="email"
+              placeholder="ایمیل"
+            />
+            <IconInput
+              icon="carbon:password"
+              flipped={true}
+              className="shop-index__signup-txt-input"
+              type="password"
+              placeholder="گذرواژه"
+            />
+            <IconInput
+              flipped={true}
+              className="shop-index__signup-txt-input"
+              type="password"
+              placeholder="تایید گذرواژه"
+            />
+            <button className="shop-index__signup-link">
+              حساب کاربری دارید؟
+            </button>
+            <div className="shop-index__signup-submit-container">
+              <Button className="shop-index__signup-submit">ثبت</Button>
+            </div>
+          </form>
+        </div>
+      </main>
     </div>
   );
 }
