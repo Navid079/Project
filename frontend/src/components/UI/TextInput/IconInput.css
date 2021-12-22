@@ -1,4 +1,4 @@
-.text-input-o {
+.icon-input {
   display: flex;
 }
 
@@ -6,7 +6,7 @@
   flex-direction: row-reverse;
 }
 
-.text-input-o__icon {
+.icon-input__icon {
   width: 3rem;
   height: 3rem;
   background-color: brown;
@@ -17,7 +17,7 @@
   flex-shrink: 0;
 }
 
-.text-input-o__input {
+.icon-input__input {
   width: 100%;
   flex-shrink: 0;
 }
