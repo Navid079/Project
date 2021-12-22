@@ -17,7 +17,7 @@ const IconInput = ({
       className={`icon-input ${flipped ? "flipped" : ""} ${className || ""}`}
     >
       <div className="icon-input__icon-container">
-      <Icon className="icon-input__icon" icon={icon} />
+        <Icon className="icon-input__icon" icon={icon} />
       </div>
       <TextInput
         className="icon-input__input"

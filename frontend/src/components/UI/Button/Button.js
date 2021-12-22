@@ -1,11 +1,11 @@
-import './Button.css';
+import "./Button.css";
 
-const Button = props => {
+const Button = (props) => {
   return (
     <button
       className={`button ${props.className}`}
       onClick={props.onClick}
-      type={props.type || 'submit'}
+      type={props.type || "submit"}
     >
       {props.children}
     </button>

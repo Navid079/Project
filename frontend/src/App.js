@@ -1,10 +1,10 @@
-import ShopIndex from './pages/ShopIndex/ShopIndex';
+import ShopIndex from "./pages/ShopIndex/ShopIndex";
 
-import './App.css';
+import "./App.css";
 
 function App() {
   return (
-    <div className='main'>
+    <div>
       <ShopIndex />
     </div>
   );
