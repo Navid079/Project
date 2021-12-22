@@ -137,3 +137,10 @@
     transform: translateX(-40%);
   }
 }
+
+@media screen and (min-width: 1440px) {
+  .shop-index__wave {
+    background-size: contain;
+    background-position: left;
+  }
+}
