@@ -1,42 +1,43 @@
 import React from "react";
 
-import "./ShopIndex.css";
-import IconInput from "../../components/ShopIndex/IconInput";
+import "./Index.css";
+
 import Button from "../../components/UI/Button/Button";
 import Toggle from "../../components/UI/Toggle";
+import IconInput from '../../components/Index/IconInput';
 
-export default function ShopIndex() {
+export default function Index() {
   const toggleHandler = (position) => {
     // will be added
     // position argument can be "left" or "right"
   };
 
   return (
-    <div className="shop-index">
+    <div className="index">
       {/* =========         WAVE         ========= */}
-      <div className="shop-index__wave" />
+      <div className="index__wave" />
 
-      <main className="shop-index__body">
+      <main className="index__body">
         {/* =========        TOGGLE        ========= */}
         <Toggle
-          className="shop-index__toggle"
+          className="index__toggle"
           leftLabel="ورود"
           rightLabel="ثبت نام"
           onToggle={toggleHandler}
         />
 
         {/* =========    FORM CONTAINERS    ========= */}
-        <div className="shop-index__controls">
+        <div className="index__controls">
           {/* ========= LOGIN FORM CONTAINER ========= */}
-          <form className="shop-index__login-controls"></form>
+          <form className="index__login-controls"></form>
 
           {/* ========= SIGNUP FORM CONTAINER ========= */}
-          <form className="shop-index__signup-controls">
+          <form className="index__signup-controls">
             <IconInput
               icon="healthicons:ui-user-profile-outline"
               error={true /*example*/}
               flipped={true}
-              className="shop-index__signup-txt-input"
+              className="index__signup-txt-input"
               type="text"
               placeholder="نام کاربری"
             />
@@ -44,35 +45,35 @@ export default function ShopIndex() {
               icon="akar-icons:phone"
               error={false /*example*/}
               flipped={true}
-              className="shop-index__signup-txt-input"
+              className="index__signup-txt-input"
               placeholder="تلفن همراه"
             />
             <IconInput
               icon="mdi-light:email"
               error={true /*example*/}
               flipped={true}
-              className="shop-index__signup-txt-input"
+              className="index__signup-txt-input"
               type="email"
               placeholder="ایمیل"
             />
             <IconInput
               icon="carbon:password"
               flipped={true}
-              className="shop-index__signup-txt-input"
+              className="index__signup-txt-input"
               type="password"
               placeholder="گذرواژه"
             />
             <IconInput
               flipped={true}
-              className="shop-index__signup-txt-input"
+              className="index__signup-txt-input"
               type="password"
               placeholder="تایید گذرواژه"
             />
-            <button className="shop-index__signup-link">
+            <button className="index__signup-link">
               حساب کاربری دارید؟
             </button>
-            <div className="shop-index__signup-submit-container">
-              <Button className="shop-index__signup-submit">ثبت</Button>
+            <div className="index__signup-submit-container">
+              <Button className="index__signup-submit">ثبت</Button>
             </div>
           </form>
         </div>
