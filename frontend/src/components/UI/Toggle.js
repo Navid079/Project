@@ -1,29 +1,32 @@
-import { useRef } from 'react';
-import './Toggle.css';
+import { useRef } from "react";
+import "./Toggle.css";
 
-const Toggle = ({ className, left, right, onToggle }) => {
+const Toggle = ({ className, leftLabel, rightLabel, onToggle }) => {
   const toggler = useRef();
 
-  const toggleHandler = event => {
-    if (event.target.classList.contains('active')) return;
+  const toggleHandler = (event) => {
+    if (event.target.classList.contains("active")) return;
 
-    toggler.current.classList.toggle('right');
-    event.target.classList.add('active');
+    toggler.current.classList.toggle("right");
+    event.target.classList.add("active");
     const sibling =
       event.target.nextElementSibling || event.target.previousElementSibling;
-    sibling.classList.remove('active');
+    sibling.classList.remove("active");
 
-    if (onToggle) onToggle(event);
+    const position = toggler.current.classList.contains("right")
+      ? "right"
+      : "left";
+    if (onToggle) onToggle(position);
   };
 
   return (
     <div className={`toggle ${className}`}>
       <div className="toggle__toggler" ref={toggler} />
       <button className="toggle__toggle-button active" onClick={toggleHandler}>
-        {left}
+        {leftLabel}
       </button>
       <button className="toggle__toggle-button" onClick={toggleHandler}>
-        {right}
+        {rightLabel}
       </button>
     </div>
   );

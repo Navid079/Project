@@ -1,11 +1,12 @@
-import './TextInput.css';
+import "./TextInput.css";
 
-const TextInput = props => {
+const TextInput = ({ className, type, placeholder, onChange }) => {
   return (
     <input
-      className={`text-input ${props.className}`}
-      type={props.type || 'text'}
-      placeholder={props.placeholder}
+      className={`text-input ${className}`}
+      type={type || "text"}
+      placeholder={placeholder}
+      onChange={onChange}
     />
   );
 };

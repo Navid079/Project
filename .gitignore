@@ -7,7 +7,9 @@ publickey.cert
 secret.key
 
 # Front-End
-# See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
+
+# local packages
+local.*
 
 # dependencies
 /node_modules
