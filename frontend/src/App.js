@@ -1,4 +1,4 @@
-import ShopIndex from './pages/Login-Sinup/ShopIndex';
+import ShopIndex from './pages/ShopIndex/ShopIndex';
 
 import './App.css';
 

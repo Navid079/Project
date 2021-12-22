@@ -1,6 +1,7 @@
 .shop-index {
   display: flex;
   flex-direction: column;
+  background-color: var(--clr-white);
 }
 
 .shop-index__wave--mobile {
@@ -28,7 +29,17 @@
 }
 
 .shop-index__signup-txt-input {
-  --txt-width: 60%;
+  --txt-width: 60vw;
   --txt-height: 2rem;
   margin-bottom: 1rem;
+}
+
+.shop-index__signup-link{
+  background-color: var(--clr-white);
+  border: none;
+  cursor: pointer;
+  color: var(--clr-primary-5);
+  font-size: 1rem;
+  width: 60vw;
+  text-align: right;
 }

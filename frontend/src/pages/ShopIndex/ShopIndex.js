@@ -33,7 +33,7 @@ export default function ShopIndex() {
         <form className="shop-index__signup-controls">
           <IconInput
             icon="healthicons:ui-user-profile-outline"
-            error={true /*example*/} 
+            error={true /*example*/}
             flipped={true}
             className="shop-index__signup-txt-input"
             type="text"
@@ -54,19 +54,20 @@ export default function ShopIndex() {
             type="email"
             placeholder="ایمیل"
           />
-            <IconInput
-              icon="carbon:password"
-              flipped={true}
-              className="shop-index__signup-txt-input"
-              type="password"
-              placeholder="گذرواژه"
-            />
-            <IconInput
-              flipped={true}
-              className="shop-index__signup-txt-input"
-              type="password"
-              placeholder="تایید گذرواژه"
-            />
+          <IconInput
+            icon="carbon:password"
+            flipped={true}
+            className="shop-index__signup-txt-input"
+            type="password"
+            placeholder="گذرواژه"
+          />
+          <IconInput
+            flipped={true}
+            className="shop-index__signup-txt-input"
+            type="password"
+            placeholder="تایید گذرواژه"
+          />
+          <button className="shop-index__signup-link">حساب کاربری دارید؟</button>
           <Button className="">ثبت</Button>
         </form>
       </div>
