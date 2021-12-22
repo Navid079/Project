@@ -28,7 +28,6 @@
   --tgl-font-size: 1rem;
 }
 
-
 .shop-index__signup-controls {
   display: flex;
   flex-direction: column;
@@ -98,7 +97,7 @@
 =     PC Media Query     =
 ==========================
 */
-@media screen and (min-width: 1024px){
+@media screen and (min-width: 1024px) {
   .shop-index {
     border: 1px solid var(--clr-white);
     flex-direction: row;
@@ -111,8 +110,8 @@
     height: 100%;
     background-image: url(../../images/wave-pc.svg);
     background-position: right;
-    border-top-left-radius: 100px;
-    border-bottom-left-radius: 100px;
+    border-top-left-radius: inherit;
+    border-bottom-left-radius: inherit;
   }
   .shop-index__body {
     width: 50%;
@@ -129,10 +128,10 @@
   .shop-index__signup-link {
     width: 30vw;
   }
-  
-.shop-index__signup-submit-container {
-  width: 30vw;
-}
+
+  .shop-index__signup-submit-container {
+    width: 30vw;
+  }
   .shop-index__signup-submit {
     transform: translateX(-40%);
   }
@@ -142,5 +141,40 @@
   .shop-index__wave {
     background-size: contain;
     background-position: left;
+  }
+}
+
+/* 
+==========================
+= Ultra Wide Media Query =
+==========================
+*/
+@media screen and (min-width: 2560px) {
+  .shop-index {
+    border-radius: 150px;
+  }
+  .shop-index__toggle {
+    --tgl-width: 40rem;
+    --tgl-height: 6rem;
+    --tgl-font-size: 3rem;
+  }
+  .shop-index__signup-txt-input {
+    --txt-width: 50rem;
+    --txt-height: 6rem;
+    margin-bottom: 2.5rem;
+    --txt-font-size: 3rem;
+  }
+  .shop-index__signup-link {
+    font-size: 3rem;
+    width: 50rem;
+  }
+  .shop-index__signup-submit-container {
+    width: 50rem;
+  }
+  .shop-index__signup-submit {
+    --btn-width: 25rem;
+    --btn-height: 6rem;
+    --btn-font-size: 3rem;
+    transform: translateX(-85%);
   }
 }
