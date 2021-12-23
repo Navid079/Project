@@ -4,12 +4,20 @@ import "./Index.css";
 
 import Button from "../../components/UI/Button/Button";
 import Toggle from "../../components/UI/Toggle";
-import IconInput from '../../components/Index/IconInput';
+import IconInput from "../../components/Index/IconInput";
 
 export default function Index() {
   const toggleHandler = (position) => {
     // will be added
     // position argument can be "left" or "right"
+  };
+  const loginSubmitHandler = (event) => {
+    event.preventDefault();
+    // will be added
+  };
+  const signupSubmitHandler = (event) => {
+    event.preventDefault();
+    // will be added
   };
 
   return (
@@ -29,10 +37,16 @@ export default function Index() {
         {/* =========    FORM CONTAINERS    ========= */}
         <div className="index__controls">
           {/* ========= LOGIN FORM CONTAINER ========= */}
-          <form className="index__login-controls"></form>
+          <form
+            className="index__login-controls"
+            onSubmit={loginSubmitHandler}
+          ></form>
 
           {/* ========= SIGNUP FORM CONTAINER ========= */}
-          <form className="index__signup-controls">
+          <form
+            className="index__signup-controls"
+            onSubmit={signupSubmitHandler}
+          >
             <IconInput
               icon="healthicons:ui-user-profile-outline"
               error={true /*example*/}
@@ -69,9 +83,7 @@ export default function Index() {
               type="password"
               placeholder="تایید گذرواژه"
             />
-            <button className="index__signup-link">
-              حساب کاربری دارید؟
-            </button>
+            <button className="index__signup-link">حساب کاربری دارید؟</button>
             <div className="index__signup-submit-container">
               <Button className="index__signup-submit">ثبت</Button>
             </div>
