@@ -33,9 +33,9 @@ app.use((err, req, res, next) => {
 
 // Database connection and server start
 mongoose
-  .connect('mongodb://localhost:27017/theProject', { useNewUrlParser: true })
+  .connect('mongodb://mongo:27017/theProject', { useNewUrlParser: true })
   .then(result => {
-    app.listen(3000);
+    app.listen(3005);
     console.log('Connected');
   })
   .catch(err => console.log(err));
