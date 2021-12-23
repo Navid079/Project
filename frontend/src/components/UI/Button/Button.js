@@ -1,13 +1,13 @@
 import "./Button.css";
 
-const Button = (props) => {
+const Button = ({ className, onClick, type, children }) => {
   return (
     <button
-      className={`button ${props.className}`}
-      onClick={props.onClick}
-      type={props.type || "submit"}
+      className={`button ${className}`}
+      onClick={onClick}
+      type={type || "submit"}
     >
-      {props.children}
+      {children}
     </button>
   );
 };
