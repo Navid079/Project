@@ -123,8 +123,6 @@ router.post(
   authShopController.postShopLogin
 );
 
-router.post('/test', authentication.tokenCompiler);
-
 router.post(
   '/refresh',
   [

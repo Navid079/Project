@@ -3,6 +3,7 @@ API Documentation
 Table of contents:  
 [Signup as a seller](#signup-as-a-seller)  
 [Login as a seller](#login-as-a-seller)
+[Refresh a JWT](#refresh-a-jwt)
 
 # Signup as a seller
 ## Endpoint: 
@@ -12,10 +13,7 @@ Table of contents:
 {
   "message": "This message will be logged in server's console",
   "data": {
-    "name": {
-      "first": "foo",
-      "last": "bar"
-    },
+    "username": "thefoobar123",
     "phone": "09123456789",
     "email": "foo@bar.com",
     "password": "FooBarIsAStrongPassword1!",
@@ -43,10 +41,7 @@ Table of contents:
   "message": "User created",
   "data": {
     "user": {
-      "name": {
-        "first": "foo",
-        "last": "bar"
-      },
+      "username": "thefoobar123",
       "email": "foo@bar.com",
       "phone": "09123456789"
     }
@@ -59,11 +54,13 @@ Table of contents:
   "message": "An error occured",
   "data": {
     "messages": [
+      "username already exists"
       "Email already registered",
       "Phone number already registered"
     ],
-    "conflicts": [ "email", "phone" ],
+    "conflicts": [ "username", "email", "phone" ],
     "values": {
+      "username": "thefoobar123",
       "email": "foo@bar.com",
       "phone": "09123456789"
     }
@@ -83,16 +80,14 @@ Table of contents:
       "Data is not correct",
       "Data is not correct",
     ],
-    "conflicts": ["name", "phone", "password", "confirm"],
+    "conflicts": ["username", "phone", "password", "confirm"],
     "values": {
-      "name": {
-        "first": 21
-      },
+      
     }
   }
 }
 ```
-**Notice that** `name` **object is malformed and other properties are missing.**
+**Notice that no value is sent to the endpoint**
 ### 422 Unprocessable Entity
 ```json
 {
@@ -128,6 +123,15 @@ Table of contents:
 {
   "message": "This message will be logged in server's console",
   "data": {
+    "user": "thefoobar123",
+    "userType": "username",
+    "password": "FooBarIsAStrongPassword1!",
+  }
+}
+OR
+{
+  "message": "This message will be logged in server's console",
+  "data": {
     "user": "09123456789",
     "userType": "phone",
     "password": "FooBarIsAStrongPassword1!",
@@ -153,10 +157,7 @@ OR
   "message": "Logged in successfully",
   "data": {
     "user": {
-      "name": {
-        "first": "foo",
-        "last": "bar"
-      },
+      "username": "thefoobar123",
       "email": "foo@bar.com",
       "phone": "09123456789",
     }
@@ -226,3 +227,89 @@ OR
     }
   }
 }
+```
+# Refresh JWT
+## Endpoint:
+`/shop/refresh`
+## Request body JSON
+```json
+{
+  "message": "This message will be logged in server's console",
+  "data": {
+    "devId": "12345abcde",
+    "token": "uf39ufn9uewmcien...",
+    "refresh": "9ur3nv9un39f3..."
+  }
+}
+```
+## Resposes
+### 200 OK
+```json
+{
+  "message": "Token Refreshed",
+  "data": {
+    "user": {
+      "username": "thefoobar123",
+      "email": "foo@bar.com",
+      "phone": "09123456789",
+    },
+    "token": "827fd82nf2ud2...",
+    "refresh": "9ur3nv9un39f3...",
+  },
+}
+```
+### 422 Unprocessable Entity
+```json
+{
+  "message": "An Error Occured",
+  "data": {
+    "messages": [
+      "Data is not correct",
+      "Data is not correct",
+      "Data is not correct"
+    ],
+    "conflicts": [
+      "devId",
+      "token",
+      "refresh"
+    ],
+    "values": {
+      
+    }
+  },
+}
+```
+### 425 Too Early
+```json
+{
+  "message": "An Error Occured",
+  "data": {
+    "messages": [
+      "Token is not Expired Yet",
+    ],
+    "conflicts": [
+      "token"
+    ],
+    "values": {
+      "token": "ermf34f9..."
+    }
+  },
+}
+```
+### 401 Unauthorized
+```json
+{
+  "message": "An Error Occured",
+  "data": {
+    "messages": [
+      "Invalid Refresh Token",
+    ],
+    "conflicts": [
+      "refresh"
+    ],
+    "values": {
+      "token": "y38nrv8nsdfsd..."
+    }
+  },
+}
+```
