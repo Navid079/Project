@@ -3,11 +3,13 @@
   flex-direction: column;
   background-color: var(--clr-white);
   width: 100%;
+  min-height: 100vh;
+  border: 10px solid black;
 }
 
 .index__wave {
   width: 100%;
-  height: calc(288 / 360 * 100vw);
+  height: 45vh;
   background-image: url(../../images/wave-mobile.svg);
   background-repeat: no-repeat;
   background-position: bottom;
@@ -17,6 +19,7 @@
 .index__body {
   display: flex;
   flex-direction: column;
+  justify-content: center;
   padding-bottom: 5rem;
 }
 
@@ -28,21 +31,21 @@
   --tgl-font-size: 1rem;
 }
 
-.index__signup-controls {
+.index__controls {
   display: flex;
   flex-direction: column;
   align-items: center;
   margin-top: 1rem;
 }
 
-.index__signup-txt-input {
+.index__txt-input {
   --txt-width: 60vw;
   --txt-height: 2rem;
   margin-bottom: 1rem;
   --txt-font-size: 1rem;
 }
 
-.index__signup-link {
+.index__link {
   background-color: transparent;
   border: none;
   cursor: pointer;
@@ -52,17 +55,22 @@
   text-align: right;
 }
 
-.index__signup-submit-container {
+.index__submit-container {
   width: 60vw;
   display: flex;
   justify-content: flex-start;
 }
 
-.index__signup-submit {
+.index__submit {
   --btn-width: 8rem;
   --btn-height: 2rem;
   --btn-font-size: 1.5rem;
   transform: translateX(-40%);
+  margin-top: 2rem;
+}
+
+.g-flipped {
+  transform: rotateY(180deg);
 }
 
 /* 
@@ -76,15 +84,15 @@
     --tgl-width: 15rem;
     --tgl-font-size: 1.5rem;
   }
-  .index__signup-txt-input {
+  .index__txt-input {
     --txt-width: 45vw;
     --txt-height: 3rem;
     --txt-font-size: 1.5rem;
   }
-  .index__signup-link {
+  .index__link {
     font-size: 1.5rem;
   }
-  .index__signup-submit {
+  .index__submit {
     --btn-height: 3rem;
     --btn-width: 13rem;
     --btn-font-size: 2rem;
@@ -102,18 +110,23 @@
     border: 1px solid var(--clr-white);
     flex-direction: row;
     height: 80vh;
+    min-height: auto;
     width: calc(100vw - 10vh);
     border-radius: 100px;
   }
   .index__wave {
     width: 50%;
     height: 100%;
+    background-color: var(--clr-primary-5);
     background-image: url(../../images/wave-pc.svg);
+    background-size: auto 100%;
     background-position: right;
     border-top-left-radius: inherit;
     border-bottom-left-radius: inherit;
   }
   .index__body {
+    align-self: flex-start;
+    height: 100%;
     width: 50%;
     overflow-y: auto;
   }
@@ -131,31 +144,39 @@
   .index__toggle {
     margin-top: 5rem;
     align-self: flex-end;
-    transform: translateX(-30%);
+    transform: translateX(-40%);
+    flex-shrink: 0;
   }
-  .index__signup-txt-input {
+  .index__toggle--flipped {
+    transform: translateX(40%) !important;
+    align-self: flex-start;
+  }
+  .index__txt-input {
     --txt-width: 30vw;
     --txt-height: 2.5rem;
   }
-  .index__signup-link {
+  .index__link {
     width: 30vw;
   }
 
-  .index__signup-submit-container {
+  .index__submit-container {
     width: 30vw;
   }
-  .index__signup-submit {
-    transform: translateX(-40%);
+  .index__submit {
+    transform: translateX(-20%);
+  }
+  .index__submit--flipped {
+    transform: translateX(-20%) rotateY(180deg) !important;
   }
 }
 
 @media screen and (min-width: 1366px) {
-  .index__wave {
-    background-size: contain;
-    background-position: left;
-  }
+  
   .index__toggle {
-    transform: translateX(-60%);
+    transform: translateX(-50%);
+  }
+  .index__toggle--flipped {
+    transform: translateX(50%) !important;
   }
   .index {
     height: 90vh;
@@ -178,23 +199,23 @@
     --tgl-height: 6rem;
     --tgl-font-size: 3rem;
   }
-  .index__signup-txt-input {
+  .index__txt-input {
     --txt-width: 50rem;
     --txt-height: 6rem;
     margin-bottom: 2.5rem;
     --txt-font-size: 3rem;
   }
-  .index__signup-link {
+  .index__link {
     font-size: 3rem;
     width: 50rem;
   }
-  .index__signup-submit-container {
+  .index__submit-container {
     width: 50rem;
   }
-  .index__signup-submit {
+  .index__submit {
     --btn-width: 25rem;
     --btn-height: 6rem;
     --btn-font-size: 3rem;
-    transform: translateX(-85%);
+    transform: translateX(-20%);
   }
 }
