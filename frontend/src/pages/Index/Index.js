@@ -67,7 +67,7 @@ export default function Index() {
           <form
             className="index__signup-controls"
             onSubmit={signupSubmitHandler}
-            style={{display: "none"}}
+            // style={{display: "none"}}
           >
             <IconInput
               icon="healthicons:ui-user-profile-outline"
