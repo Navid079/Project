@@ -9,23 +9,40 @@ import IconInput from "../../components/Index/IconInput";
 export default function Index() {
   const toggle = useRef();
   const index = useRef();
+  const wave = useRef();
   const loginControls = useRef();
   const signupControls = useRef();
   const indexBody = useRef();
 
   const toggleHandler = (position) => {
+
+    wave.current.classList.add("fade-out-in");
+    setTimeout(() => {
+      wave.current.classList.remove("fade-out-in");
+    }, 1020);
+
     if (position === "left") {
       toggle.current.classList.add("index__toggle--flipped");
       index.current.classList.add("g-flipped");
       indexBody.current.classList.add("g-flipped");
       loginControls.current.classList.remove("g-hidden");
       signupControls.current.classList.add("g-hidden");
+
+      indexBody.current.classList.add("signup-slide");
+      setTimeout(() => {
+        indexBody.current.classList.remove("signup-slide");
+      }, 1020);
     } else {
       toggle.current.classList.remove("index__toggle--flipped");
       index.current.classList.remove("g-flipped");
       indexBody.current.classList.remove("g-flipped");
       loginControls.current.classList.add("g-hidden");
       signupControls.current.classList.remove("g-hidden");
+      
+      indexBody.current.classList.add("login-slide");
+      setTimeout(() => {
+        indexBody.current.classList.remove("login-slide");
+      }, 1020);
     }
   };
   const loginSubmitHandler = (event) => {
@@ -40,7 +57,7 @@ export default function Index() {
   return (
     <div className="index g-flipped" ref={index}>
       {/* =========         WAVE         ========= */}
-      <div className="index__wave" />
+      <div className="index__wave" ref={wave}/>
 
       <main className="index__body g-flipped" ref={indexBody}>
         {/* =========        TOGGLE        ========= */}
