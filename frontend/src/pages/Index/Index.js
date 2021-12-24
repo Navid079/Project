@@ -21,28 +21,28 @@ export default function Index() {
   };
 
   return (
-    <div className="index flipped">
+    <div className="index g-flipped">
       {/* =========         WAVE         ========= */}
       <div className="index__wave" />
 
-      <main className="index__body flipped">
+      <main className="index__body g-flipped">
         {/* =========        TOGGLE        ========= */}
         <Toggle
-          className="index__toggle"
+          className="index__toggle index__toggle--flipped"
           leftLabel="ورود"
           rightLabel="ثبت نام"
           onToggle={toggleHandler}
         />
 
         {/* =========    FORM CONTAINERS    ========= */}
-        <div className="index__controls">
+        <div className="index__controls-container">
           {/* ========= LOGIN FORM CONTAINER ========= */}
           <form
-            className="index__signup-controls"
+            className="index__controls"
             onSubmit={loginSubmitHandler}
           >
             <IconInput
-              className="index__signup-txt-input"
+              className="index__txt-input"
               error={false}
               flipped={false}
               icon="healthicons:ui-user-profile-outline"
@@ -53,19 +53,19 @@ export default function Index() {
               error={true}
               icon="carbon:password"
               flipped={false}
-              className="index__signup-txt-input"
+              className="index__txt-input"
               type="password"
               placeholder="گذرواژه"
             />
-            <button className="index__signup-link">حساب کاربری ندارید؟</button>
-            <div className="index__signup-submit-container flipped">
-              <Button className="index__signup-submit index__submit--flipped">ورود</Button>
+            <button className="index__link">حساب کاربری ندارید؟</button>
+            <div className="index__submit-container g-flipped">
+              <Button className="index__submit index__submit--flipped">ورود</Button>
             </div>
           </form>
 
           {/* ========= SIGNUP FORM CONTAINER ========= */}
           <form
-            className="index__signup-controls"
+            className="index__controls"
             onSubmit={signupSubmitHandler}
             style={{display: "none"}}
           >
@@ -73,7 +73,7 @@ export default function Index() {
               icon="healthicons:ui-user-profile-outline"
               error={true /*example*/}
               flipped={true}
-              className="index__signup-txt-input"
+              className="index__txt-input"
               type="text"
               placeholder="نام کاربری"
             />
@@ -81,33 +81,33 @@ export default function Index() {
               icon="akar-icons:phone"
               error={false /*example*/}
               flipped={true}
-              className="index__signup-txt-input"
+              className="index__txt-input"
               placeholder="تلفن همراه"
             />
             <IconInput
               icon="mdi-light:email"
               error={true /*example*/}
               flipped={true}
-              className="index__signup-txt-input"
+              className="index__txt-input"
               type="email"
               placeholder="ایمیل"
             />
             <IconInput
               icon="carbon:password"
               flipped={true}
-              className="index__signup-txt-input"
+              className="index__txt-input"
               type="password"
               placeholder="گذرواژه"
             />
             <IconInput
               flipped={true}
-              className="index__signup-txt-input"
+              className="index__txt-input"
               type="password"
               placeholder="تایید گذرواژه"
             />
-            <button className="index__signup-link">حساب کاربری دارید؟</button>
-            <div className="index__signup-submit-container">
-              <Button className="index__signup-submit">ثبت</Button>
+            <button className="index__link">حساب کاربری دارید؟</button>
+            <div className="index__submit-container">
+              <Button className="index__submit">ثبت</Button>
             </div>
           </form>
         </div>
