@@ -1,21 +1,21 @@
-import React from "react";
+import React from 'react';
 
-import "./Index.css";
+import './Index.css';
 
-import Button from "../../components/UI/Button/Button";
-import Toggle from "../../components/UI/Toggle";
-import IconInput from "../../components/Index/IconInput";
+import Button from '../../components/UI/Button/Button';
+import Toggle from '../../components/UI/Toggle';
+import IconInput from '../../components/Index/IconInput';
 
 export default function Index() {
-  const toggleHandler = (position) => {
+  const toggleHandler = position => {
     // will be added
     // position argument can be "left" or "right"
   };
-  const loginSubmitHandler = (event) => {
+  const loginSubmitHandler = event => {
     event.preventDefault();
     // will be added
   };
-  const signupSubmitHandler = (event) => {
+  const signupSubmitHandler = event => {
     event.preventDefault();
     // will be added
   };
@@ -38,14 +38,36 @@ export default function Index() {
         <div className="index__controls">
           {/* ========= LOGIN FORM CONTAINER ========= */}
           <form
-            className="index__login-controls"
+            className="index__signup-controls"
             onSubmit={loginSubmitHandler}
-          ></form>
+          >
+            <IconInput
+              className="index__signup-txt-input"
+              error={false}
+              flipped={false}
+              icon="healthicons:ui-user-profile-outline"
+              type="txt"
+              placeholder="نام کاربری"
+            />
+            <IconInput
+              error={true}
+              icon="carbon:password"
+              flipped={false}
+              className="index__signup-txt-input"
+              type="password"
+              placeholder="گذرواژه"
+            />
+            <button className="index__signup-link">حساب کاربری ندارید؟</button>
+            <div className="index__signup-submit-container">
+              <Button className="index__signup-submit">ورود</Button>
+            </div>
+          </form>
 
           {/* ========= SIGNUP FORM CONTAINER ========= */}
           <form
             className="index__signup-controls"
             onSubmit={signupSubmitHandler}
+            style={{display: "none"}}
           >
             <IconInput
               icon="healthicons:ui-user-profile-outline"
