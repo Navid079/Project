@@ -21,11 +21,11 @@ export default function Index() {
   };
 
   return (
-    <div className="index">
+    <div className="index flipped">
       {/* =========         WAVE         ========= */}
       <div className="index__wave" />
 
-      <main className="index__body">
+      <main className="index__body flipped">
         {/* =========        TOGGLE        ========= */}
         <Toggle
           className="index__toggle"
@@ -58,8 +58,8 @@ export default function Index() {
               placeholder="گذرواژه"
             />
             <button className="index__signup-link">حساب کاربری ندارید؟</button>
-            <div className="index__signup-submit-container">
-              <Button className="index__signup-submit">ورود</Button>
+            <div className="index__signup-submit-container flipped">
+              <Button className="index__signup-submit index__submit--flipped">ورود</Button>
             </div>
           </form>
 

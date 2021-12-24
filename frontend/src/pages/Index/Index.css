@@ -65,6 +65,7 @@
   --btn-height: 2rem;
   --btn-font-size: 1.5rem;
   transform: translateX(-40%);
+  margin-top: 2rem;
 }
 
 /* 
@@ -111,12 +112,16 @@
   .index__wave {
     width: 50%;
     height: 100%;
+    background-color: var(--clr-primary-5);
     background-image: url(../../images/wave-pc.svg);
+    background-size: auto 100%;
     background-position: right;
     border-top-left-radius: inherit;
     border-bottom-left-radius: inherit;
   }
   .index__body {
+    align-self: flex-start;
+    height: 100%;
     width: 50%;
     overflow-y: auto;
   }
@@ -135,6 +140,7 @@
     margin-top: 5rem;
     align-self: flex-end;
     transform: translateX(-40%);
+    flex-shrink: 0;
   }
   .index__signup-txt-input {
     --txt-width: 30vw;
@@ -149,6 +155,9 @@
   }
   .index__signup-submit {
     transform: translateX(-20%);
+  }
+  .index__submit--flipped {
+    transform: translateX(20%);
   }
 }
 
@@ -172,10 +181,6 @@
 @media screen and (min-width: 2560px) {
   .index {
     border-radius: 150px;
-  }
-  .index__wave {
-    background-size: contain;
-    background-position: left;
   }
   .index__toggle {
     --tgl-width: 40rem;
