@@ -9,7 +9,6 @@
 .index__wave {
   width: 100%;
   height: 45vh;
-  border: 10px solid #000;
   background-image: url(../../images/wave-mobile.svg);
   background-repeat: no-repeat;
   background-position: bottom;
@@ -135,7 +134,7 @@
   .index__toggle {
     margin-top: 5rem;
     align-self: flex-end;
-    transform: translateX(-30%);
+    transform: translateX(-40%);
   }
   .index__signup-txt-input {
     --txt-width: 30vw;
@@ -149,17 +148,14 @@
     width: 30vw;
   }
   .index__signup-submit {
-    transform: translateX(-40%);
+    transform: translateX(-20%);
   }
 }
 
 @media screen and (min-width: 1366px) {
-  .index__wave {
-    background-size: contain;
-    background-position: left;
-  }
+  
   .index__toggle {
-    transform: translateX(-60%);
+    transform: translateX(-50%);
   }
   .index {
     height: 90vh;
@@ -176,6 +172,10 @@
 @media screen and (min-width: 2560px) {
   .index {
     border-radius: 150px;
+  }
+  .index__wave {
+    background-size: contain;
+    background-position: left;
   }
   .index__toggle {
     --tgl-width: 40rem;
@@ -199,6 +199,6 @@
     --btn-width: 25rem;
     --btn-height: 6rem;
     --btn-font-size: 3rem;
-    transform: translateX(-85%);
+    transform: translateX(-20%);
   }
 }
