@@ -68,6 +68,9 @@
   transform: translateX(-40%);
   margin-top: 2rem;
 }
+.index__submit--flipped {
+  transform: translateX(-40%) rotateY(180deg) !important;
+}
 
 /* 
 ==========================
