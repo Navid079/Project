@@ -69,10 +69,6 @@
   margin-top: 2rem;
 }
 
-.g-flipped {
-  transform: rotateY(180deg);
-}
-
 /* 
 ==========================
 =   Tablet Media Query   =
@@ -171,7 +167,6 @@
 }
 
 @media screen and (min-width: 1366px) {
-  
   .index__toggle {
     transform: translateX(-50%);
   }
@@ -218,4 +213,78 @@
     --btn-font-size: 3rem;
     transform: translateX(-20%);
   }
+}
+
+/* 
+==========================
+=       Animations       =
+==========================
+*/
+
+@keyframes slide-left {
+  0% {
+    transform: translateX(-100%);
+    opacity: 0%;
+  }
+  25% {
+    transform: translateX(-75%);
+  }
+  50% {
+    transform: translateX(-50%);
+    opacity: 10%;
+  }
+  75% {
+    transform: translateX(-25%);
+    opacity: 60%;
+  }
+  100% {
+    transform: translateX(0%);
+    opacity: 100%;
+  }
+}
+
+@keyframes slide-right {
+  0% {
+    transform: translateX(-100%) rotateY(180deg);
+    opacity: 0%;
+  }
+  25% {
+    transform: translateX(-75%) rotateY(180deg);
+  }
+  50% {
+    transform: translateX(-50%) rotateY(180deg);
+    opacity: 10%;
+  }
+  75% {
+    transform: translateX(-25%) rotateY(180deg);
+    opacity: 60%;
+  }
+  100% {
+    transform: translateX(0%) rotateY(180deg);
+    opacity: 100%;
+  }
+}
+
+@keyframes fade-out-in {
+  0% {
+    opacity: 0%;
+  }
+  50% {
+    opacity: 60%;
+  }
+  100% {
+    opacity: 100%;
+  }
+}
+
+.login-slide {
+  animation: slide-left 1s linear 1;
+}
+
+.signup-slide {
+  animation: slide-right 1s linear 1;
+}
+
+.fade-out-in {
+  animation: fade-out-in 1s linear 1;
 }
