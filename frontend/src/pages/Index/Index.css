@@ -69,10 +69,6 @@
   margin-top: 2rem;
 }
 
-.g-flipped {
-  transform: rotateY(180deg);
-}
-
 /* 
 ==========================
 =   Tablet Media Query   =
