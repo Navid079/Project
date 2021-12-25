@@ -20,6 +20,48 @@ export default function Index() {
   const password = useRef();
   const re_password = useRef();
 
+  const inputHandler = () => {
+    const validEmail =
+      /[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?.)+(?:[A-Za-z]{2}|com|org|net|gov|mil|biz|info|mobi|name|aero|jobs|museum)\b/;
+
+    const validPassword =
+      /^(?=.*[a-z])(?=.*[A-Z])(?=.*d)(?=.*[@$!%*?&])[A-Za-zd@$!%*?&]{8,}$/;
+    const validPhone = /^(?:0|98|+98|+980|0098|098|00980)?(9d{9})$/;
+
+    if (username.current.value.length === 0) {
+      alert('please fill all inputs');
+      return false;
+    } else if (phone.current.value.length === 0) {
+      alert('please fill all inputs');
+      return false;
+    } else if (email.current.value.length === 0) {
+      alert('please fill all inputs');
+      return false;
+    } else if (password.current.value.length === 0) {
+      alert('please fill all inputs');
+      return false;
+    } else if (re_password.current.value.length === 0) {
+      alert('please fill all inputs');
+      return false;
+    } else if (validPhone.test(phone.current.value) === false) {
+      alert('Phone number is invalid');
+      return false;
+    } else if (validEmail.test(email.current.value) === false) {
+      alert('Enter email in a right format');
+      return false;
+    } else if (validPassword.test(password.current.value) == false) {
+      alert(
+        'Passwords must contain as least 1 uppercase, 1 lowercase, 1 digit, and 1 special character, they also must be at least 8 characters long'
+      );
+      return false;
+    } else if (password.current.value !== re_password.current.value) {
+      alert('passwords dont match');
+      return false;
+    }
+
+    return true;
+  };
+
   const toggleHandler = (position) => {
     wave.current.classList.add('fade-out-in');
     setTimeout(() => {
@@ -50,13 +92,37 @@ export default function Index() {
       }, 1020);
     }
   };
+
+  const devId = 12345
+
+
   const loginSubmitHandler = (event) => {
     event.preventDefault();
     // will be added
   };
   const signupSubmitHandler = (event) => {
     event.preventDefault();
-    // will be added
+    if(inputHandler() === false){
+      return
+    }
+    const user = {
+      message:"signUp req",
+      data:{
+        username: username.current.value,
+        phone: phone.current.value,
+        email: email.current.value,
+        password: password.current.value,
+        confirm: re_password.current.value,
+        devId: devId,
+      }
+     }
+     try {
+      const res = await axios.post("http://localhost:3005/shop/signup",user)
+      // history.push('#'), redirect dashboard
+      console.log(res.data)  
+    } catch (error) {
+      console.log(error)
+    }
   };
 
   return (
