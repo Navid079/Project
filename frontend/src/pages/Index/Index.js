@@ -1,5 +1,7 @@
-import React, { useRef } from 'react';
+import React, { useRef, useContext } from 'react';
+import { FormContext } from '../../ContextManager/FormContextManager/FormContext';
 import axios from 'axios';
+import { loginApiCall } from '../../API_Calls/LoginApiCall';
 
 import './Index.css';
 
@@ -21,13 +23,35 @@ export default function Index() {
   const password = useRef();
   const re_password = useRef();
 
-  const inputHandler = () => {
-    const validEmail =
-      /[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+(?:[A-Za-z]{2}|com|org|net|gov|mil|biz|info|mobi|name|aero|jobs|museum)\b/;
-    const validPassword =
-      /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
-    const validPhone = /^(?:0|98|\+98|\+980|0098|098|00980)?(9\d{9})$/;
+  const loginUsername = useRef();
+  const loginPassword = useRef();
 
+  const { dispatch,username:UN } = useContext(FormContext);
+
+  console.log(UN)
+
+  const validEmail =
+    /[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+(?:[A-Za-z]{2}|com|org|net|gov|mil|biz|info|mobi|name|aero|jobs|museum)\b/;
+  const validPassword =
+    /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
+  const validPhone = /^(?:0|98|\+98|\+980|0098|098|00980)?(9\d{9})$/;
+
+  const loginInputHandler = () => {
+    if (loginUsername.current.value.length === 0) {
+      alert('please fill all inputs');
+      return false;
+    } else if (loginPassword.current.value.length === 0) {
+      alert('please fill all inputs');
+      return false;
+    } else if (validPassword.test(loginPassword.current.value) === false) {
+      alert('password is invalid');
+      return false;
+    }
+
+    return true;
+  };
+
+  const inputHandler = () => {
     if (username.current.value.length === 0) {
       alert('please fill all inputs');
       return false;
@@ -97,8 +121,30 @@ export default function Index() {
 
   const loginSubmitHandler = (event) => {
     event.preventDefault();
-    // will be added
+    if (loginInputHandler === false) {
+      return;
+    }
+    const enteredUsername = loginUsername.current.value;
+    const enteredPassword = loginPassword.current.value;
+    const userType = validEmail.test(enteredUsername)
+      ? 'email'
+      : validPhone.test(enteredUsername)
+      ? 'phone'
+      : 'username';
+
+    const loginUser = {
+      message: "This message will be logged in server's console",
+      data: {
+        user: enteredUsername,
+        userType: userType,
+        password: enteredPassword,
+        devId,
+      },
+    };
+
+    loginApiCall(loginUser,dispatch)
   };
+
   const signupSubmitHandler = async (event) => {
     event.preventDefault();
     if (inputHandler() === false) {
@@ -154,6 +200,7 @@ export default function Index() {
               icon="healthicons:ui-user-profile-outline"
               type="txt"
               placeholder="نام کاربری"
+              reference={loginUsername}
             />
             <IconInput
               error={true}
@@ -162,6 +209,7 @@ export default function Index() {
               className="index__txt-input"
               type="password"
               placeholder="گذرواژه"
+              reference={loginPassword}
             />
             <button className="index__link">حساب کاربری ندارید؟</button>
             <div className="index__submit-container g-flipped">
