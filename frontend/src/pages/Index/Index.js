@@ -1,4 +1,5 @@
 import React, { useRef } from 'react';
+import axios from 'axios';
 
 import './Index.css';
 
@@ -22,11 +23,10 @@ export default function Index() {
 
   const inputHandler = () => {
     const validEmail =
-      /[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?.)+(?:[A-Za-z]{2}|com|org|net|gov|mil|biz|info|mobi|name|aero|jobs|museum)\b/;
-
+      /[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+(?:[A-Za-z]{2}|com|org|net|gov|mil|biz|info|mobi|name|aero|jobs|museum)\b/;
     const validPassword =
-      /^(?=.*[a-z])(?=.*[A-Z])(?=.*d)(?=.*[@$!%*?&])[A-Za-zd@$!%*?&]{8,}$/;
-    const validPhone = /^(?:0|98|+98|+980|0098|098|00980)?(9d{9})$/;
+      /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
+    const validPhone = /^(?:0|98|\+98|\+980|0098|098|00980)?(9\d{9})$/;
 
     if (username.current.value.length === 0) {
       alert('please fill all inputs');
@@ -93,35 +93,34 @@ export default function Index() {
     }
   };
 
-  const devId = 12345
-
+  const devId = 12345;
 
   const loginSubmitHandler = (event) => {
     event.preventDefault();
     // will be added
   };
-  const signupSubmitHandler = (event) => {
+  const signupSubmitHandler = async (event) => {
     event.preventDefault();
-    if(inputHandler() === false){
-      return
+    if (inputHandler() === false) {
+      return;
     }
     const user = {
-      message:"signUp req",
-      data:{
+      message: 'signUp req',
+      data: {
         username: username.current.value,
         phone: phone.current.value,
         email: email.current.value,
         password: password.current.value,
         confirm: re_password.current.value,
         devId: devId,
-      }
-     }
-     try {
-      const res = await axios.post("http://localhost:3005/shop/signup",user)
+      },
+    };
+    try {
+      const res = await axios.post('http://localhost:3005/shop/signup', user);
       // history.push('#'), redirect dashboard
-      console.log(res.data)  
+      console.log(res.data);
     } catch (error) {
-      console.log(error)
+      console.log(error);
     }
   };
 
