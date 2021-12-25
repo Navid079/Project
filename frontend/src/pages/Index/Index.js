@@ -1,10 +1,10 @@
-import React, { useRef } from "react";
+import React, { useRef } from 'react';
 
-import "./Index.css";
+import './Index.css';
 
-import Button from "../../components/UI/Button/Button";
-import Toggle from "../../components/UI/Toggle";
-import IconInput from "../../components/Index/IconInput";
+import Button from '../../components/UI/Button/Button';
+import Toggle from '../../components/UI/Toggle';
+import IconInput from '../../components/Index/IconInput';
 
 export default function Index() {
   const toggle = useRef();
@@ -14,34 +14,39 @@ export default function Index() {
   const signupControls = useRef();
   const indexBody = useRef();
 
-  const toggleHandler = (position) => {
+  const username = useRef();
+  const phone = useRef();
+  const email = useRef();
+  const password = useRef();
+  const re_password = useRef();
 
-    wave.current.classList.add("fade-out-in");
+  const toggleHandler = (position) => {
+    wave.current.classList.add('fade-out-in');
     setTimeout(() => {
-      wave.current.classList.remove("fade-out-in");
+      wave.current.classList.remove('fade-out-in');
     }, 1020);
 
-    if (position === "left") {
-      toggle.current.classList.add("index__toggle--flipped");
-      index.current.classList.add("g-flipped");
-      indexBody.current.classList.add("g-flipped");
-      loginControls.current.classList.remove("g-hidden");
-      signupControls.current.classList.add("g-hidden");
+    if (position === 'left') {
+      toggle.current.classList.add('index__toggle--flipped');
+      index.current.classList.add('g-flipped');
+      indexBody.current.classList.add('g-flipped');
+      loginControls.current.classList.remove('g-hidden');
+      signupControls.current.classList.add('g-hidden');
 
-      indexBody.current.classList.add("signup-slide");
+      indexBody.current.classList.add('signup-slide');
       setTimeout(() => {
-        indexBody.current.classList.remove("signup-slide");
+        indexBody.current.classList.remove('signup-slide');
       }, 1020);
     } else {
-      toggle.current.classList.remove("index__toggle--flipped");
-      index.current.classList.remove("g-flipped");
-      indexBody.current.classList.remove("g-flipped");
-      loginControls.current.classList.add("g-hidden");
-      signupControls.current.classList.remove("g-hidden");
-      
-      indexBody.current.classList.add("login-slide");
+      toggle.current.classList.remove('index__toggle--flipped');
+      index.current.classList.remove('g-flipped');
+      indexBody.current.classList.remove('g-flipped');
+      loginControls.current.classList.add('g-hidden');
+      signupControls.current.classList.remove('g-hidden');
+
+      indexBody.current.classList.add('login-slide');
       setTimeout(() => {
-        indexBody.current.classList.remove("login-slide");
+        indexBody.current.classList.remove('login-slide');
       }, 1020);
     }
   };
@@ -57,7 +62,7 @@ export default function Index() {
   return (
     <div className="index g-flipped" ref={index}>
       {/* =========         WAVE         ========= */}
-      <div className="index__wave" ref={wave}/>
+      <div className="index__wave" ref={wave} />
 
       <main className="index__body g-flipped" ref={indexBody}>
         {/* =========        TOGGLE        ========= */}
@@ -114,6 +119,7 @@ export default function Index() {
               className="index__txt-input"
               type="text"
               placeholder="نام کاربری"
+              reference={username}
             />
             <IconInput
               icon="akar-icons:phone"
@@ -121,6 +127,7 @@ export default function Index() {
               flipped={true}
               className="index__txt-input"
               placeholder="تلفن همراه"
+              reference={phone}
             />
             <IconInput
               icon="mdi-light:email"
@@ -129,6 +136,7 @@ export default function Index() {
               className="index__txt-input"
               type="email"
               placeholder="ایمیل"
+              reference={email}
             />
             <IconInput
               icon="carbon:password"
@@ -136,12 +144,14 @@ export default function Index() {
               className="index__txt-input"
               type="password"
               placeholder="گذرواژه"
+              reference={password}
             />
             <IconInput
               flipped={true}
               className="index__txt-input"
               type="password"
               placeholder="تایید گذرواژه"
+              reference={re_password}
             />
             <button className="index__link">حساب کاربری دارید؟</button>
             <div className="index__submit-container">

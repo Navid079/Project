@@ -11,6 +11,7 @@ const IconInput = ({
   flipped,
   error,
   onChange,
+  reference,
 }) => {
   return (
     <div
@@ -24,6 +25,7 @@ const IconInput = ({
         type={type}
         placeholder={placeholder || ""}
         onChange={onChange}
+        reference={reference}
       />
       <div className="icon-input__icon-container">
         <Icon
