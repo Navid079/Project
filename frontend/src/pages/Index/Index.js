@@ -27,8 +27,8 @@ export default function Index() {
   const loginPassword = useRef();
 
   // for error handler
-  const [passwordLoginError, setpasswordLoginError] = useState(false);
-  const [usernameLoginError, setuserNameLoginError] = useState(false);
+  const [passwordLoginError, setPasswordLoginError] = useState(false);
+  const [usernameLoginError, setUserNameLoginError] = useState(false);
   const [userNameSignupError, setuserNameSignupError] = useState(false);
   const [passwordSignupError, setpasswordSignupError] = useState(false);
   const [re_passwordSignupError, setre_passwordSignupError] = useState(false);
@@ -46,58 +46,131 @@ export default function Index() {
   const validPhone = /^(?:0|98|\+98|\+980|0098|098|00980)?(9\d{9})$/;
 
   const loginInputHandler = () => {
-    console.log("login");
+    setUserNameLoginError(false);
+    setPasswordLoginError(false);
+    if (
+      loginUsername.current.value.length === 0 &&
+      loginPassword.current.value.length === 0
+    ) {
+      // please fill all inputs
+      setUserNameLoginError(true);
+      setPasswordLoginError(true);
+      return false;
+    }
     if (loginUsername.current.value.length === 0) {
       // please fill all inputs
-      setuserNameLoginError(true);
-      setpasswordLoginError(true);
+      setUserNameLoginError(true);
       return false;
     } else if (loginPassword.current.value.length === 0) {
       // please fill all inputs
-      setpasswordLoginError(true);
+      setPasswordLoginError(true);
       return false;
     } else if (validPassword.test(loginPassword.current.value) === false) {
       // password is invalid
-      setpasswordLoginError(true);
+      setPasswordLoginError(true);
       return false;
     }
 
     return true;
   };
 
+  const inputErrorHandler = () => {
+    setemailError(false);
+    setphoneSignupError(false);
+    setpasswordSignupError(false);
+    setuserNameSignupError(false);
+    setre_passwordSignupError(false);
+
+
+    // To know which input the user is on
+    switch (window.event.target.placeholder) {
+      case "نام کاربری":
+        if (window.event.target.value.length === 0) {
+          setuserNameSignupError(true);
+        }
+        break;
+      case "گذرواژه":
+        if (password.current.value.length === 0) {
+          setpasswordSignupError(true);
+        } else if (validPassword.test(password.current.value) == false) {
+          setpasswordSignupError(true);
+        } else if (password.current.value !== re_password.current.value) {
+          setre_passwordSignupError(true);
+        }
+        break;
+      case "تایید گذرواژه":
+        if (validPassword.test(password.current.value) == false) {
+          setpasswordSignupError(true);
+        }
+        if (password.current.value !== re_password.current.value) {
+          setre_passwordSignupError(true);
+        }
+        break;
+      case "ایمیل":
+        if (email.current.value.length === 0) {
+          setemailError(true);
+        } else if (validEmail.test(email.current.value) === false) {
+          setemailError(true);
+        }
+        break;
+      case "تلفن همراه":
+        if (phone.current.value.length === 0) {
+          setphoneSignupError(true);
+        } else if (validPhone.test(phone.current.value) === false) {
+          setphoneSignupError(true);
+        }
+        break;
+    }
+  };
   const inputHandler = () => {
+    var flage = true;
+    setemailError(false);
+    setphoneSignupError(false);
+    setpasswordSignupError(false);
+    setuserNameSignupError(false);
+    setre_passwordSignupError(false);
+
     if (username.current.value.length === 0) {
-      alert("please fill all inputs");
-      return false;
-    } else if (phone.current.value.length === 0) {
-      alert("please fill all inputs");
-      return false;
-    } else if (email.current.value.length === 0) {
-      alert("please fill all inputs");
-      return false;
-    } else if (password.current.value.length === 0) {
-      alert("please fill all inputs");
-      return false;
-    } else if (re_password.current.value.length === 0) {
-      alert("please fill all inputs");
-      return false;
-    } else if (validPhone.test(phone.current.value) === false) {
-      alert("Phone number is invalid");
-      return false;
-    } else if (validEmail.test(email.current.value) === false) {
-      alert("Enter email in a right format");
-      return false;
-    } else if (validPassword.test(password.current.value) == false) {
-      alert(
-        "Passwords must contain as least 1 uppercase, 1 lowercase, 1 digit, and 1 special character, they also must be at least 8 characters long"
-      );
-      return false;
-    } else if (password.current.value !== re_password.current.value) {
-      alert("passwords dont match");
+      setuserNameSignupError(true);
+      flage = false;
+    }
+    if (phone.current.value.length === 0) {
+      setphoneSignupError(true);
+      flage = false;
+    }
+    if (email.current.value.length === 0) {
+      setemailError(true);
+      flage = false;
+    }
+    if (password.current.value.length === 0) {
+      setpasswordSignupError(true);
+      flage = false;
+    }
+    if (re_password.current.value.length === 0) {
+      setre_passwordSignupError(true);
+      flage = false;
+    }
+    if (validPhone.test(phone.current.value) === false) {
+      setphoneSignupError(true);
+      flage = false;
+    }
+    if (validEmail.test(email.current.value) === false) {
+      setemailError(true);
+      flage = false;
+    }
+    if (validPassword.test(password.current.value) == false) {
+      setpasswordSignupError(true);
+      flage = false;
+    }
+    if (password.current.value !== re_password.current.value) {
+      setre_passwordSignupError(true);
+      flage = false;
+    }
+    if (flage) {
+      return true;
+    } else {
       return false;
     }
-
-    return true;
   };
 
   const toggleHandler = (position) => {
@@ -217,6 +290,7 @@ export default function Index() {
               type="txt"
               placeholder="نام کاربری"
               reference={loginUsername}
+              onKeyPress={loginInputHandler}
             />
             <IconInput
               error={passwordLoginError}
@@ -226,6 +300,7 @@ export default function Index() {
               type="password"
               placeholder="گذرواژه"
               reference={loginPassword}
+              onKeyPress={loginInputHandler}
             />
             <button className="index__link">حساب کاربری ندارید؟</button>
             <div className="index__submit-container g-flipped">
@@ -249,6 +324,7 @@ export default function Index() {
               type="text"
               placeholder="نام کاربری"
               reference={username}
+              onKeyPress={inputErrorHandler}
             />
             <IconInput
               icon="akar-icons:phone"
@@ -257,6 +333,7 @@ export default function Index() {
               className="index__txt-input"
               placeholder="تلفن همراه"
               reference={phone}
+              onKeyPress={inputErrorHandler}
             />
             <IconInput
               icon="mdi-light:email"
@@ -266,6 +343,7 @@ export default function Index() {
               type="email"
               placeholder="ایمیل"
               reference={email}
+              onKeyPress={inputErrorHandler}
             />
             <IconInput
               icon="carbon:password"
@@ -275,6 +353,7 @@ export default function Index() {
               type="password"
               placeholder="گذرواژه"
               reference={password}
+              onKeyPress={inputErrorHandler}
             />
             <IconInput
               flipped={true}
@@ -283,6 +362,7 @@ export default function Index() {
               type="password"
               placeholder="تایید گذرواژه"
               reference={re_password}
+              onKeyPress={inputErrorHandler}
             />
             <button className="index__link">حساب کاربری دارید؟</button>
             <div className="index__submit-container">
