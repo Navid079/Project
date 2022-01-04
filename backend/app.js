@@ -3,13 +3,16 @@ const express = require('express');
 const mongoose = require('mongoose');
 
 // Routers import
-const authShopRouter = require('./routes/authShop');
+const requestInitializer = require('./middlewares/requestInitializer');
+const authShopRouter = require('./routes/shop/auth');
 
 const app = express();
 
 // express.json() is used to parse request bodies.
 // The result will be saved in req.body
 app.use(express.json());
+
+app.use(requestInitializer);
 
 // Routers
 // /shop/something endpoints are shop(seller) endpoints

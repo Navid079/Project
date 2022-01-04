@@ -1,7 +1,9 @@
 const { readFileSync } = require('fs');
-const { createSecretKey } = require('crypto')
+const { createSecretKey } = require('crypto');
 
 const jose = require('jose');
+
+const User = require('../models/User');
 
 exports.tokenCompiler = async (req, res, next) => {
   const data = req.body.data;
@@ -59,4 +61,22 @@ exports.refreshCompiler = async (req, res, next) => {
       err.conflicts = ['refresh'];
       err.values = { token: token };
     });
+};
+
+exports.validUser = async (req, res, next) => {
+  const data = req.body.data;
+  const token = data.compiledToken;
+
+  const user = await User.findById(token.userId);
+  if (!user) {
+    const err = new Error();
+    err.statusCode = 404;
+    err.messages = ['User Not Found'];
+    err.conflicts = ['token'];
+    err.values = { token: data.token };
+    next(err);
+  }
+  
+  req.compiled.user = user.
+  next();
 };
