@@ -76,26 +76,14 @@ exports.postShopLogin = (req, res, next) => {
   User.findOne(searchConfig)
     .then(user => {
       if (!user) {
-        const error = new Error();
-        error.statusCode = 404;
-        error.messages = ['User not found'];
-        error.conflicts = ['user'];
-        error.values = { user: data.user };
-
-        throw error;
+        throw new Error('404~User not found~user');
       }
       fetchedUser = user;
       return bcrypt.compare(data.password, user.password);
     })
     .then(result => {
       if (!result) {
-        const error = new Error();
-        error.statusCode = 401;
-        error.messages = ['Wrong password'];
-        error.conflicts = ['password'];
-        error.values = { password: data.password };
-
-        throw error;
+        throw new Error('401~Wrong password~password');
       }
       return createJWT(fetchedUser._id, data.devId);
     })
@@ -137,13 +125,7 @@ exports.postShopRefresh = (req, res, next) => {
   const tokenAge = Math.floor((now - createdTime) / 60000);
 
   if (tokenAge < 15) {
-    const error = new Error();
-    error.statusCode = 425;
-    error.messages = ['Token is not Expired Yet'];
-    error.conflicts = ['token'];
-    error.values = { token: data.token };
-
-    throw error
+    throw new Error('425~Token is not expired yet~token');
   }
 
   let fetchedUser;
@@ -152,11 +134,7 @@ exports.postShopRefresh = (req, res, next) => {
     .then(user => {
       fetchedUser = user;
       if (!user || user.password != refresh.password) {
-        const error = new Error();
-        error.statusCode = 401;
-        error.messages = ['Invalid Refresh Token'];
-        error.conflicts = ['refresh'];
-        error.values = { refresh: data.refresh };
+        throw new Error('401~Invalid refresh Token~refresh');
       }
 
       return createJWT(user._id, data.devId);

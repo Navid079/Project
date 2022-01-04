@@ -1,6 +1,5 @@
 // Third-party libraries
 const express = require('express');
-const { body } = require('express-validator');
 
 // Database models
 const User = require('../../models/User');

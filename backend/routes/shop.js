@@ -1,7 +1,5 @@
 const express = require('express');
 
-const { body } = require('express-validator');
-
 const auth = require('./shop/auth');
 const dashboard = require('./shop/dashboard');
 const validators = require('../validators/general')
