@@ -74,7 +74,8 @@ export default function Index() {
     return true;
   };
 
-  const inputErrorHandler = () => {
+  //for cheking and handel show error icon in signup
+  const onChangeHandler = () => {
     setemailError(false);
     setphoneSignupError(false);
     setpasswordSignupError(false);
@@ -324,7 +325,7 @@ export default function Index() {
               type="text"
               placeholder="نام کاربری"
               reference={username}
-              onKeyPress={inputErrorHandler}
+              onKeyPress={onChangeHandler}
             />
             <IconInput
               icon="akar-icons:phone"
@@ -333,7 +334,7 @@ export default function Index() {
               className="index__txt-input"
               placeholder="تلفن همراه"
               reference={phone}
-              onKeyPress={inputErrorHandler}
+              onKeyPress={onChangeHandler}
             />
             <IconInput
               icon="mdi-light:email"
@@ -343,7 +344,7 @@ export default function Index() {
               type="email"
               placeholder="ایمیل"
               reference={email}
-              onKeyPress={inputErrorHandler}
+              onKeyPress={onChangeHandler}
             />
             <IconInput
               icon="carbon:password"
@@ -353,7 +354,7 @@ export default function Index() {
               type="password"
               placeholder="گذرواژه"
               reference={password}
-              onKeyPress={inputErrorHandler}
+              onKeyPress={onChangeHandler}
             />
             <IconInput
               flipped={true}
@@ -362,7 +363,7 @@ export default function Index() {
               type="password"
               placeholder="تایید گذرواژه"
               reference={re_password}
-              onKeyPress={inputErrorHandler}
+              onKeyPress={onChangeHandler}
             />
             <button className="index__link">حساب کاربری دارید؟</button>
             <div className="index__submit-container">
