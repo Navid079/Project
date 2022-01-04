@@ -5,7 +5,7 @@ const { body } = require('express-validator');
 const auth = require('./shop/auth');
 const dashboard = require('./shop/dashboard');
 const validators = require('../validators/general')
-const validation = require('../middlewares/validation');
+const errorCompiler = require('../middlewares/errorCompiler');
 const authentication = require('../middlewares/authentication');
 
 const router = express.Router();
@@ -17,7 +17,7 @@ router.use(auth);
 router.use(
   '/dashboard',
   validators.hasToken,
-  validation,
+  errorCompiler,
   authentication.tokenCompiler,
   authentication.validUser,
   dashboard

@@ -7,7 +7,7 @@ const User = require('../../models/User');
 
 // Controller and middlewares
 const shopAuthController = require('../../controllers/shop/auth');
-const validation = require('../../middlewares/validation');
+const errorCompiler = require('../../middlewares/errorCompiler');
 const authentication = require('../../middlewares/authentication');
 const validators = require('../../validators/shop/auth');
 
@@ -23,7 +23,7 @@ const router = express.Router();
 router.post(
   '/signup',
   validators.signup,
-  validation,
+  errorCompiler,
   shopAuthController.postShopSignup
 );
 
@@ -32,14 +32,14 @@ router.post(
 router.post(
   '/login',
   validators.login,
-  validation,
+  errorCompiler,
   shopAuthController.postShopLogin
 );
 
 router.post(
   '/refresh',
   validators.refresh,
-  validation,
+  errorCompiler,
   authentication.tokenCompiler,
   authentication.refreshCompiler,
   shopAuthController.postShopRefresh
