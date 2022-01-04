@@ -12,6 +12,7 @@ const IconInput = ({
   error,
   onChange,
   reference,
+  onKeyPress,
 }) => {
   return (
     <div
@@ -26,6 +27,7 @@ const IconInput = ({
         placeholder={placeholder || ""}
         onChange={onChange}
         reference={reference}
+        onKeyPress={onKeyPress}
       />
       <div className="icon-input__icon-container">
         <Icon
