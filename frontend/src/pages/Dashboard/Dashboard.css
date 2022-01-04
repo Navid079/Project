@@ -1,0 +1,13 @@
+.dashboard {
+  background-color: var(--clr-white);
+  height: 100vh;
+  width: 100vw;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+}
+
+.test {
+  --dashboard-tab-width: 10rem;
+  --dashboard-tab-height: 3rem;
+}
