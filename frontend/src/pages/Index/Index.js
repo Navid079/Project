@@ -2,6 +2,7 @@ import React, { useRef, useContext } from 'react';
 import { FormContext } from '../../ContextManager/FormContextManager/FormContext';
 import axios from 'axios';
 import { loginApiCall } from '../../API_Calls/LoginApiCall';
+import { signupApiCall } from '../../API_Calls/SignupApiCall';
 
 import './Index.css';
 
@@ -26,9 +27,9 @@ export default function Index() {
   const loginUsername = useRef();
   const loginPassword = useRef();
 
-  const { dispatch,username:UN } = useContext(FormContext);
+  const { dispatch, username: UN } = useContext(FormContext);
 
-  console.log(UN)
+  console.log(UN);
 
   const validEmail =
     /[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+(?:[A-Za-z]{2}|com|org|net|gov|mil|biz|info|mobi|name|aero|jobs|museum)\b/;
@@ -142,7 +143,7 @@ export default function Index() {
       },
     };
 
-    loginApiCall(loginUser,dispatch)
+    loginApiCall(loginUser, dispatch);
   };
 
   const signupSubmitHandler = async (event) => {
@@ -161,13 +162,7 @@ export default function Index() {
         devId: devId,
       },
     };
-    try {
-      const res = await axios.post('http://localhost:3005/shop/signup', user);
-      // history.push('#'), redirect dashboard
-      console.log(res.data);
-    } catch (error) {
-      console.log(error);
-    }
+    signupApiCall(user, dispatch);
   };
 
   return (

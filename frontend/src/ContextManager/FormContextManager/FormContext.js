@@ -7,6 +7,7 @@ const INITIAL_STATE = {
   email: '',
   password: '',
   re_password: '',
+  error: {},
 };
 
 export const FormContext = createContext(INITIAL_STATE);
@@ -22,6 +23,7 @@ export const FormContextProvider = ({ children }) => {
         email: state.email,
         password: state.password,
         re_password: state.re_password,
+        error: state.error,
         dispatch,
       }}
     >
