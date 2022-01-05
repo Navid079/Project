@@ -1,21 +1,34 @@
 const { body } = require('express-validator');
 
+// Database models
+const User = require('../../models/User');
+
+// Utility functions
+const isPhoneNumber = require('../../utils/isPhoneNumber');
+const isEmail = require('../../utils/isEmail');
+const isStrongPassword = require('../../utils/isStrongPassword');
+
 exports.signup = body('data').custom(async data => {
   // Requirement missing
-  if (!data.username) throw new Error('422~Requirement missing~username');
   if (!data.devId) throw new Error('422~Requirement missing~devId');
+  if (!data.username) throw new Error('422~Requirement missing~username');
   if (!data.phone) throw new Error('422~Requirement missing~phone');
   if (!data.password) throw new Error('422~Requirement missing~password');
   if (!data.confirm) throw new Error('422~Requirement missing~confirm');
+  // Username Already registered
+  let user = await User.findOne({ username: data.username });
+  if (user) {
+    throw new Error('409~Username already registered~username');
+  }
   // Email Already Registered
   if (data.email) {
-    const user = await User.findOne({ email: data.email });
+    user = await User.findOne({ email: data.email });
     if (user) {
       throw new Error('409~Email already registered~email');
     }
   }
   // Phone Number Already Registered
-  const user = await User.findOne({ phone: data.phone });
+  user = await User.findOne({ phone: data.phone });
   if (user) {
     throw new Error('409~Phone number already registered~phone');
   }
@@ -23,7 +36,8 @@ exports.signup = body('data').custom(async data => {
   if (!isPhoneNumber(data.phone))
     throw new Error('422~Not a phone number~phone');
   // Not an email address
-  if (!isEmail(data.email)) throw new Error('422~Not an email address~email');
+  if (data.email && !isEmail(data.email))
+    throw new Error('422~Not an email address~email');
   // Password is weak
   if (!isStrongPassword(data.password))
     throw new Error('422~Password is weak~password');
