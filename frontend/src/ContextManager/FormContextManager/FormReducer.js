@@ -5,13 +5,22 @@ export const FormReducer = (state, action) => {
     case 'GET':
       return state;
 
-    case 'SET':
+    case 'SET_USER':
       return {
+        ...state,
         username: action.data.user.username,
         phone: action.data.user.phone,
         email: action.data.user.email,
-        // password: action.data.user.password,
-        // re_password: action.data.user.re_password,
       };
+    case 'SET_ERROR':
+      return {
+        ...state,
+        error: action.data,
+      };
+    case 'UNSET_ERROR':
+      return {
+        ...state,
+        error: {},
+      }
   }
 };
