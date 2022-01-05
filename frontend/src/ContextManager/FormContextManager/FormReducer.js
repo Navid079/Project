@@ -17,5 +17,10 @@ export const FormReducer = (state, action) => {
         ...state,
         error: action.data,
       };
+    case 'UNSET_ERROR':
+      return {
+        ...state,
+        error: {},
+      }
   }
 };
