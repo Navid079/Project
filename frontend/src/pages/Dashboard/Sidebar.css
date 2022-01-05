@@ -1,6 +1,6 @@
 .dashboard__sidebar {
   background-color: var(--clr-primary-5);
-  height: 100vh;
+  height: calc(100vh - 3rem);
   width: fit-content;
   display: flex;
   flex-direction: column;
