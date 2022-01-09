@@ -1,36 +1,22 @@
-import React, { useRef, useContext, useState } from 'react';
+import React, { useContext } from 'react';
 import { FormContext } from '../../ContextManager/FormContextManager/FormContext';
 import { loginApiCall } from '../../API_Calls/LoginApiCall';
 import { signupApiCall } from '../../API_Calls/SignupApiCall';
-import useStates from './useStates'
+import useStates from './useStates';
+import useRefs from './useRefs';
 
+import './Index.css';
 
-import "./Index.css";
-
-import Button from "../../components/UI/Button/Button";
-import Toggle from "../../components/UI/Toggle";
-import IconInput from "../../components/Index/IconInput";
+import Button from '../../components/UI/Button/Button';
+import Toggle from '../../components/UI/Toggle';
+import IconInput from '../../components/Index/IconInput';
 
 export default function Index() {
   const states = useStates();
-  const toggle = useRef();
-  const index = useRef();
-  const wave = useRef();
-  const loginControls = useRef();
-  const signupControls = useRef();
-  const indexBody = useRef();
-
-  const username = useRef();
-  const phone = useRef();
-  const email = useRef();
-  const password = useRef();
-  const re_password = useRef();
-
-  const loginUsername = useRef();
-  const loginPassword = useRef();
+  const refs = useRefs();
 
   // for error handler
-  
+
   const { dispatch, username: UN, error } = useContext(FormContext);
 
   if (Object.keys(error).length !== 0) {
@@ -43,13 +29,13 @@ export default function Index() {
       } else if (error.status === 422) {
         if (
           error.data.conflicts.filter(
-            (element) =>
+            element =>
               element === 'user' || element === 'phone' || element === 'email'
           )
         ) {
           alert('wrong username');
         } else if (
-          error.data.conflicts.filter((element) => element === 'password')
+          error.data.conflicts.filter(element => element === 'password')
         ) {
           alert('wrong password');
         }
@@ -77,7 +63,7 @@ export default function Index() {
         }
       }
     }
-    dispatch({type: 'UNSET_ERROR'})
+    dispatch({ type: 'UNSET_ERROR' });
   }
 
   const validEmail =
@@ -90,23 +76,23 @@ export default function Index() {
     states.setUsernameLoginError(false);
     states.setPasswordLoginError(false);
     if (
-      loginUsername.current.value.length === 0 &&
-      loginPassword.current.value.length === 0
+      refs.loginUsername.current.value.length === 0 &&
+      refs.loginPassword.current.value.length === 0
     ) {
       // please fill all inputs
       states.setUsernameLoginError(true);
       states.setPasswordLoginError(true);
       return false;
     }
-    if (loginUsername.current.value.length === 0) {
+    if (refs.loginUsername.current.value.length === 0) {
       // please fill all inputs
       states.setUsernameLoginError(true);
       return false;
-    } else if (loginPassword.current.value.length === 0) {
+    } else if (refs.loginPassword.current.value.length === 0) {
       // please fill all inputs
       states.setPasswordLoginError(true);
       return false;
-    } else if (validPassword.test(loginPassword.current.value) === false) {
+    } else if (validPassword.test(refs.loginPassword.current.value) === false) {
       // password is invalid
       states.setPasswordLoginError(true);
       return false;
@@ -125,39 +111,39 @@ export default function Index() {
 
     // To know which input the user is on
     switch (window.event.target.placeholder) {
-      case "نام کاربری":
+      case 'نام کاربری':
         if (window.event.target.value.length === 0) {
           states.setUsernameSignupError(true);
         }
         break;
-      case "گذرواژه":
-        if (password.current.value.length === 0) {
+      case 'گذرواژه':
+        if (refs.password.current.value.length === 0) {
           states.setPasswordSignupError(true);
-        } else if (validPassword.test(password.current.value) == false) {
+        } else if (validPassword.test(refs.password.current.value) == false) {
           states.setPasswordSignupError(true);
-        } else if (password.current.value !== re_password.current.value) {
+        } else if (refs.password.current.value !== refs.confirm.current.value) {
           states.setConfirmSignupError(true);
         }
         break;
-      case "تایید گذرواژه":
-        if (validPassword.test(password.current.value) == false) {
+      case 'تایید گذرواژه':
+        if (validPassword.test(refs.password.current.value) == false) {
           states.setPasswordSignupError(true);
         }
-        if (password.current.value !== re_password.current.value) {
+        if (refs.password.current.value !== refs.confirm.current.value) {
           states.setConfirmSignupError(true);
         }
         break;
-      case "ایمیل":
-        if (email.current.value.length === 0) {
+      case 'ایمیل':
+        if (refs.email.current.value.length === 0) {
           states.setEmailSignupError(true);
-        } else if (validEmail.test(email.current.value) === false) {
+        } else if (validEmail.test(refs.email.current.value) === false) {
           states.SetEmailSignupError(true);
         }
         break;
-      case "تلفن همراه":
-        if (phone.current.value.length === 0) {
+      case 'تلفن همراه':
+        if (refs.phone.current.value.length === 0) {
           states.setPhoneSignupError(true);
-        } else if (validPhone.test(phone.current.value) === false) {
+        } else if (validPhone.test(refs.phone.current.value) === false) {
           states.setPhoneSignupError(true);
         }
         break;
@@ -171,39 +157,39 @@ export default function Index() {
     states.setUsernameSignupError(false);
     states.setConfirmSignupError(false);
 
-    if (username.current.value.length === 0) {
+    if (refs.username.current.value.length === 0) {
       states.setUsernameSignupError(true);
       flag = false;
     }
-    if (phone.current.value.length === 0) {
+    if (refs.phone.current.value.length === 0) {
       states.setPhoneSignupError(true);
       flag = false;
     }
-    if (email.current.value.length === 0) {
+    if (refs.email.current.value.length === 0) {
       states.setEmailSignupError(true);
       flag = false;
     }
-    if (password.current.value.length === 0) {
+    if (refs.password.current.value.length === 0) {
       states.setPasswordSignupError(true);
       flag = false;
     }
-    if (re_password.current.value.length === 0) {
+    if (refs.confirm.current.value.length === 0) {
       states.setConfirmSignupError(true);
       flag = false;
     }
-    if (validPhone.test(phone.current.value) === false) {
+    if (validPhone.test(refs.phone.current.value) === false) {
       states.setPhoneSignupError(true);
       flag = false;
     }
-    if (validEmail.test(email.current.value) === false) {
+    if (validEmail.test(refs.email.current.value) === false) {
       states.setEmailSignupError(true);
       flag = false;
     }
-    if (validPassword.test(password.current.value) == false) {
+    if (validPassword.test(refs.password.current.value) == false) {
       states.setPasswordSignupError(true);
       flag = false;
     }
-    if (password.current.value !== re_password.current.value) {
+    if (refs.password.current.value !== refs.confirm.current.value) {
       states.setConfirmSignupError(true);
       flag = false;
     }
@@ -214,33 +200,33 @@ export default function Index() {
     }
   };
 
-  const toggleHandler = (position) => {
-    wave.current.classList.add("fade-out-in");
+  const toggleHandler = position => {
+    refs.wave.current.classList.add('fade-out-in');
     setTimeout(() => {
-      wave.current.classList.remove("fade-out-in");
+      refs.wave.current.classList.remove('fade-out-in');
     }, 1020);
 
-    if (position === "left") {
-      toggle.current.classList.add("index__toggle--flipped");
-      index.current.classList.add("g-flipped");
-      indexBody.current.classList.add("g-flipped");
-      loginControls.current.classList.remove("g-hidden");
-      signupControls.current.classList.add("g-hidden");
+    if (position === 'left') {
+      refs.toggle.current.classList.add('index__toggle--flipped');
+      refs.index.current.classList.add('g-flipped');
+      refs.indexBody.current.classList.add('g-flipped');
+      refs.loginControls.current.classList.remove('g-hidden');
+      refs.signupControls.current.classList.add('g-hidden');
 
-      indexBody.current.classList.add("signup-slide");
+      refs.indexBody.current.classList.add('signup-slide');
       setTimeout(() => {
-        indexBody.current.classList.remove("signup-slide");
+        refs.indexBody.current.classList.remove('signup-slide');
       }, 1020);
     } else {
-      toggle.current.classList.remove("index__toggle--flipped");
-      index.current.classList.remove("g-flipped");
-      indexBody.current.classList.remove("g-flipped");
-      loginControls.current.classList.add("g-hidden");
-      signupControls.current.classList.remove("g-hidden");
+      refs.toggle.current.classList.remove('index__toggle--flipped');
+      refs.index.current.classList.remove('g-flipped');
+      refs.indexBody.current.classList.remove('g-flipped');
+      refs.loginControls.current.classList.add('g-hidden');
+      refs.signupControls.current.classList.remove('g-hidden');
 
-      indexBody.current.classList.add("login-slide");
+      refs.indexBody.current.classList.add('login-slide');
       setTimeout(() => {
-        indexBody.current.classList.remove("login-slide");
+        refs.indexBody.current.classList.remove('login-slide');
       }, 1020);
     }
   };
@@ -248,18 +234,18 @@ export default function Index() {
   const devId = 12345;
 
   // check all field in input is correct
-  const loginSubmitHandler = (event) => {
+  const loginSubmitHandler = event => {
     event.preventDefault();
     if (loginInputHandler() === false) {
       return;
     }
-    const enteredUsername = loginUsername.current.value;
-    const enteredPassword = loginPassword.current.value;
+    const enteredUsername = refs.loginUsername.current.value;
+    const enteredPassword = refs.loginPassword.current.value;
     const userType = validEmail.test(enteredUsername)
-      ? "email"
+      ? 'email'
       : validPhone.test(enteredUsername)
-      ? "phone"
-      : "username";
+      ? 'phone'
+      : 'username';
 
     const loginUser = {
       message: "This message will be logged in server's console",
@@ -275,19 +261,19 @@ export default function Index() {
   };
 
   // check all field in input is correct
-  const signupSubmitHandler = async (event) => {
+  const signupSubmitHandler = async event => {
     event.preventDefault();
     if (inputHandler() === false) {
       return;
     }
     const user = {
-      message: "signUp req",
+      message: 'signUp req',
       data: {
-        username: username.current.value,
-        phone: phone.current.value,
-        email: email.current.value,
-        password: password.current.value,
-        confirm: re_password.current.value,
+        username: refs.username.current.value,
+        phone: refs.phone.current.value,
+        email: refs.email.current.value,
+        password: refs.password.current.value,
+        confirm: refs.confirm.current.value,
         devId: devId,
       },
     };
@@ -295,51 +281,51 @@ export default function Index() {
   };
 
   return (
-    <div className="index g-flipped" ref={index}>
+    <div className='index g-flipped' ref={refs.index}>
       {/* =========         WAVE         ========= */}
-      <div className="index__wave" ref={wave} />
+      <div className='index__wave' ref={refs.wave} />
 
-      <main className="index__body g-flipped" ref={indexBody}>
+      <main className='index__body g-flipped' ref={refs.indexBody}>
         {/* =========        TOGGLE        ========= */}
         <Toggle
-          className="index__toggle index__toggle--flipped"
-          leftLabel="ورود"
-          rightLabel="ثبت نام"
-          reference={toggle}
+          className='index__toggle index__toggle--flipped'
+          leftLabel='ورود'
+          rightLabel='ثبت نام'
+          reference={refs.toggle}
           onToggle={toggleHandler}
         />
 
         {/* =========    FORM CONTAINERS    ========= */}
-        <div className="index__controls-container">
+        <div className='index__controls-container'>
           {/* ========= LOGIN FORM CONTAINER ========= */}
           <form
-            className="index__controls"
+            className='index__controls'
             onSubmit={loginSubmitHandler}
-            ref={loginControls}
+            ref={refs.loginControls}
           >
             <IconInput
-              className="index__txt-input"
+              className='index__txt-input'
               error={states.usernameLoginError}
               flipped={false}
-              icon="healthicons:ui-user-profile-outline"
-              type="txt"
-              placeholder="نام کاربری"
-              reference={loginUsername}
+              icon='healthicons:ui-user-profile-outline'
+              type='txt'
+              placeholder='نام کاربری'
+              reference={refs.loginUsername}
               onKeyPress={loginInputHandler}
             />
             <IconInput
               error={states.passwordLoginError}
-              icon="carbon:password"
+              icon='carbon:password'
               flipped={false}
-              className="index__txt-input"
-              type="password"
-              placeholder="گذرواژه"
-              reference={loginPassword}
+              className='index__txt-input'
+              type='password'
+              placeholder='گذرواژه'
+              reference={refs.loginPassword}
               onKeyPress={loginInputHandler}
             />
-            <button className="index__link">حساب کاربری ندارید؟</button>
-            <div className="index__submit-container g-flipped">
-              <Button className="index__submit index__submit--flipped">
+            <button className='index__link'>حساب کاربری ندارید؟</button>
+            <div className='index__submit-container g-flipped'>
+              <Button className='index__submit index__submit--flipped'>
                 ورود
               </Button>
             </div>
@@ -347,61 +333,61 @@ export default function Index() {
 
           {/* ========= SIGNUP FORM CONTAINER ========= */}
           <form
-            className="index__controls g-hidden"
+            className='index__controls g-hidden'
             onSubmit={signupSubmitHandler}
-            ref={signupControls}
+            ref={refs.signupControls}
           >
             <IconInput
-              icon="healthicons:ui-user-profile-outline"
+              icon='healthicons:ui-user-profile-outline'
               error={states.usernameSignupError}
               flipped={true}
-              className="index__txt-input"
-              type="text"
-              placeholder="نام کاربری"
-              reference={username}
+              className='index__txt-input'
+              type='text'
+              placeholder='نام کاربری'
+              reference={refs.username}
               onKeyPress={onChangeHandler}
             />
             <IconInput
-              icon="akar-icons:phone"
+              icon='akar-icons:phone'
               error={states.phoneSignupError}
               flipped={true}
-              className="index__txt-input"
-              placeholder="تلفن همراه"
-              reference={phone}
+              className='index__txt-input'
+              placeholder='تلفن همراه'
+              reference={refs.phone}
               onKeyPress={onChangeHandler}
             />
             <IconInput
-              icon="mdi-light:email"
+              icon='mdi-light:email'
               error={states.emailSignupError}
               flipped={true}
-              className="index__txt-input"
-              type="email"
-              placeholder="ایمیل"
-              reference={email}
+              className='index__txt-input'
+              type='email'
+              placeholder='ایمیل'
+              reference={refs.email}
               onKeyPress={onChangeHandler}
             />
             <IconInput
-              icon="carbon:password"
+              icon='carbon:password'
               error={states.passwordSignupError}
               flipped={true}
-              className="index__txt-input"
-              type="password"
-              placeholder="گذرواژه"
-              reference={password}
+              className='index__txt-input'
+              type='password'
+              placeholder='گذرواژه'
+              reference={refs.password}
               onKeyPress={onChangeHandler}
             />
             <IconInput
               flipped={true}
               error={states.confirmSignupError}
-              className="index__txt-input"
-              type="password"
-              placeholder="تایید گذرواژه"
-              reference={re_password}
+              className='index__txt-input'
+              type='password'
+              placeholder='تایید گذرواژه'
+              reference={refs.confirm}
               onKeyPress={onChangeHandler}
             />
-            <button className="index__link">حساب کاربری دارید؟</button>
-            <div className="index__submit-container">
-              <Button className="index__submit">ثبت</Button>
+            <button className='index__link'>حساب کاربری دارید؟</button>
+            <div className='index__submit-container'>
+              <Button className='index__submit'>ثبت</Button>
             </div>
           </form>
         </div>
