@@ -28,7 +28,7 @@ app.use(errorHandler.defaultHandler);
 
 // Database connection and server start
 mongoose
-  .connect('mongodb://localhost:27017/theProject', { useNewUrlParser: true })
+  .connect('mongodb://mongo/theProject', { useNewUrlParser: true })
   .then(result => {
     app.listen(3005);
     console.log('Connected');
