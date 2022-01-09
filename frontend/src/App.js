@@ -1,4 +1,4 @@
-import Index from "./pages/Index/Index";
+// import Index from "./pages/Index/Index";
 import Dashboard from "./pages/Dashboard/Dashboard";
 
 import "./App.css";

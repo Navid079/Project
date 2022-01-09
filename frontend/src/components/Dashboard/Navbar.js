@@ -1,7 +1,6 @@
 import React from 'react';
 import { Icon } from '@iconify/react';
 import './Navbar.css';
-import TextInput from '../UI/TextInput/TextInput';
 import SearchInput from './SearchInput';
 
 export default function Navbar({className}) {

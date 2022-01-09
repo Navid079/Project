@@ -1,5 +1,4 @@
-import React, { useState } from 'react';
-import { Icon } from '@iconify/react';
+import React from 'react';
 
 import Footer from '../../components/Dashboard/Footer';
 import Navbar from '../../components/Dashboard/Navbar';
