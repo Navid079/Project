@@ -407,3 +407,404 @@ describe('POST /shop/signup', () => {
     });
   });
 });
+
+describe('POST /shop/login', () => {
+  before(done => {
+    const data = {
+      message: '',
+      data: {
+        devId: 12345,
+        username: 'navid',
+        email: 'navid@email.com',
+        phone: '09123456789',
+        password: 'AStrongp@ssw0rd',
+        confirm: 'AStrongp@ssw0rd',
+      },
+    };
+    chai
+      .request(app)
+      .post('/shop/signup')
+      .send(data)
+      .end(() => done());
+  });
+  after(done => {
+    User.deleteMany({}, () => done());
+  });
+  describe('login', () => {
+    it('Logs in a user with username', done => {
+      const data = {
+        message: '',
+        data: {
+          devId: 12345,
+          user: 'navid',
+          password: 'AStrongp@ssw0rd',
+          userType: 'username',
+        },
+      };
+      chai
+        .request(app)
+        .post('/shop/login')
+        .send(data)
+        .end((err, res) => {
+          res.should.have.status(200);
+          res.body.should.be.a('object');
+          res.body.should.have
+            .property('message')
+            .eql('Logged in successfully');
+          res.body.should.have.property('data');
+          res.body.data.should.be.a('object');
+          res.body.data.should.have.property('user');
+          res.body.data.should.have.property('token');
+          res.body.data.should.have.property('refresh');
+          res.body.data.user.should.be.a('object');
+          res.body.data.user.should.have.property('username').eql('navid');
+          res.body.data.user.should.have
+            .property('email')
+            .eql('navid@email.com');
+          res.body.data.user.should.have.property('phone').eql('09123456789');
+          done();
+        });
+    });
+    it('Logs in a user with email', done => {
+      const data = {
+        message: '',
+        data: {
+          devId: 12345,
+          user: 'navid@email.com',
+          password: 'AStrongp@ssw0rd',
+          userType: 'email',
+        },
+      };
+      chai
+        .request(app)
+        .post('/shop/login')
+        .send(data)
+        .end((err, res) => {
+          res.should.have.status(200);
+          res.body.should.be.a('object');
+          res.body.should.have
+            .property('message')
+            .eql('Logged in successfully');
+          res.body.should.have.property('data');
+          res.body.data.should.be.a('object');
+          res.body.data.should.have.property('user');
+          res.body.data.should.have.property('token');
+          res.body.data.should.have.property('refresh');
+          res.body.data.user.should.be.a('object');
+          res.body.data.user.should.have.property('username').eql('navid');
+          res.body.data.user.should.have
+            .property('email')
+            .eql('navid@email.com');
+          res.body.data.user.should.have.property('phone').eql('09123456789');
+          done();
+        });
+    });
+    it('Logs in a user with phone number', done => {
+      const data = {
+        message: '',
+        data: {
+          devId: 12345,
+          user: '09123456789',
+          password: 'AStrongp@ssw0rd',
+          userType: 'phone',
+        },
+      };
+      chai
+        .request(app)
+        .post('/shop/login')
+        .send(data)
+        .end((err, res) => {
+          res.should.have.status(200);
+          res.body.should.be.a('object');
+          res.body.should.have
+            .property('message')
+            .eql('Logged in successfully');
+          res.body.should.have.property('data');
+          res.body.data.should.be.a('object');
+          res.body.data.should.have.property('user');
+          res.body.data.should.have.property('token');
+          res.body.data.should.have.property('refresh');
+          res.body.data.user.should.be.a('object');
+          res.body.data.user.should.have.property('username').eql('navid');
+          res.body.data.user.should.have
+            .property('email')
+            .eql('navid@email.com');
+          res.body.data.user.should.have.property('phone').eql('09123456789');
+          done();
+        });
+    });
+    it('Does not login if devId is missing', done => {
+      const data = {
+        message: '',
+        data: {
+          user: '09123456789',
+          password: 'AStrongp@ssw0rd',
+          userType: 'phone',
+        },
+      };
+      chai
+        .request(app)
+        .post('/shop/login')
+        .send(data)
+        .end((err, res) => {
+          res.should.have.status(422);
+          res.body.should.be.a('object');
+          res.body.should.have
+            .property('message')
+            .eql('An error occured');
+          res.body.should.have.property('data');
+          res.body.data.should.be.a('object');
+          res.body.data.should.have.property('conflict').eql('devId');
+          res.body.data.should.have.property('message').eql('Requirement missing');
+          done();
+        });
+    });
+    it('Does not login if user(name, phone, email) is missing', done => {
+      const data = {
+        message: '',
+        data: {
+          devId: 12345,
+          password: 'AStrongp@ssw0rd',
+          userType: 'phone',
+        },
+      };
+      chai
+        .request(app)
+        .post('/shop/login')
+        .send(data)
+        .end((err, res) => {
+          res.should.have.status(422);
+          res.body.should.be.a('object');
+          res.body.should.have
+            .property('message')
+            .eql('An error occured');
+          res.body.should.have.property('data');
+          res.body.data.should.be.a('object');
+          res.body.data.should.have.property('conflict').eql('user');
+          res.body.data.should.have.property('message').eql('Requirement missing');
+          done();
+        });
+    });
+    it('Does not login if password is missing', done => {
+      const data = {
+        message: '',
+        data: {
+          devId: 12345,
+          user: '09123456789',
+          userType: 'phone',
+        },
+      };
+      chai
+        .request(app)
+        .post('/shop/login')
+        .send(data)
+        .end((err, res) => {
+          res.should.have.status(422);
+          res.body.should.be.a('object');
+          res.body.should.have
+            .property('message')
+            .eql('An error occured');
+          res.body.should.have.property('data');
+          res.body.data.should.be.a('object');
+          res.body.data.should.have.property('conflict').eql('password');
+          res.body.data.should.have.property('message').eql('Requirement missing');
+          done();
+        });
+    });
+    it('Does not login if userType is missing', done => {
+      const data = {
+        message: '',
+        data: {
+          devId: 12345,
+          password: 'AStrongp@ssw0rd',
+          user: '09123456789',
+        },
+      };
+      chai
+        .request(app)
+        .post('/shop/login')
+        .send(data)
+        .end((err, res) => {
+          res.should.have.status(422);
+          res.body.should.be.a('object');
+          res.body.should.have
+            .property('message')
+            .eql('An error occured');
+          res.body.should.have.property('data');
+          res.body.data.should.be.a('object');
+          res.body.data.should.have.property('conflict').eql('userType');
+          res.body.data.should.have.property('message').eql('Requirement missing');
+          done();
+        });
+    });
+    it('Does not login if password is wrong(due to weakness)', done => {
+      const data = {
+        message: '',
+        data: {
+          devId: 12345,
+          password: 'aweakpassword',
+          user: '09123456789',
+          userType: 'phone'
+        },
+      };
+      chai
+        .request(app)
+        .post('/shop/login')
+        .send(data)
+        .end((err, res) => {
+          res.should.have.status(401);
+          res.body.should.be.a('object');
+          res.body.should.have
+            .property('message')
+            .eql('An error occured');
+          res.body.should.have.property('data');
+          res.body.data.should.be.a('object');
+          res.body.data.should.have.property('conflict').eql('password');
+          res.body.data.should.have.property('message').eql('Wrong password');
+          res.body.data.should.have.property('value').eql('aweakpassword');
+          done();
+        });
+    });
+    it('Does not login if password is wrong', done => {
+      const data = {
+        message: '',
+        data: {
+          devId: 12345,
+          password: 'AWr0ngP@ssword',
+          user: '09123456789',
+          userType: 'phone'
+        },
+      };
+      chai
+        .request(app)
+        .post('/shop/login')
+        .send(data)
+        .end((err, res) => {
+          res.should.have.status(401);
+          res.body.should.be.a('object');
+          res.body.should.have
+            .property('message')
+            .eql('An error occured');
+          res.body.should.have.property('data');
+          res.body.data.should.be.a('object');
+          res.body.data.should.have.property('conflict').eql('password');
+          res.body.data.should.have.property('message').eql('Wrong password');
+          res.body.data.should.have.property('value').eql('AWr0ngP@ssword');
+          done();
+        });
+    });
+    it('Does not login if user is not signed up', done => {
+      const data = {
+        message: '',
+        data: {
+          devId: 12345,
+          password: 'AWr0ngP@ssword',
+          user: '09123456780',
+          userType: 'phone'
+        },
+      };
+      chai
+        .request(app)
+        .post('/shop/login')
+        .send(data)
+        .end((err, res) => {
+          res.should.have.status(404);
+          res.body.should.be.a('object');
+          res.body.should.have
+            .property('message')
+            .eql('An error occured');
+          res.body.should.have.property('data');
+          res.body.data.should.be.a('object');
+          res.body.data.should.have.property('conflict').eql('user');
+          res.body.data.should.have.property('message').eql('User not found');
+          res.body.data.should.have.property('value').eql('09123456780');
+          done();
+        });
+    });
+    it('Does not login if phone number is invalid', done => {
+      const data = {
+        message: '',
+        data: {
+          devId: 12345,
+          password: 'AWr0ngP@ssword',
+          user: '0912345678',
+          userType: 'phone'
+        },
+      };
+      chai
+        .request(app)
+        .post('/shop/login')
+        .send(data)
+        .end((err, res) => {
+          res.should.have.status(422);
+          res.body.should.be.a('object');
+          res.body.should.have
+            .property('message')
+            .eql('An error occured');
+          res.body.should.have.property('data');
+          res.body.data.should.be.a('object');
+          res.body.data.should.have.property('conflict').eql('user');
+          res.body.data.should.have.property('message').eql('Not a phone number');
+          res.body.data.should.have.property('value').eql('0912345678');
+          done();
+        });
+    });
+    it('Does not login if email address is invalid', done => {
+      const data = {
+        message: '',
+        data: {
+          devId: 12345,
+          password: 'AWr0ngP@ssword',
+          user: 'a@b.c',
+          userType: 'email'
+        },
+      };
+      chai
+        .request(app)
+        .post('/shop/login')
+        .send(data)
+        .end((err, res) => {
+          res.should.have.status(422);
+          res.body.should.be.a('object');
+          res.body.should.have
+            .property('message')
+            .eql('An error occured');
+          res.body.should.have.property('data');
+          res.body.data.should.be.a('object');
+          res.body.data.should.have.property('conflict').eql('user');
+          res.body.data.should.have.property('message').eql('Not an email address');
+          res.body.data.should.have.property('value').eql('a@b.c');
+          done();
+        });
+    });
+    it('Does not login if username type is invalid', done => {
+      const data = {
+        message: '',
+        data: {
+          devId: 12345,
+          password: 'AWr0ngP@ssword',
+          user: 'ausername',
+          userType: 'abcd'
+        },
+      };
+      chai
+        .request(app)
+        .post('/shop/login')
+        .send(data)
+        .end((err, res) => {
+          res.should.have.status(422);
+          res.body.should.be.a('object');
+          res.body.should.have
+            .property('message')
+            .eql('An error occured');
+          res.body.should.have.property('data');
+          res.body.data.should.be.a('object');
+          res.body.data.should.have.property('conflict').eql('userType');
+          res.body.data.should.have.property('message').eql('Not a username type');
+          res.body.data.should.have.property('value').eql('abcd');
+          done();
+        });
+    });
+    
+  });
+});
