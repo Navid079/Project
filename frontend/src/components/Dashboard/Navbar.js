@@ -1,7 +1,7 @@
 import React from 'react';
 import { Icon } from '@iconify/react';
 import './Navbar.css';
-import TextInput from './../../components/UI/TextInput/TextInput';
+import TextInput from '../UI/TextInput/TextInput';
 
 export default function Navbar(props) {
   return (

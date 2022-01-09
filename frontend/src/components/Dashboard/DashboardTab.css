@@ -37,8 +37,8 @@
 }
 
 .dashboard-tab__icon {
-  height: calc(var(--dashboard-tab-height) * 2/3);
-  width: calc(var(--dashboard-tab-height) * 2/3);
+  height: calc(var(--dashboard-tab-height) * 2 / 3);
+  width: calc(var(--dashboard-tab-height) * 2 / 3);
   color: var(--clr-white);
 }
 
@@ -46,11 +46,12 @@
   display: none;
   flex-grow: 1;
   align-self: stretch;
-  justify-content: center;
+  justify-content: flex-end;
   align-items: center;
   font-weight: 300;
   color: var(--clr-white);
-  font-size: .8rem;
+  font-size: 0.8rem;
+  padding-right: 0.5rem;
 }
 .dashboard-tab__text--show {
   display: flex !important;

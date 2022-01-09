@@ -4,6 +4,14 @@
   height: 100vh;
   flex-direction: column;
   justify-content: flex-start;
-  align-items: flex-end;
   background-color: var(--clr-white);
+}
+
+.dashboard__body {
+  display: flex;
+  flex-grow: 1;
+}
+
+.dashboard__container {
+  flex-grow: 1;
 }

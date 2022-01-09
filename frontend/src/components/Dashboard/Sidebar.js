@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-import DashboardTab from './../../components/Dashboard/DashboardTab';
+import DashboardTab from './DashboardTab';
 
 import './Sidebar.css';
 
