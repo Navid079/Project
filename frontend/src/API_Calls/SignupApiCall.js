@@ -9,6 +9,6 @@ export const signupApiCall = async (user, reducer) => {
   } catch (error) {
     error.response.data = error.response.data.data;
     error.response.page = 'signup';
-    reducer({ type: 'SET_ERROR', data: error.response.data });
+    reducer({ type: 'SET_ERROR', data: error.response });
   }
 };
