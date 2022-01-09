@@ -3,12 +3,12 @@ const { validationResult } = require('express-validator');
 const bcrypt = require('bcrypt');
 
 // Database models
-const User = require('../models/User');
+const User = require('../../models/User');
 
 //Utility functions
-const phoneNormalizer = require('../utils/phoneNormalizer');
-const createJWT = require('../utils/createJWT');
-const createRefreshToken = require('../utils/createRefreshToken');
+const phoneNormalizer = require('../../utils/phoneNormalizer');
+const createJWT = require('../../utils/createJWT');
+const createRefreshToken = require('../../utils/createRefreshToken');
 
 // POST /shop/signup
 // This middleware controls signing up of sellers
@@ -47,7 +47,7 @@ exports.postShopSignup = (req, res, next) => {
         message: 'User created',
         data: {
           user: {
-            name: data.name,
+            username: data.username,
             email: data.email,
             phone: data.phone,
           },
