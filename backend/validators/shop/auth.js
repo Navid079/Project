@@ -74,8 +74,8 @@ exports.login = body('data').custom(data => {
 
 exports.refresh = body('data').custom(data => {
   //Data is not correct
-  if (!data.devId) throw new Error('422~Data is not correct~devId');
-  if (!data.token) throw new Error('422~Data is not correct~token');
-  if (!data.refresh) throw new Error('422~Data is not correct~refresh');
+  if (!data.devId) throw new Error('422~Requirement missing~devId');
+  if (!data.token) throw new Error('422~Requirement missing~token');
+  if (!data.refresh) throw new Error('422~Requirement missing~refresh');
   return true;
 });
