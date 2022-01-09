@@ -6,7 +6,7 @@ const INITIAL_STATE = {
   phone: '',
   email: '',
   password: '',
-  re_password: '',
+  confirm: '',
   error: {},
 };
 
@@ -22,7 +22,7 @@ export const FormContextProvider = ({ children }) => {
         phone: state.phone,
         email: state.email,
         password: state.password,
-        re_password: state.re_password,
+        confirm: state.confirm,
         error: state.error,
         dispatch,
       }}
