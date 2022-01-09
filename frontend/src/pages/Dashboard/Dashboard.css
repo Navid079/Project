@@ -7,11 +7,20 @@
   background-color: var(--clr-white);
 }
 
+.dashboard__navbar {
+  flex-shrink: 0;
+}
+
 .dashboard__body {
   display: flex;
-  flex-grow: 1;
+  height: calc(100% - 3rem);
 }
 
 .dashboard__container {
-  flex-grow: 1;
+  flex-basis: 100%;
+  flex-shrink: 1;
+  flex-grow: 0;
+  overflow: scroll;
+  height: calc(100% - 4rem);
+  flex-grow: 0;
 }

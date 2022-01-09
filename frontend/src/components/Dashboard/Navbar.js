@@ -4,9 +4,9 @@ import './Navbar.css';
 import TextInput from '../UI/TextInput/TextInput';
 import SearchInput from './SearchInput';
 
-export default function Navbar(props) {
+export default function Navbar({className}) {
   return (
-    <div className='navbar'>
+    <div className={`navbar ${className}`}>
       {/* search component */}
       <SearchInput />
 

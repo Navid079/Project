@@ -16,7 +16,7 @@ export default function Sidebar() {
   };
 
   return (
-    <div>
+    <aside>
       <div
         className='dashboard__sidebar'
         onMouseEnter={hoverHandler}
@@ -51,6 +51,6 @@ export default function Sidebar() {
           محصولات
         </DashboardTab>
       </div>
-    </div>
+    </aside>
   );
 }
