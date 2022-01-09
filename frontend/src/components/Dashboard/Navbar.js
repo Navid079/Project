@@ -2,17 +2,13 @@ import React from 'react';
 import { Icon } from '@iconify/react';
 import './Navbar.css';
 import TextInput from '../UI/TextInput/TextInput';
+import SearchInput from './SearchInput';
 
 export default function Navbar(props) {
   return (
     <div className='navbar'>
       {/* search component */}
-      <Icon icon='fluent:search-24-regular' />
-      <TextInput
-        className='navbar__search-bar'
-        type='search'
-        placeholder='جستجو'
-      ></TextInput>
+      <SearchInput />
 
       {/* website logo */}
       <div className='dashboard__logo'></div>
