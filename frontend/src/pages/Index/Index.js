@@ -1,8 +1,9 @@
 import React, { useRef, useContext, useState } from 'react';
 import { FormContext } from '../../ContextManager/FormContextManager/FormContext';
-import axios from 'axios';
 import { loginApiCall } from '../../API_Calls/LoginApiCall';
 import { signupApiCall } from '../../API_Calls/SignupApiCall';
+import useStates from './useStates'
+
 
 import "./Index.css";
 
@@ -11,6 +12,7 @@ import Toggle from "../../components/UI/Toggle";
 import IconInput from "../../components/Index/IconInput";
 
 export default function Index() {
+  const states = useStates();
   const toggle = useRef();
   const index = useRef();
   const wave = useRef();
@@ -28,14 +30,7 @@ export default function Index() {
   const loginPassword = useRef();
 
   // for error handler
-  const [passwordLoginError, setPasswordLoginError] = useState(false);
-  const [usernameLoginError, setUserNameLoginError] = useState(false);
-  const [userNameSignupError, setuserNameSignupError] = useState(false);
-  const [passwordSignupError, setpasswordSignupError] = useState(false);
-  const [re_passwordSignupError, setre_passwordSignupError] = useState(false);
-  const [emailSignupError, setemailError] = useState(false);
-  const [phoneSignupError, setphoneSignupError] = useState(false);
-
+  
   const { dispatch, username: UN, error } = useContext(FormContext);
 
   if (Object.keys(error).length !== 0) {
@@ -92,28 +87,28 @@ export default function Index() {
   const validPhone = /^(?:0|98|\+98|\+980|0098|098|00980)?(9\d{9})$/;
 
   const loginInputHandler = () => {
-    setUserNameLoginError(false);
-    setPasswordLoginError(false);
+    states.setUsernameLoginError(false);
+    states.setPasswordLoginError(false);
     if (
       loginUsername.current.value.length === 0 &&
       loginPassword.current.value.length === 0
     ) {
       // please fill all inputs
-      setUserNameLoginError(true);
-      setPasswordLoginError(true);
+      states.setUsernameLoginError(true);
+      states.setPasswordLoginError(true);
       return false;
     }
     if (loginUsername.current.value.length === 0) {
       // please fill all inputs
-      setUserNameLoginError(true);
+      states.setUsernameLoginError(true);
       return false;
     } else if (loginPassword.current.value.length === 0) {
       // please fill all inputs
-      setPasswordLoginError(true);
+      states.setPasswordLoginError(true);
       return false;
     } else if (validPassword.test(loginPassword.current.value) === false) {
       // password is invalid
-      setPasswordLoginError(true);
+      states.setPasswordLoginError(true);
       return false;
     }
 
@@ -122,98 +117,97 @@ export default function Index() {
 
   //for cheking and handel show error icon in signup
   const onChangeHandler = () => {
-    setemailError(false);
-    setphoneSignupError(false);
-    setpasswordSignupError(false);
-    setuserNameSignupError(false);
-    setre_passwordSignupError(false);
-
+    states.setEmailSignupError(false);
+    states.setPhoneSignupError(false);
+    states.setPasswordSignupError(false);
+    states.setUsernameSignupError(false);
+    states.setConfirmSignupError(false);
 
     // To know which input the user is on
     switch (window.event.target.placeholder) {
       case "نام کاربری":
         if (window.event.target.value.length === 0) {
-          setuserNameSignupError(true);
+          states.setUsernameSignupError(true);
         }
         break;
       case "گذرواژه":
         if (password.current.value.length === 0) {
-          setpasswordSignupError(true);
+          states.setPasswordSignupError(true);
         } else if (validPassword.test(password.current.value) == false) {
-          setpasswordSignupError(true);
+          states.setPasswordSignupError(true);
         } else if (password.current.value !== re_password.current.value) {
-          setre_passwordSignupError(true);
+          states.setConfirmSignupError(true);
         }
         break;
       case "تایید گذرواژه":
         if (validPassword.test(password.current.value) == false) {
-          setpasswordSignupError(true);
+          states.setPasswordSignupError(true);
         }
         if (password.current.value !== re_password.current.value) {
-          setre_passwordSignupError(true);
+          states.setConfirmSignupError(true);
         }
         break;
       case "ایمیل":
         if (email.current.value.length === 0) {
-          setemailError(true);
+          states.setEmailSignupError(true);
         } else if (validEmail.test(email.current.value) === false) {
-          setemailError(true);
+          states.SetEmailSignupError(true);
         }
         break;
       case "تلفن همراه":
         if (phone.current.value.length === 0) {
-          setphoneSignupError(true);
+          states.setPhoneSignupError(true);
         } else if (validPhone.test(phone.current.value) === false) {
-          setphoneSignupError(true);
+          states.setPhoneSignupError(true);
         }
         break;
     }
   };
   const inputHandler = () => {
-    var flage = true;
-    setemailError(false);
-    setphoneSignupError(false);
-    setpasswordSignupError(false);
-    setuserNameSignupError(false);
-    setre_passwordSignupError(false);
+    var flag = true;
+    states.setEmailSignupError(false);
+    states.setPhoneSignupError(false);
+    states.setPasswordSignupError(false);
+    states.setUsernameSignupError(false);
+    states.setConfirmSignupError(false);
 
     if (username.current.value.length === 0) {
-      setuserNameSignupError(true);
-      flage = false;
+      states.setUsernameSignupError(true);
+      flag = false;
     }
     if (phone.current.value.length === 0) {
-      setphoneSignupError(true);
-      flage = false;
+      states.setPhoneSignupError(true);
+      flag = false;
     }
     if (email.current.value.length === 0) {
-      setemailError(true);
-      flage = false;
+      states.setEmailSignupError(true);
+      flag = false;
     }
     if (password.current.value.length === 0) {
-      setpasswordSignupError(true);
-      flage = false;
+      states.setPasswordSignupError(true);
+      flag = false;
     }
     if (re_password.current.value.length === 0) {
-      setre_passwordSignupError(true);
-      flage = false;
+      states.setConfirmSignupError(true);
+      flag = false;
     }
     if (validPhone.test(phone.current.value) === false) {
-      setphoneSignupError(true);
-      flage = false;
+      states.setPhoneSignupError(true);
+      flag = false;
     }
     if (validEmail.test(email.current.value) === false) {
-      setemailError(true);
-      flage = false;
+      states.setEmailSignupError(true);
+      flag = false;
     }
     if (validPassword.test(password.current.value) == false) {
-      setpasswordSignupError(true);
-      flage = false;
+      states.setPasswordSignupError(true);
+      flag = false;
     }
     if (password.current.value !== re_password.current.value) {
-      setre_passwordSignupError(true);
-      flage = false;
+      states.setConfirmSignupError(true);
+      flag = false;
     }
-    if (flage) {
+    if (flag) {
       return true;
     } else {
       return false;
@@ -325,7 +319,7 @@ export default function Index() {
           >
             <IconInput
               className="index__txt-input"
-              error={usernameLoginError}
+              error={states.usernameLoginError}
               flipped={false}
               icon="healthicons:ui-user-profile-outline"
               type="txt"
@@ -334,7 +328,7 @@ export default function Index() {
               onKeyPress={loginInputHandler}
             />
             <IconInput
-              error={passwordLoginError}
+              error={states.passwordLoginError}
               icon="carbon:password"
               flipped={false}
               className="index__txt-input"
@@ -359,7 +353,7 @@ export default function Index() {
           >
             <IconInput
               icon="healthicons:ui-user-profile-outline"
-              error={userNameSignupError}
+              error={states.usernameSignupError}
               flipped={true}
               className="index__txt-input"
               type="text"
@@ -369,7 +363,7 @@ export default function Index() {
             />
             <IconInput
               icon="akar-icons:phone"
-              error={phoneSignupError}
+              error={states.phoneSignupError}
               flipped={true}
               className="index__txt-input"
               placeholder="تلفن همراه"
@@ -378,7 +372,7 @@ export default function Index() {
             />
             <IconInput
               icon="mdi-light:email"
-              error={emailSignupError}
+              error={states.emailSignupError}
               flipped={true}
               className="index__txt-input"
               type="email"
@@ -388,7 +382,7 @@ export default function Index() {
             />
             <IconInput
               icon="carbon:password"
-              error={passwordSignupError}
+              error={states.passwordSignupError}
               flipped={true}
               className="index__txt-input"
               type="password"
@@ -398,7 +392,7 @@ export default function Index() {
             />
             <IconInput
               flipped={true}
-              error={re_passwordSignupError}
+              error={states.confirmSignupError}
               className="index__txt-input"
               type="password"
               placeholder="تایید گذرواژه"
