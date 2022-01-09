@@ -4,6 +4,7 @@ import { loginApiCall } from '../../API_Calls/LoginApiCall';
 import { signupApiCall } from '../../API_Calls/SignupApiCall';
 import useStates from './useStates';
 import useRefs from './useRefs';
+import { useResponseErrorHandler } from './errorHandlers';
 
 import './Index.css';
 
@@ -15,56 +16,9 @@ export default function Index() {
   const states = useStates();
   const refs = useRefs();
 
-  // for error handler
-
   const { dispatch, username: UN, error } = useContext(FormContext);
 
-  if (Object.keys(error).length !== 0) {
-    const conflicts = error.data.conflicts;
-    if (error.page === 'login') {
-      if (error.status === 404) {
-        alert('user not found');
-      } else if (error.status === 401) {
-        alert('wrong password');
-      } else if (error.status === 422) {
-        if (
-          error.data.conflicts.filter(
-            element =>
-              element === 'user' || element === 'phone' || element === 'email'
-          )
-        ) {
-          alert('wrong username');
-        } else if (
-          error.data.conflicts.filter(element => element === 'password')
-        ) {
-          alert('wrong password');
-        }
-      }
-    } else if (error.page === 'signup') {
-      if (error.status === 409) {
-        if (conflicts.indexOf('username') !== -1) {
-          alert('username already exists');
-        } else if (conflicts.indexOf('email') !== -1) {
-          alert('email already exists');
-        } else if (conflicts.indexOf('phone') !== -1) {
-          alert('phone number already exists');
-        }
-      } else if (error.status === 422) {
-        if (conflicts.indexOf('username') !== -1) {
-          alert('username required');
-        } else if (conflicts.indexOf('email') !== -1) {
-          alert('email required');
-        } else if (conflicts.indexOf('phone') !== -1) {
-          alert('phone number already exists');
-        } else if (conflicts.indexOf('password') !== -1) {
-          alert('password is too weak');
-        } else if (conflicts.indexOf('confirm') !== -1) {
-          alert('passwords dont match');
-        }
-      }
-    }
-    dispatch({ type: 'UNSET_ERROR' });
-  }
+  useResponseErrorHandler();
 
   const validEmail =
     /[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+(?:[A-Za-z]{2}|com|org|net|gov|mil|biz|info|mobi|name|aero|jobs|museum)\b/;
