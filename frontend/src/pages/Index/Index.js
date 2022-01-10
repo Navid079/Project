@@ -1,7 +1,5 @@
 import React, { useContext } from 'react';
 import { FormContext } from '../../ContextManager/FormContextManager/FormContext';
-import { loginApiCall } from '../../API_Calls/LoginApiCall';
-import { signupApiCall } from '../../API_Calls/SignupApiCall';
 import useStates from './useStates';
 import useRefs from './useRefs';
 import {
@@ -9,7 +7,11 @@ import {
   signupErrorHandler,
   loginErrorHandler,
 } from './errorHandlers';
-import { validEmail, validPhone, validPassword } from '../../utils/regexBank';
+import {
+  toggleHandler,
+  loginSubmitHandler,
+  signupSubmitHandler,
+} from './eventHandlers';
 
 import './Index.css';
 
@@ -21,104 +23,9 @@ export default function Index() {
   const states = useStates();
   const refs = useRefs();
 
-  const { dispatch, username: UN, error } = useContext(FormContext);
+  const { dispatch } = useContext(FormContext);
 
   useResponseErrorHandler();
-
-  const signupHasErrors = () => {
-    const hasError =
-      states.emailSignupError ||
-      states.phoneSignupError ||
-      states.passwordSignupError ||
-      states.usernameSignupError ||
-      states.confirmSignupError;
-    return hasError;
-  };
-
-  const loginHasErrors = () => {
-    const hasErrors = states.usernameLoginError || states.passwordLoginError;
-    return hasErrors;
-  };
-
-  const toggleHandler = position => {
-    refs.wave.current.classList.add('fade-out-in');
-    setTimeout(() => {
-      refs.wave.current.classList.remove('fade-out-in');
-    }, 1020);
-
-    if (position === 'left') {
-      refs.toggle.current.classList.add('index__toggle--flipped');
-      refs.index.current.classList.add('g-flipped');
-      refs.indexBody.current.classList.add('g-flipped');
-      refs.loginControls.current.classList.remove('g-hidden');
-      refs.signupControls.current.classList.add('g-hidden');
-
-      refs.indexBody.current.classList.add('signup-slide');
-      setTimeout(() => {
-        refs.indexBody.current.classList.remove('signup-slide');
-      }, 1020);
-    } else {
-      refs.toggle.current.classList.remove('index__toggle--flipped');
-      refs.index.current.classList.remove('g-flipped');
-      refs.indexBody.current.classList.remove('g-flipped');
-      refs.loginControls.current.classList.add('g-hidden');
-      refs.signupControls.current.classList.remove('g-hidden');
-
-      refs.indexBody.current.classList.add('login-slide');
-      setTimeout(() => {
-        refs.indexBody.current.classList.remove('login-slide');
-      }, 1020);
-    }
-  };
-
-  const devId = 12345;
-
-  // check all field in input is correct
-  const loginSubmitHandler = event => {
-    event.preventDefault();
-    if (loginHasErrors()) {
-      return;
-    }
-    const enteredUsername = refs.loginUsername.current.value;
-    const enteredPassword = refs.loginPassword.current.value;
-    const userType = validEmail.test(enteredUsername)
-      ? 'email'
-      : validPhone.test(enteredUsername)
-      ? 'phone'
-      : 'username';
-
-    const loginUser = {
-      message: "This message will be logged in server's console",
-      data: {
-        user: enteredUsername,
-        userType: userType,
-        password: enteredPassword,
-        devId,
-      },
-    };
-
-    loginApiCall(loginUser, dispatch);
-  };
-
-  // check all field in input is correct
-  const signupSubmitHandler = async event => {
-    event.preventDefault();
-    if (signupHasErrors()) {
-      return;
-    }
-    const user = {
-      message: 'Signup Request',
-      data: {
-        username: refs.username.current.value,
-        phone: refs.phone.current.value,
-        email: refs.email.current.value,
-        password: refs.password.current.value,
-        confirm: refs.confirm.current.value,
-        devId: devId,
-      },
-    };
-    signupApiCall(user, dispatch);
-  };
 
   return (
     <div className='index g-flipped' ref={refs.index}>
@@ -132,7 +39,7 @@ export default function Index() {
           leftLabel='ورود'
           rightLabel='ثبت نام'
           reference={refs.toggle}
-          onToggle={toggleHandler}
+          onToggle={position => toggleHandler(position, states, refs)}
         />
 
         {/* =========    FORM CONTAINERS    ========= */}
@@ -140,7 +47,7 @@ export default function Index() {
           {/* ========= LOGIN FORM CONTAINER ========= */}
           <form
             className='index__controls'
-            onSubmit={loginSubmitHandler}
+            onSubmit={e => loginSubmitHandler(e, states, refs, dispatch)}
             ref={refs.loginControls}
           >
             <IconInput
@@ -174,7 +81,7 @@ export default function Index() {
           {/* ========= SIGNUP FORM CONTAINER ========= */}
           <form
             className='index__controls g-hidden'
-            onSubmit={signupSubmitHandler}
+            onSubmit={e => signupSubmitHandler(e, states, refs, dispatch)}
             ref={refs.signupControls}
           >
             <IconInput
