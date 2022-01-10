@@ -75,7 +75,7 @@ export const loginSubmitHandler = (event, states, refs, dispatch) => {
   loginApiCall(loginUser, dispatch);
 };
 
-export const signupSubmitHandler = async (event, states, refs, dispatch) => {
+export const signupSubmitHandler = (event, states, refs, dispatch) => {
   event.preventDefault();
   if (signupHasErrors(states)) {
     return;
