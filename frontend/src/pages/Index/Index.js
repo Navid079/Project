@@ -1,5 +1,6 @@
 // ============ React and hooks ============
 import React, { useContext, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 // ================ Context ================
 import FormContext from '../../ContextManager/FormContextManager/FormContext';
@@ -27,6 +28,8 @@ import './Index.css';
 
 // ================== Page =================
 const Page = () => {
+  const navigate = useNavigate();
+
   const states = useStates();
   const refs = useRefs();
 
@@ -59,7 +62,9 @@ const Page = () => {
           {/* ========= LOGIN FORM CONTAINER ========= */}
           <form
             className='index__controls'
-            onSubmit={e => loginSubmitHandler(e, states, refs, dispatch)}
+            onSubmit={e =>
+              loginSubmitHandler(e, states, refs, dispatch, navigate)
+            }
             ref={refs.loginControls}
           >
             <IconInput
@@ -104,7 +109,9 @@ const Page = () => {
           {/* ========= SIGNUP FORM CONTAINER ========= */}
           <form
             className='index__controls g-hidden'
-            onSubmit={e => signupSubmitHandler(e, states, refs, dispatch)}
+            onSubmit={e =>
+              signupSubmitHandler(e, states, refs, dispatch, navigate)
+            }
             ref={refs.signupControls}
           >
             <IconInput
