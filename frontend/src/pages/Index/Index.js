@@ -92,6 +92,7 @@ const Page = () => {
                 )
               }
             />
+            <p className='index__errors'>{states.loginErrors}</p>
             <button className='index__link'>حساب کاربری ندارید؟</button>
             <div className='index__submit-container g-flipped'>
               <Button className='index__submit index__submit--flipped'>
@@ -179,6 +180,7 @@ const Page = () => {
                 )
               }
             />
+            <p className='index__errors'>{states.signupErrors}</p>
             <button className='index__link'>حساب کاربری دارید؟</button>
             <div className='index__submit-container'>
               <Button className='index__submit'>ثبت</Button>

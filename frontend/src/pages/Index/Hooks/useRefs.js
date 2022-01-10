@@ -11,7 +11,7 @@ const useRefs = () => {
   const loginControls = useRef();
   const loginUsername = useRef();
   const loginPassword = useRef();
-
+  
   // Signup Refs
   const signupControls = useRef();
   const signupUsername = useRef();
