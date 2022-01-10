@@ -4,7 +4,12 @@ import { loginApiCall } from '../../API_Calls/LoginApiCall';
 import { signupApiCall } from '../../API_Calls/SignupApiCall';
 import useStates from './useStates';
 import useRefs from './useRefs';
-import { useResponseErrorHandler } from './errorHandlers';
+import {
+  useResponseErrorHandler,
+  signupErrorHandler,
+  loginErrorHandler,
+} from './errorHandlers';
+import { validEmail, validPhone, validPassword } from '../../utils/regexBank';
 
 import './Index.css';
 
@@ -20,138 +25,19 @@ export default function Index() {
 
   useResponseErrorHandler();
 
-  const validEmail =
-    /[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+(?:[A-Za-z]{2}|com|org|net|gov|mil|biz|info|mobi|name|aero|jobs|museum)\b/;
-  const validPassword =
-    /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
-  const validPhone = /^(?:0|98|\+98|\+980|0098|098|00980)?(9\d{9})$/;
-
-  const loginInputHandler = () => {
-    states.setUsernameLoginError(false);
-    states.setPasswordLoginError(false);
-    if (
-      refs.loginUsername.current.value.length === 0 &&
-      refs.loginPassword.current.value.length === 0
-    ) {
-      // please fill all inputs
-      states.setUsernameLoginError(true);
-      states.setPasswordLoginError(true);
-      return false;
-    }
-    if (refs.loginUsername.current.value.length === 0) {
-      // please fill all inputs
-      states.setUsernameLoginError(true);
-      return false;
-    } else if (refs.loginPassword.current.value.length === 0) {
-      // please fill all inputs
-      states.setPasswordLoginError(true);
-      return false;
-    } else if (validPassword.test(refs.loginPassword.current.value) === false) {
-      // password is invalid
-      states.setPasswordLoginError(true);
-      return false;
-    }
-
-    return true;
+  const signupHasErrors = () => {
+    const hasError =
+      states.emailSignupError ||
+      states.phoneSignupError ||
+      states.passwordSignupError ||
+      states.usernameSignupError ||
+      states.confirmSignupError;
+    return hasError;
   };
 
-  //for cheking and handel show error icon in signup
-  const onChangeHandler = () => {
-    states.setEmailSignupError(false);
-    states.setPhoneSignupError(false);
-    states.setPasswordSignupError(false);
-    states.setUsernameSignupError(false);
-    states.setConfirmSignupError(false);
-
-    // To know which input the user is on
-    switch (window.event.target.placeholder) {
-      case 'نام کاربری':
-        if (window.event.target.value.length === 0) {
-          states.setUsernameSignupError(true);
-        }
-        break;
-      case 'گذرواژه':
-        if (refs.password.current.value.length === 0) {
-          states.setPasswordSignupError(true);
-        } else if (validPassword.test(refs.password.current.value) == false) {
-          states.setPasswordSignupError(true);
-        } else if (refs.password.current.value !== refs.confirm.current.value) {
-          states.setConfirmSignupError(true);
-        }
-        break;
-      case 'تایید گذرواژه':
-        if (validPassword.test(refs.password.current.value) == false) {
-          states.setPasswordSignupError(true);
-        }
-        if (refs.password.current.value !== refs.confirm.current.value) {
-          states.setConfirmSignupError(true);
-        }
-        break;
-      case 'ایمیل':
-        if (refs.email.current.value.length === 0) {
-          states.setEmailSignupError(true);
-        } else if (validEmail.test(refs.email.current.value) === false) {
-          states.SetEmailSignupError(true);
-        }
-        break;
-      case 'تلفن همراه':
-        if (refs.phone.current.value.length === 0) {
-          states.setPhoneSignupError(true);
-        } else if (validPhone.test(refs.phone.current.value) === false) {
-          states.setPhoneSignupError(true);
-        }
-        break;
-    }
-  };
-  const inputHandler = () => {
-    var flag = true;
-    states.setEmailSignupError(false);
-    states.setPhoneSignupError(false);
-    states.setPasswordSignupError(false);
-    states.setUsernameSignupError(false);
-    states.setConfirmSignupError(false);
-
-    if (refs.username.current.value.length === 0) {
-      states.setUsernameSignupError(true);
-      flag = false;
-    }
-    if (refs.phone.current.value.length === 0) {
-      states.setPhoneSignupError(true);
-      flag = false;
-    }
-    if (refs.email.current.value.length === 0) {
-      states.setEmailSignupError(true);
-      flag = false;
-    }
-    if (refs.password.current.value.length === 0) {
-      states.setPasswordSignupError(true);
-      flag = false;
-    }
-    if (refs.confirm.current.value.length === 0) {
-      states.setConfirmSignupError(true);
-      flag = false;
-    }
-    if (validPhone.test(refs.phone.current.value) === false) {
-      states.setPhoneSignupError(true);
-      flag = false;
-    }
-    if (validEmail.test(refs.email.current.value) === false) {
-      states.setEmailSignupError(true);
-      flag = false;
-    }
-    if (validPassword.test(refs.password.current.value) == false) {
-      states.setPasswordSignupError(true);
-      flag = false;
-    }
-    if (refs.password.current.value !== refs.confirm.current.value) {
-      states.setConfirmSignupError(true);
-      flag = false;
-    }
-    if (flag) {
-      return true;
-    } else {
-      return false;
-    }
+  const loginHasErrors = () => {
+    const hasErrors = states.usernameLoginError || states.passwordLoginError;
+    return hasErrors;
   };
 
   const toggleHandler = position => {
@@ -190,7 +76,7 @@ export default function Index() {
   // check all field in input is correct
   const loginSubmitHandler = event => {
     event.preventDefault();
-    if (loginInputHandler() === false) {
+    if (loginHasErrors()) {
       return;
     }
     const enteredUsername = refs.loginUsername.current.value;
@@ -217,11 +103,11 @@ export default function Index() {
   // check all field in input is correct
   const signupSubmitHandler = async event => {
     event.preventDefault();
-    if (inputHandler() === false) {
+    if (signupHasErrors()) {
       return;
     }
     const user = {
-      message: 'signUp req',
+      message: 'Signup Request',
       data: {
         username: refs.username.current.value,
         phone: refs.phone.current.value,
@@ -265,7 +151,7 @@ export default function Index() {
               type='txt'
               placeholder='نام کاربری'
               reference={refs.loginUsername}
-              onKeyPress={loginInputHandler}
+              onKeyPress={e => loginErrorHandler(e, states, refs)}
             />
             <IconInput
               error={states.passwordLoginError}
@@ -275,7 +161,7 @@ export default function Index() {
               type='password'
               placeholder='گذرواژه'
               reference={refs.loginPassword}
-              onKeyPress={loginInputHandler}
+              onKeyPress={e => loginErrorHandler(e, states, refs)}
             />
             <button className='index__link'>حساب کاربری ندارید؟</button>
             <div className='index__submit-container g-flipped'>
@@ -299,7 +185,7 @@ export default function Index() {
               type='text'
               placeholder='نام کاربری'
               reference={refs.username}
-              onKeyPress={onChangeHandler}
+              onKeyPress={e => signupErrorHandler(e, states, refs)}
             />
             <IconInput
               icon='akar-icons:phone'
@@ -308,7 +194,7 @@ export default function Index() {
               className='index__txt-input'
               placeholder='تلفن همراه'
               reference={refs.phone}
-              onKeyPress={onChangeHandler}
+              onKeyPress={e => signupErrorHandler(e, states, refs)}
             />
             <IconInput
               icon='mdi-light:email'
@@ -318,7 +204,7 @@ export default function Index() {
               type='email'
               placeholder='ایمیل'
               reference={refs.email}
-              onKeyPress={onChangeHandler}
+              onKeyPress={e => signupErrorHandler(e, states, refs)}
             />
             <IconInput
               icon='carbon:password'
@@ -328,7 +214,7 @@ export default function Index() {
               type='password'
               placeholder='گذرواژه'
               reference={refs.password}
-              onKeyPress={onChangeHandler}
+              onKeyPress={e => signupErrorHandler(e, states, refs)}
             />
             <IconInput
               flipped={true}
@@ -337,7 +223,7 @@ export default function Index() {
               type='password'
               placeholder='تایید گذرواژه'
               reference={refs.confirm}
-              onKeyPress={onChangeHandler}
+              onKeyPress={e => signupErrorHandler(e, states, refs)}
             />
             <button className='index__link'>حساب کاربری دارید؟</button>
             <div className='index__submit-container'>

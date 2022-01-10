@@ -1,59 +1,22 @@
 import { useRef } from 'react';
 
-let initialized = false;
-
-let toggle,
-  index,
-  wave,
-  loginControls,
-  signupControls,
-  indexBody,
-  username,
-  phone,
-  email,
-  password,
-  confirm,
-  loginUsername,
-  loginPassword;
-
 export default () => {
-  if (initialized) return;
-  initialized = true;
+  const toggle = useRef();
+  const index = useRef();
+  const wave = useRef();
+  const loginControls = useRef();
+  const signupControls = useRef();
+  const indexBody = useRef();
 
-  toggle = useRef();
-  index = useRef();
-  wave = useRef();
-  loginControls = useRef();
-  signupControls = useRef();
-  indexBody = useRef();
+  const username = useRef();
+  const phone = useRef();
+  const email = useRef();
+  const password = useRef();
+  const confirm = useRef();
 
-  username = useRef();
-  phone = useRef();
-  email = useRef();
-  password = useRef();
-  confirm = useRef();
+  const loginUsername = useRef();
+  const loginPassword = useRef();
 
-  loginUsername = useRef();
-  loginPassword = useRef();
-
-  return {
-    toggle,
-    index,
-    wave,
-    loginControls,
-    signupControls,
-    indexBody,
-    username,
-    phone,
-    email,
-    password,
-    confirm,
-    loginUsername,
-    loginPassword,
-  };
-};
-
-export const getRefs = () => {
   return {
     toggle,
     index,
