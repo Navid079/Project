@@ -1,6 +1,7 @@
 // Third-party libraries
 const express = require('express');
 const mongoose = require('mongoose');
+const cors = require('cors');
 
 // Routers import
 const requestInitializer = require('./middlewares/requestInitializer');
@@ -10,6 +11,8 @@ const authShopRouter = require('./routes/shop/auth');
 const errorHandler = require('./controllers/errorHandlers');
 
 const app = express();
+
+app.use(cors());
 
 // express.json() is used to parse request bodies.
 // The result will be saved in req.body

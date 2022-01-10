@@ -1,11 +1,11 @@
-import "./Button.css";
+import './Button.css';
 
 const Button = ({ className, onClick, type, children }) => {
   return (
     <button
       className={`button ${className}`}
       onClick={onClick}
-      type={type || "submit"}
+      type={type || 'submit'}
     >
       {children}
     </button>

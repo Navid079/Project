@@ -1,4 +1,4 @@
-import React, { createContext, useContext, useReducer } from 'react';
+import React, { createContext, useReducer } from 'react';
 import { FormReducer } from './FormReducer';
 
 const INITIAL_STATE = {
@@ -6,11 +6,11 @@ const INITIAL_STATE = {
   phone: '',
   email: '',
   password: '',
-  re_password: '',
+  confirm: '',
   error: {},
 };
 
-export const FormContext = createContext(INITIAL_STATE);
+const FormContext = createContext(INITIAL_STATE);
 
 export const FormContextProvider = ({ children }) => {
   const [state, dispatch] = useReducer(FormReducer, INITIAL_STATE);
@@ -22,7 +22,7 @@ export const FormContextProvider = ({ children }) => {
         phone: state.phone,
         email: state.email,
         password: state.password,
-        re_password: state.re_password,
+        confirm: state.confirm,
         error: state.error,
         dispatch,
       }}
@@ -31,3 +31,5 @@ export const FormContextProvider = ({ children }) => {
     </FormContext.Provider>
   );
 };
+
+export default FormContext;

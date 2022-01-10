@@ -1,5 +1,3 @@
-import React from 'react';
-
 export const FormReducer = (state, action) => {
   switch (action.type) {
     case 'GET':
@@ -21,6 +19,8 @@ export const FormReducer = (state, action) => {
       return {
         ...state,
         error: {},
-      }
+      };
+    default:
+      return state;
   }
 };
