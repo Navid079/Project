@@ -1,14 +1,14 @@
 import React, { useContext, useEffect } from 'react';
 import { FormContext } from '../../ContextManager/FormContextManager/FormContext';
-import useStates from './useStates';
-import useRefs from './useRefs';
-import { responseErrorHandler } from './errorHandlers';
+import useStates from './Hooks/useStates';
+import useRefs from './Hooks/useRefs';
+import { responseErrorHandler } from './EventHandlers/errorHandlers';
 import {
   toggleHandler,
   loginSubmitHandler,
   signupSubmitHandler,
   keyPressHandler,
-} from './eventHandlers';
+} from './EventHandlers/eventHandlers';
 
 import './Index.css';
 

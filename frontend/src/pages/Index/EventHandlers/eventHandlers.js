@@ -1,8 +1,8 @@
 import { loginPreRequestValidator, signupPreRequestValidator } from './validators';
 
-import { loginApiCall } from '../../API_Calls/LoginApiCall';
-import { signupApiCall } from '../../API_Calls/SignupApiCall';
-import { validEmail, validPhone } from '../../utils/regexBank';
+import { loginApiCall } from '../../../API_Calls/LoginApiCall';
+import { signupApiCall } from '../../../API_Calls/SignupApiCall';
+import { validEmail, validPhone } from '../../../utils/regexBank';
 
 const devId = process.env.REACT_APP_DEV_ID;
 

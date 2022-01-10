@@ -1,4 +1,4 @@
-import { validEmail, validPhone, validPassword } from '../../utils/regexBank';
+import { validEmail, validPhone, validPassword } from '../../../utils/regexBank';
 
 export const loginPreRequestValidator = (states, refs) => {
   let validated = true;
