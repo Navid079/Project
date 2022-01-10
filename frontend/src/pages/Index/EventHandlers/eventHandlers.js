@@ -40,7 +40,8 @@ export const toggleHandler = (position, states, refs) => {
   }
 };
 
-export const loginSubmitHandler = (event, states, refs, dispatch) => {
+export const loginSubmitHandler = (event, states, refs, dispatch, navigate) => {
+
   event.preventDefault();
   if (!loginPreRequestValidator(states, refs)) {
     return;
@@ -62,10 +63,12 @@ export const loginSubmitHandler = (event, states, refs, dispatch) => {
     },
   };
 
-  loginApiCall(loginUser, dispatch);
+  loginApiCall(loginUser, dispatch).then(result => {
+    if (result) navigate('/dashboard');
+  });
 };
 
-export const signupSubmitHandler = (event, states, refs, dispatch) => {
+export const signupSubmitHandler = (event, states, refs, dispatch, navigate) => {
   event.preventDefault();
   if (!signupPreRequestValidator(states, refs)) {
     return;
@@ -81,7 +84,9 @@ export const signupSubmitHandler = (event, states, refs, dispatch) => {
       devId: devId,
     },
   };
-  signupApiCall(user, dispatch);
+  signupApiCall(user, dispatch).then(result => {
+    if (result) navigate('/dashboard');
+  });
 };
 
 export const keyPressHandler = (state, setState) => {
