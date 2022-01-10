@@ -1,6 +1,3 @@
-import { useContext } from 'react';
-import { FormContext } from '../../ContextManager/FormContextManager/FormContext';
-
 export const responseErrorHandler = (states, error, dispatch) => {
 
   const conflict = error.data.conflict;
@@ -10,35 +7,35 @@ export const responseErrorHandler = (states, error, dispatch) => {
     if (error.status === 404) {
       states.setUsernameLoginError(true);
     } else if (error.status === 401) {
-      alert('wrong password');
+      states.setPasswordLoginError(true);
     } else if (error.status === 422) {
       if (['user', 'phone', 'email'].indexOf(conflict) != -1) {
-        alert('wrong username');
+        states.setUsernameLoginError(true);
       } else if (conflict === 'password') {
-        alert('wrong password');
+        states.setUsernameLoginError(true);
       }
     }
   } else if (error.page === 'signup') {
     // ======== Signup Page Response Errors ======== //
     if (error.status === 409) {
       if (conflict === 'username') {
-        alert('username already exists');
+        states.setUsernameSignupError(true);
       } else if (conflict === 'email') {
-        alert('email already exists');
+        states.setEmailSignupError(true);
       } else if (conflict === 'phone') {
-        alert('phone number already exists');
+        states.setPhoneSignupError(true);
       }
     } else if (error.status === 422) {
       if (conflict === 'username') {
-        alert('username required');
+        states.setUsernameSignupError(true);
       } else if (conflict === 'email') {
-        alert('email required');
+        states.setEmailSignupError(true);
       } else if (conflict === 'phone') {
-        alert('phone number already exists');
+        states.setPhoneSignupError(true);
       } else if (conflict === 'password') {
-        alert('password is too weak');
+        states.setPasswordSignupError(true);
       } else if (conflict === 'confirm') {
-        alert('passwords dont match');
+        states.setConfirmSignupError(true);
       }
     }
   }
