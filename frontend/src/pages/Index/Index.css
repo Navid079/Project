@@ -45,6 +45,12 @@
   --txt-font-size: 1rem;
 }
 
+.index__errors {
+  width: 50%;
+  text-align: right;
+  color: var(--clr-error);
+}
+
 .index__link {
   background-color: transparent;
   border: none;
@@ -88,7 +94,8 @@
     --txt-height: 3rem;
     --txt-font-size: 1.5rem;
   }
-  .index__link {
+  .index__link,
+  .index__errors {
     font-size: 1.5rem;
   }
   .index__submit {
@@ -202,6 +209,9 @@
     --txt-height: 6rem;
     margin-bottom: 2.5rem;
     --txt-font-size: 3rem;
+  }
+  .index__errors {
+    font-size: 3rem;
   }
   .index__link {
     font-size: 3rem;
