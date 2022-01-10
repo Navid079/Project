@@ -48,7 +48,9 @@
 .index__errors {
   width: 50%;
   text-align: right;
+  direction: rtl;
   color: var(--clr-error);
+  margin: 2rem 0;
 }
 
 .index__link {

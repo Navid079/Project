@@ -11,8 +11,7 @@ const useRefs = () => {
   const loginControls = useRef();
   const loginUsername = useRef();
   const loginPassword = useRef();
-  const loginErrors = useRef();
-
+  
   // Signup Refs
   const signupControls = useRef();
   const signupUsername = useRef();
@@ -20,7 +19,6 @@ const useRefs = () => {
   const signupEmail = useRef();
   const signupPassword = useRef();
   const signupConfirm = useRef();
-  const signupErrors = useRef();
 
   return {
     toggle,
@@ -30,14 +28,12 @@ const useRefs = () => {
     loginControls,
     loginUsername,
     loginPassword,
-    loginErrors,
     signupControls,
     signupUsername,
     signupPhone,
     signupEmail,
     signupPassword,
     signupConfirm,
-    signupErrors,
   };
 };
 
