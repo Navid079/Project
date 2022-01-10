@@ -2,11 +2,7 @@ import React, { useContext } from 'react';
 import { FormContext } from '../../ContextManager/FormContextManager/FormContext';
 import useStates from './useStates';
 import useRefs from './useRefs';
-import {
-  useResponseErrorHandler,
-  signupErrorHandler,
-  loginErrorHandler,
-} from './errorHandlers';
+import { useResponseErrorHandler } from './errorHandlers';
 import {
   toggleHandler,
   loginSubmitHandler,
@@ -58,7 +54,10 @@ export default function Index() {
               type='txt'
               placeholder='نام کاربری'
               reference={refs.loginUsername}
-              onKeyPress={e => loginErrorHandler(e, states, refs)}
+              onKeyPress={e => {
+                if (states.usernameLoginError)
+                  states.setUsernameLoginError(false);
+              }}
             />
             <IconInput
               error={states.passwordLoginError}
@@ -68,7 +67,10 @@ export default function Index() {
               type='password'
               placeholder='گذرواژه'
               reference={refs.loginPassword}
-              onKeyPress={e => loginErrorHandler(e, states, refs)}
+              onKeyPress={e => {
+                if (states.passwordLoginError)
+                  states.setPasswordLoginError(false);
+              }}
             />
             <button className='index__link'>حساب کاربری ندارید؟</button>
             <div className='index__submit-container g-flipped'>
@@ -92,7 +94,9 @@ export default function Index() {
               type='text'
               placeholder='نام کاربری'
               reference={refs.username}
-              onKeyPress={e => signupErrorHandler(e, states, refs)}
+              onKeyPress={e => {
+                if (states.usernameSignupError) states.setUsernameSignupError(false);
+              }}
             />
             <IconInput
               icon='akar-icons:phone'
@@ -101,7 +105,9 @@ export default function Index() {
               className='index__txt-input'
               placeholder='تلفن همراه'
               reference={refs.phone}
-              onKeyPress={e => signupErrorHandler(e, states, refs)}
+              onKeyPress={e => {
+                if (states.phoneSignupError) states.setPhoneSignupError(false);
+              }}
             />
             <IconInput
               icon='mdi-light:email'
@@ -111,7 +117,9 @@ export default function Index() {
               type='email'
               placeholder='ایمیل'
               reference={refs.email}
-              onKeyPress={e => signupErrorHandler(e, states, refs)}
+              onKeyPress={e => {
+                if (states.emailSignupError) states.setEmailSignupError(false);
+              }}
             />
             <IconInput
               icon='carbon:password'
@@ -121,7 +129,9 @@ export default function Index() {
               type='password'
               placeholder='گذرواژه'
               reference={refs.password}
-              onKeyPress={e => signupErrorHandler(e, states, refs)}
+              onKeyPress={e => {
+                if (states.passwordSignupError) states.setPasswordSignupError(false);
+              }}
             />
             <IconInput
               flipped={true}
@@ -130,7 +140,9 @@ export default function Index() {
               type='password'
               placeholder='تایید گذرواژه'
               reference={refs.confirm}
-              onKeyPress={e => signupErrorHandler(e, states, refs)}
+              onKeyPress={e => {
+                if (states.confirmSignupError) states.setConfirmSignupError(false);
+              }}
             />
             <button className='index__link'>حساب کاربری دارید؟</button>
             <div className='index__submit-container'>

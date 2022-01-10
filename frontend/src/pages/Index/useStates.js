@@ -6,7 +6,7 @@ export default () => {
   const [passwordLoginError, setPasswordLoginError] = useState(false);
   
   // Signup states
-  const [userNameSignupError, setUsernameSignupError] = useState(false);
+  const [usernameSignupError, setUsernameSignupError] = useState(false);
   const [passwordSignupError, setPasswordSignupError] = useState(false);
   const [confirmSignupError, setConfirmSignupError] = useState(false);
   const [emailSignupError, setEmailSignupError] = useState(false);
@@ -17,7 +17,7 @@ export default () => {
     setUsernameLoginError,
     passwordLoginError,
     setPasswordLoginError,
-    userNameSignupError,
+    usernameSignupError,
     setUsernameSignupError,
     passwordSignupError,
     setPasswordSignupError,

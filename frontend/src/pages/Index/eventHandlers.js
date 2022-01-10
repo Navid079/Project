@@ -1,23 +1,10 @@
+import { loginPreRequestValidator, signupPreRequestValidator } from './validators';
+
 import { loginApiCall } from '../../API_Calls/LoginApiCall';
 import { signupApiCall } from '../../API_Calls/SignupApiCall';
-import { validEmail, validPhone, validPassword } from '../../utils/regexBank';
+import { validEmail, validPhone } from '../../utils/regexBank';
 
 const devId = process.env.REACT_APP_DEV_ID;
-
-const signupHasErrors = states => {
-  const hasError =
-    states.emailSignupError ||
-    states.phoneSignupError ||
-    states.passwordSignupError ||
-    states.usernameSignupError ||
-    states.confirmSignupError;
-  return hasError;
-};
-
-const loginHasErrors = states => {
-  const hasErrors = states.usernameLoginError || states.passwordLoginError;
-  return hasErrors;
-};
 
 export const toggleHandler = (position, states, refs) => {
   refs.wave.current.classList.add('fade-out-in');
@@ -52,7 +39,7 @@ export const toggleHandler = (position, states, refs) => {
 
 export const loginSubmitHandler = (event, states, refs, dispatch) => {
   event.preventDefault();
-  if (loginHasErrors(states)) {
+  if (!loginPreRequestValidator(states, refs)) {
     return;
   }
   const enteredUsername = refs.loginUsername.current.value;
@@ -77,7 +64,7 @@ export const loginSubmitHandler = (event, states, refs, dispatch) => {
 
 export const signupSubmitHandler = (event, states, refs, dispatch) => {
   event.preventDefault();
-  if (signupHasErrors(states)) {
+  if (!signupPreRequestValidator(states, refs)) {
     return;
   }
   const user = {
