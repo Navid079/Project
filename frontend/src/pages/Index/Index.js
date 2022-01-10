@@ -103,7 +103,7 @@ export default function Index() {
               className='index__txt-input'
               type='text'
               placeholder='نام کاربری'
-              reference={refs.username}
+              reference={refs.signupUsername}
               onKeyPress={() =>
                 keyPressHandler(
                   states.usernameSignupError,
@@ -117,7 +117,7 @@ export default function Index() {
               flipped={true}
               className='index__txt-input'
               placeholder='تلفن همراه'
-              reference={refs.phone}
+              reference={refs.signupPhone}
               onKeyPress={() =>
                 keyPressHandler(
                   states.phoneSignupError,
@@ -132,7 +132,7 @@ export default function Index() {
               className='index__txt-input'
               type='email'
               placeholder='ایمیل'
-              reference={refs.email}
+              reference={refs.signupEmail}
               onKeyPress={() =>
                 keyPressHandler(
                   states.emailSignupError,
@@ -147,7 +147,7 @@ export default function Index() {
               className='index__txt-input'
               type='password'
               placeholder='گذرواژه'
-              reference={refs.password}
+              reference={refs.signupPassword}
               onKeyPress={() =>
                 keyPressHandler(
                   states.passwordSignupError,
@@ -161,7 +161,7 @@ export default function Index() {
               className='index__txt-input'
               type='password'
               placeholder='تایید گذرواژه'
-              reference={refs.confirm}
+              reference={refs.signupConfirm}
               onKeyPress={() =>
                 keyPressHandler(
                   states.confirmSignupError,

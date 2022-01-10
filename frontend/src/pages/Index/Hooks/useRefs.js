@@ -14,25 +14,25 @@ export default () => {
 
   // Signup Refs
   const signupControls = useRef();
-  const username = useRef();
-  const phone = useRef();
-  const email = useRef();
-  const password = useRef();
-  const confirm = useRef();
+  const signupUsername = useRef();
+  const signupPhone = useRef();
+  const signupEmail = useRef();
+  const signupPassword = useRef();
+  const signupConfirm = useRef();
 
   return {
     toggle,
     index,
     wave,
-    loginControls,
-    signupControls,
     indexBody,
-    username,
-    phone,
-    email,
-    password,
-    confirm,
+    loginControls,
     loginUsername,
     loginPassword,
+    signupControls,
+    signupUsername,
+    signupPhone,
+    signupEmail,
+    signupPassword,
+    signupConfirm,
   };
 };

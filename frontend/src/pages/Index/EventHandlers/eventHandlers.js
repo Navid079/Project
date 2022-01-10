@@ -71,11 +71,11 @@ export const signupSubmitHandler = (event, states, refs, dispatch) => {
   const user = {
     message: 'Signup Request',
     data: {
-      username: refs.username.current.value,
-      phone: refs.phone.current.value,
-      email: refs.email.current.value,
-      password: refs.password.current.value,
-      confirm: refs.confirm.current.value,
+      username: refs.signupUsername.current.value,
+      phone: refs.signupPhone.current.value,
+      email: refs.signupEmail.current.value,
+      password: refs.signupPassword.current.value,
+      confirm: refs.signupConfirm.current.value,
       devId: devId,
     },
   };
