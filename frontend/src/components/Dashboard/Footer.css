@@ -1,0 +1,43 @@
+.dashboard__footer {
+  display: flex;
+  justify-content: center;
+  height: 3rem;
+  width: 100vw;
+  background-color: var(--clr-primary-5);
+  border-radius: 3rem 3rem 0 0;
+  outline: 2px solid white;
+  position: fixed;
+  bottom: 0;
+  z-index: 2;
+}
+
+.dashboard__footer__plus {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  outline: 0.8rem solid var(--clr-white);
+  background-color: var(--clr-primary-5);
+  border-radius: 50%;
+  width: 2.5rem;
+  height: 2.5rem;
+  font-size: 1.5rem;
+  color: white;
+  transform: translateY(-1.25rem);
+}
+
+.dashboard__contact {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  background-color: var(--clr-primary-5);
+  border-radius: 50%;
+  width: 2rem;
+  height: 2rem;
+  font-size: 1.2rem;
+  color: white;
+
+  position: fixed;
+  bottom: 4rem;
+  left: 1rem;
+}

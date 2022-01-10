@@ -1,0 +1,50 @@
+.navbar {
+  display: flex;
+  flex-direction: row-reverse;
+  align-items: center;
+  justify-content: space-around;
+
+  width: 100vw;
+  height: 3rem;
+
+  background-color: white;
+
+  border-bottom-left-radius: 2rem;
+}
+
+.navbar__back {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 2rem;
+  height: 2rem;
+  color: var(--clr-primary-5);
+  font-size: 1.5rem;
+}
+
+.navbar__profile {
+  width: 2.5rem;
+  height: 2.5rem;
+  border-radius: 50%;
+  background-image: url(../../images/pfp.png);
+  background-size: contain;
+}
+
+.navbar__logout {
+  width: 1.3rem;
+  height: 1.3rem;
+  font-size: 1.3rem;
+  color: var(--clr-primary-5);
+  margin: 0 0.5rem;
+}
+
+.dashboard__logo {
+  width: 2.5rem;
+  height: 2.5rem;
+  background-image: url(../../images/logo.png);
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  border: 0.1rem solid var(--clr-primary-5);
+  border-radius: 50%;
+}
