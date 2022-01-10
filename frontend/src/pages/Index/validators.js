@@ -25,7 +25,6 @@ export const signupPreRequestValidator = (states, refs) => {
   let validated = true;
 
   if (refs.username.current.value.length === 0) {
-    console.log("here")
     states.setUsernameSignupError(true);
     validated = false;
   }

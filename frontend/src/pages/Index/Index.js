@@ -1,13 +1,13 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect } from 'react';
 import { FormContext } from '../../ContextManager/FormContextManager/FormContext';
 import useStates from './useStates';
 import useRefs from './useRefs';
-import useErrorHandler from './useErrorHandler';
+import { responseErrorHandler } from './errorHandlers';
 import {
   toggleHandler,
   loginSubmitHandler,
   signupSubmitHandler,
-  keyPressHandler
+  keyPressHandler,
 } from './eventHandlers';
 
 import './Index.css';
@@ -19,10 +19,15 @@ import IconInput from '../../components/Index/IconInput';
 export default function Index() {
   const states = useStates();
   const refs = useRefs();
-
-  const { dispatch } = useContext(FormContext);
-
-  useErrorHandler();
+  
+  const { dispatch, error } = useContext(FormContext);
+  
+  useEffect(() => {
+    if (Object.keys(error).length !== 0) {
+      dispatch({ type: 'UNSET_ERROR' });
+      responseErrorHandler(states, error, dispatch);
+    }
+  }) 
 
   return (
     <div className='index g-flipped' ref={refs.index}>
@@ -55,7 +60,12 @@ export default function Index() {
               type='txt'
               placeholder='نام کاربری'
               reference={refs.loginUsername}
-              onKeyPress={() => keyPressHandler(states.usernameLoginError, states.setUsernameLoginError)}
+              onKeyPress={() =>
+                keyPressHandler(
+                  states.usernameLoginError,
+                  states.setUsernameLoginError
+                )
+              }
             />
             <IconInput
               error={states.passwordLoginError}
@@ -65,7 +75,12 @@ export default function Index() {
               type='password'
               placeholder='گذرواژه'
               reference={refs.loginPassword}
-              onKeyPress={() => keyPressHandler(states.passwordLoginError, states.setPasswordLoginError)}
+              onKeyPress={() =>
+                keyPressHandler(
+                  states.passwordLoginError,
+                  states.setPasswordLoginError
+                )
+              }
             />
             <button className='index__link'>حساب کاربری ندارید؟</button>
             <div className='index__submit-container g-flipped'>
@@ -89,7 +104,12 @@ export default function Index() {
               type='text'
               placeholder='نام کاربری'
               reference={refs.username}
-              onKeyPress={() => keyPressHandler(states.usernameSignupError, states.setUsernameSignupError)}
+              onKeyPress={() =>
+                keyPressHandler(
+                  states.usernameSignupError,
+                  states.setUsernameSignupError
+                )
+              }
             />
             <IconInput
               icon='akar-icons:phone'
@@ -98,7 +118,12 @@ export default function Index() {
               className='index__txt-input'
               placeholder='تلفن همراه'
               reference={refs.phone}
-              onKeyPress={() => keyPressHandler(states.phoneSignupError, states.setPhoneSignupError)}
+              onKeyPress={() =>
+                keyPressHandler(
+                  states.phoneSignupError,
+                  states.setPhoneSignupError
+                )
+              }
             />
             <IconInput
               icon='mdi-light:email'
@@ -108,7 +133,12 @@ export default function Index() {
               type='email'
               placeholder='ایمیل'
               reference={refs.email}
-              onKeyPress={() => keyPressHandler(states.emailSignupError, states.setEmailSignupError)}
+              onKeyPress={() =>
+                keyPressHandler(
+                  states.emailSignupError,
+                  states.setEmailSignupError
+                )
+              }
             />
             <IconInput
               icon='carbon:password'
@@ -118,7 +148,12 @@ export default function Index() {
               type='password'
               placeholder='گذرواژه'
               reference={refs.password}
-              onKeyPress={() => keyPressHandler(states.passwordSignupError, states.setPasswordSignupError)}
+              onKeyPress={() =>
+                keyPressHandler(
+                  states.passwordSignupError,
+                  states.setPasswordSignupError
+                )
+              }
             />
             <IconInput
               flipped={true}
@@ -127,7 +162,12 @@ export default function Index() {
               type='password'
               placeholder='تایید گذرواژه'
               reference={refs.confirm}
-              onKeyPress={() => keyPressHandler(states.confirmSignupError, states.setConfirmSignupError)}
+              onKeyPress={() =>
+                keyPressHandler(
+                  states.confirmSignupError,
+                  states.setConfirmSignupError
+                )
+              }
             />
             <button className='index__link'>حساب کاربری دارید؟</button>
             <div className='index__submit-container'>
