@@ -2,7 +2,7 @@ import axios from 'axios';
 
 const api = process.env.REACT_APP_API_URL;
 
-export const signupApiCall = async (user, reducer) => {
+const SignupApiCall = async (user, reducer) => {
   try {
     const res = await axios.post(`${api}/shop/signup`, user);
     reducer({ type: 'SET_USER', data: res.data.data });
@@ -12,3 +12,5 @@ export const signupApiCall = async (user, reducer) => {
     reducer({ type: 'SET_ERROR', data: error.response });
   }
 };
+
+export default SignupApiCall;

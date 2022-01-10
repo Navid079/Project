@@ -1,12 +1,12 @@
 import { useRef } from 'react';
 
-export default () => {
+const useRefs = () => {
   // Shared Refs
   const toggle = useRef();
   const index = useRef();
   const wave = useRef();
   const indexBody = useRef();
-  
+
   // Login Refs
   const loginControls = useRef();
   const loginUsername = useRef();
@@ -36,3 +36,5 @@ export default () => {
     signupConfirm,
   };
 };
+
+export default useRefs;

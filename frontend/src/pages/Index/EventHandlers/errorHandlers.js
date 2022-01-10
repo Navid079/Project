@@ -1,5 +1,4 @@
-export const responseErrorHandler = (states, error, dispatch) => {
-
+export const responseErrorHandler = (states, error) => {
   const conflict = error.data.conflict;
 
   if (error.page === 'login') {
@@ -9,7 +8,7 @@ export const responseErrorHandler = (states, error, dispatch) => {
     } else if (error.status === 401) {
       states.setPasswordLoginError(true);
     } else if (error.status === 422) {
-      if (['user', 'phone', 'email'].indexOf(conflict) != -1) {
+      if (['user', 'phone', 'email'].indexOf(conflict) !== -1) {
         states.setUsernameLoginError(true);
       } else if (conflict === 'password') {
         states.setUsernameLoginError(true);

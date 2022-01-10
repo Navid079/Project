@@ -1,4 +1,8 @@
-import { validEmail, validPhone, validPassword } from '../../../utils/regexBank';
+import {
+  validEmail,
+  validPhone,
+  validPassword,
+} from '../../../utils/regexBank';
 
 export const loginPreRequestValidator = (states, refs) => {
   let validated = true;
@@ -37,7 +41,9 @@ export const signupPreRequestValidator = (states, refs) => {
   if (refs.signupConfirm.current.value.length === 0) {
     states.setConfirmSignupError(true);
     validated = false;
-  } else if (refs.signupConfirm.current.value !== refs.signupPassword.current.value) {
+  } else if (
+    refs.signupConfirm.current.value !== refs.signupPassword.current.value
+  ) {
     states.setConfirmSignupError(true);
     validated = false;
   }

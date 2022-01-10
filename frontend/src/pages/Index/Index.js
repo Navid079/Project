@@ -1,7 +1,14 @@
+// ============ React and hooks ============
 import React, { useContext, useEffect } from 'react';
-import { FormContext } from '../../ContextManager/FormContextManager/FormContext';
+
+// ================ Context ================
+import FormContext from '../../ContextManager/FormContextManager/FormContext';
+
+// ============== Page  hooks ==============
 import useStates from './Hooks/useStates';
 import useRefs from './Hooks/useRefs';
+
+// ========== Page Event Handlers ==========
 import { responseErrorHandler } from './EventHandlers/errorHandlers';
 import {
   toggleHandler,
@@ -10,24 +17,27 @@ import {
   keyPressHandler,
 } from './EventHandlers/eventHandlers';
 
-import './Index.css';
-
+// ============ Page Components ============
 import Button from '../../components/UI/Button/Button';
 import Toggle from '../../components/UI/Toggle';
 import IconInput from '../../components/Index/IconInput';
 
-export default function Index() {
+// =========== Page  Stylesheets ===========
+import './Index.css';
+
+// ================== Page =================
+const Page = () => {
   const states = useStates();
   const refs = useRefs();
-  
+
   const { dispatch, error } = useContext(FormContext);
-  
+
   useEffect(() => {
     if (Object.keys(error).length !== 0) {
       dispatch({ type: 'UNSET_ERROR' });
       responseErrorHandler(states, error, dispatch);
     }
-  }) 
+  });
 
   return (
     <div className='index g-flipped' ref={refs.index}>
@@ -178,4 +188,6 @@ export default function Index() {
       </main>
     </div>
   );
-}
+};
+
+export default Page;

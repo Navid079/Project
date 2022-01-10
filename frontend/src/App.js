@@ -1,10 +1,10 @@
-import Index from "./pages/Index/Index";
+import Index from './pages/Index/Index';
 
-import "./App.css";
+import './App.css';
 
 function App() {
   return (
-    <div className="container">
+    <div className='container'>
       <Index />
     </div>
   );

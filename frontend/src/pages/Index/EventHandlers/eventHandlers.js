@@ -1,7 +1,10 @@
-import { loginPreRequestValidator, signupPreRequestValidator } from './validators';
+import {
+  loginPreRequestValidator,
+  signupPreRequestValidator,
+} from './validators';
 
-import { loginApiCall } from '../../../API_Calls/LoginApiCall';
-import { signupApiCall } from '../../../API_Calls/SignupApiCall';
+import loginApiCall from '../../../API_Calls/LoginApiCall';
+import signupApiCall from '../../../API_Calls/SignupApiCall';
 import { validEmail, validPhone } from '../../../utils/regexBank';
 
 const devId = process.env.REACT_APP_DEV_ID;
@@ -60,7 +63,6 @@ export const loginSubmitHandler = (event, states, refs, dispatch) => {
   };
 
   loginApiCall(loginUser, dispatch);
-
 };
 
 export const signupSubmitHandler = (event, states, refs, dispatch) => {
@@ -84,4 +86,4 @@ export const signupSubmitHandler = (event, states, refs, dispatch) => {
 
 export const keyPressHandler = (state, setState) => {
   if (state) setState(false);
-}
+};

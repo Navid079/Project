@@ -1,10 +1,10 @@
 import { useState } from 'react';
 
-export default () => {
+const useStates = () => {
   // Login states
   const [usernameLoginError, setUsernameLoginError] = useState(false);
   const [passwordLoginError, setPasswordLoginError] = useState(false);
-  
+
   // Signup states
   const [usernameSignupError, setUsernameSignupError] = useState(false);
   const [passwordSignupError, setPasswordSignupError] = useState(false);
@@ -29,3 +29,5 @@ export default () => {
     setPhoneSignupError,
   };
 };
+
+export default useStates;
