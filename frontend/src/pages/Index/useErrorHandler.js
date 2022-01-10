@@ -1,7 +1,7 @@
 import { useContext } from 'react';
 import { FormContext } from '../../ContextManager/FormContextManager/FormContext';
 
-export const useResponseErrorHandler = () => {
+export default () => {
   const { dispatch, error } = useContext(FormContext);
 
   if (Object.keys(error).length !== 0) {

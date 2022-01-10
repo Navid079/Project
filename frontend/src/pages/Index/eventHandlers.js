@@ -80,3 +80,7 @@ export const signupSubmitHandler = (event, states, refs, dispatch) => {
   };
   signupApiCall(user, dispatch);
 };
+
+export const keyPressHandler = (state, setState) => {
+  if (state) setState(false);
+}

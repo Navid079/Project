@@ -1,21 +1,24 @@
 import { useRef } from 'react';
 
 export default () => {
+  // Shared Refs
   const toggle = useRef();
   const index = useRef();
   const wave = useRef();
-  const loginControls = useRef();
-  const signupControls = useRef();
   const indexBody = useRef();
+  
+  // Login Refs
+  const loginControls = useRef();
+  const loginUsername = useRef();
+  const loginPassword = useRef();
 
+  // Signup Refs
+  const signupControls = useRef();
   const username = useRef();
   const phone = useRef();
   const email = useRef();
   const password = useRef();
   const confirm = useRef();
-
-  const loginUsername = useRef();
-  const loginPassword = useRef();
 
   return {
     toggle,
