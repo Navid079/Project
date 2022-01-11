@@ -65,7 +65,6 @@
 
 @media screen and (min-width: 768px) {
   .dashboard-tab__text {
-    color: var(--clr-white);
     font-size: 1rem;
     padding-right: 0.1rem;
   }
@@ -75,5 +74,19 @@
   }
   .dashboard-tab__icon-container {
     width: var(--dashboard-tab-height);
+  }
+}
+
+/* 
+==========================
+=     PC Media Query     =
+==========================
+*/
+@media screen and (min-width: 1024px) {
+  .dashboard-tab__text {
+    font-size: 1.2rem;
+  }
+  .dashboard-tab__icon {
+    font-weight: 400;
   }
 }

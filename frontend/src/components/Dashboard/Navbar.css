@@ -83,7 +83,7 @@
     width: 2rem;
     height: 2rem;
     font-size: 2rem;
-    margin-left: .5rem;
+    margin-left: 0.5rem;
   }
 
   .dashboard__logo {
@@ -93,5 +93,34 @@
 
   .navbar__container {
     margin-left: 1.2rem;
+  }
+}
+
+/* 
+==========================
+=     PC Media Query     =
+==========================
+*/
+@media screen and (min-width: 1024px) {
+  .navbar {
+    height: 5.75rem;
+    border-bottom-left-radius: 4rem;
+  }
+  .navbar__container {
+    order: 3;
+    margin-left: 0.7rem;
+  }
+  .navbar__profile {
+    width: 4.25rem;
+    height: 4.25rem;
+  }
+  .search-input {
+    order: 2;
+  }
+  .dashboard__logo {
+    order: 1;
+    margin-right: 1.75rem;
+    width: 4rem;
+    height: 4rem;
   }
 }
