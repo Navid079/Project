@@ -22,3 +22,31 @@
 .search-input__icon {
   color: var(--clr-light-grey);
 }
+
+/* 
+==========================
+=   Tablet Media Query   =
+==========================
+*/
+
+@media screen and (min-width: 768px) {
+  .search-input {
+    border: 0.1rem solid var(--clr-primary-5);
+    border-radius: 2rem;
+    padding: 0;
+  }
+
+  .search-input__input {
+    width: 10.5rem;
+    height: 2.2rem;
+  }
+
+  .search-input__input::placeholder {
+    font-size: 1rem;
+  }
+
+  .search-input__icon {
+    font-size: 1.5rem;
+    margin-right: 0.8rem;
+  }
+}
