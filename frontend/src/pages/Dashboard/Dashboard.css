@@ -24,3 +24,17 @@
   height: calc(100% - 4rem);
   flex-grow: 0;
 }
+
+/* 
+==========================
+=   Tablet Media Query   =
+==========================
+*/
+@media screen and (min-width: 768px) {
+  .dashboard__body {
+    height: calc(100% - 5rem);
+  }
+  .dashboard__container {
+    height: calc(100% - 6.25rem);
+  }
+}

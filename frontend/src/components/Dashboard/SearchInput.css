@@ -2,23 +2,55 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  border: 0.1rem solid var(--clr-primary-5);
+  border: 1px solid var(--clr-primary-5);
   border-radius: 1rem;
   padding: 0 0.275rem;
+  margin-right: 0.6rem;
 }
 
 .search-input__input {
-  width: 5rem;
-  height: 1.2rem;
+  width: 5.1rem;
+  height: 1rem;
   border: none;
   padding: 0;
 }
 
 .search-input__input::placeholder {
-  font-size: 0.7rem;
+  font-size: 0.6rem;
+  font-weight: 100;
   color: var(--clr-light-grey);
 }
 
 .search-input__icon {
   color: var(--clr-light-grey);
+  font-size: 0.7rem;
+}
+
+/* 
+==========================
+=   Tablet Media Query   =
+==========================
+*/
+
+@media screen and (min-width: 768px) {
+  .search-input {
+    border: 0.1rem solid var(--clr-primary-5);
+    border-radius: 2rem;
+    padding: 0;
+    margin-right: 1.2rem;
+  }
+
+  .search-input__input {
+    width: 10.5rem;
+    height: 2.1rem;
+  }
+
+  .search-input__input::placeholder {
+    font-size: 1rem;
+  }
+
+  .search-input__icon {
+    font-size: 1.5rem;
+    margin-right: 0.8rem;
+  }
 }
