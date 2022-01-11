@@ -56,3 +56,24 @@
 .dashboard-tab__text--show {
   display: flex !important;
 }
+
+/* 
+==========================
+=   Tablet Media Query   =
+==========================
+*/
+
+@media screen and (min-width: 768px) {
+  .dashboard-tab__text {
+    color: var(--clr-white);
+    font-size: 1rem;
+    padding-right: 0.1rem;
+  }
+  .dashboard-tab__icon {
+    height: calc(var(--dashboard-tab-height) * 0.4);
+    width: calc(var(--dashboard-tab-height) * 0.4);
+  }
+  .dashboard-tab__icon-container {
+    width: var(--dashboard-tab-height);
+  }
+}
