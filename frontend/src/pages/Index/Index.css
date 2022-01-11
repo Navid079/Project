@@ -178,7 +178,7 @@
   }
 }
 
-@media screen and (min-width: 1366px) {
+@media screen and (min-width: 1024px) {
   .index__toggle {
     transform: translateX(-50%);
   }

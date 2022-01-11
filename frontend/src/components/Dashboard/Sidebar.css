@@ -18,10 +18,21 @@
 =   Tablet Media Query   =
 ==========================
 */
-
 @media screen and (min-width: 768px) {
   .dashboard__sidebar__item {
     --dashboard-tab-width: 4rem;
     --dashboard-tab-height: 4.5rem;
+  }
+}
+
+/* 
+==========================
+=     PC Media Query     =
+==========================
+*/
+@media screen and (min-width: 1024px) {
+  .dashboard__sidebar__item {
+    --dashboard-tab-width: 5rem;
+    --dashboard-tab-height: 5rem;
   }
 }
