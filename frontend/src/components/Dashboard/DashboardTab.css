@@ -6,6 +6,7 @@
   flex-direction: row-reverse;
   transition: width 300ms linear;
   border-bottom: 1px solid var(--clr-white);
+  border-left:1px solid var(--clr-primary-5);
 }
 
 .dashboard-tab--stretch {
@@ -13,7 +14,7 @@
 }
 
 .dashboard-tab:hover {
-  background-color: var(--clr-white);
+  background-color: var(--clr-white-hover);
 }
 
 .dashboard-tab:hover .dashboard-tab__icon,
