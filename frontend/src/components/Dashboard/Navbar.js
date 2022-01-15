@@ -20,7 +20,7 @@ export default function Navbar({ className }) {
 
         {/* profile photo */}
         <div className='navbar__profile'>
-        <div className='navbar__tooltip'></div>
+          <div className='navbar__tooltip'></div>
         </div>
 
         {/* back button */}
