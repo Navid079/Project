@@ -123,23 +123,6 @@
     height: 3rem;
   }
 
-  .navbar__tooltip {
-    display: none;
-    position: absolute;
-    top: 3.1rem;
-    left: 1.5rem;
-    height: 15rem;
-    width: 11rem;
-    /* height: 20rem;
-    width: 14rem; */
-    border-radius: 0.2rem 1.5rem 1.5rem 1.5rem;
-    background-color: white;
-    border: 1px solid var(--clr-primary-5);
-  }
-  .navbar__profile:hover .navbar__tooltip {
-    display: block;
-  }
-
   .navbar__logout {
     width: 1.5rem;
     height: 1.5rem;
@@ -170,6 +153,7 @@
     width: 4.25rem;
     height: 4.25rem;
   }
+
   .search-input {
     order: 2;
   }
@@ -179,8 +163,4 @@
     width: 4rem;
     height: 4rem;
   }
-}
-
-.navbar__tooltip {
-  animation: fade-out-in 0.2s linear 0s 1 normal none;
 }

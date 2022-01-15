@@ -1,0 +1,86 @@
+.tooltip {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* 
+==========================
+=     PC Media Query     =
+==========================
+*/
+@media screen and (min-width: 1024px) {
+  .tooltip {
+    display: none;
+    position: absolute;
+    top: 3.1rem;
+    left: 1.5rem;
+    height: 19rem;
+    width: 13rem;
+    border-radius: 0.2rem 1.5rem 1.5rem 1.5rem;
+    background-color: white;
+    border: 1px solid var(--clr-primary-5);
+    padding: 0.5rem;
+    color: var(--clr-primary-5);
+    animation: fade-out-in 0.2s linear 0s 1 normal none;
+  }
+  .navbar__profile:hover .tooltip {
+    display: flex;
+  }
+
+  .tooltip__container-1,
+  .tooltip__container-2 {
+    display: flex;
+    flex-direction: row-reverse;
+    margin: 0.5rem 0;
+    align-items: center;
+  }
+
+  .tooltip__name,
+  .tooltip__last-name,
+  .tooltip__shop-name {
+    margin: 0 0.5rem;
+    font-size: 0.8rem;
+  }
+
+  .tooltip__link,
+  .tooltip__status {
+    margin: 0.5rem 0;
+    font-size: 1rem;
+  }
+
+  .tooltip__link {
+    color: #324e7b69;
+  }
+}
+
+@media screen and (min-width: 1440px) {
+  .tooltip {
+    top: 4.4rem;
+    left: 2.125rem;
+    height: 20rem;
+    width: 14rem;
+    border-radius: 0.2rem 1.5rem 1.5rem 1.5rem;
+  }
+
+  .tooltip__container-1,
+  .tooltip__container-2 {
+    display: flex;
+    flex-direction: row-reverse;
+    margin: 0.8rem 0;
+    align-items: center;
+  }
+
+  .tooltip__name,
+  .tooltip__last-name,
+  .tooltip__shop-name {
+    margin: 0 0.5rem;
+    font-size: 1rem;
+  }
+
+  .tooltip__link,
+  .tooltip__status {
+    margin: 0.8rem 0;
+    font-size: 1rem;
+  }
+}
