@@ -4,6 +4,12 @@
   align-items: center;
 }
 
+.tooltip__container-1,
+.tooltip__container-2,
+.tooltip__link,
+.tooltip__status {
+  display: none;
+}
 /* 
 ==========================
 =     PC Media Query     =
@@ -45,6 +51,7 @@
 
   .tooltip__link,
   .tooltip__status {
+    display: block;
     margin: 0.5rem 0;
     font-size: 1rem;
   }
