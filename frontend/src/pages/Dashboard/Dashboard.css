@@ -23,6 +23,7 @@
   overflow: scroll;
   height: calc(100% - 4rem);
   flex-grow: 0;
+  padding: 1rem;
 }
 
 /* 
@@ -36,6 +37,7 @@
   }
   .dashboard__container {
     height: calc(100% - 6.25rem);
+    padding: 1rem 2rem;
   }
 }
 
@@ -51,6 +53,7 @@
 
   .dashboard__container {
     height: 100%;
+    padding: 1rem 3rem;
   }
   /* Hide scrollbar for Chrome, Safari and Opera */
   .dashboard__container::-webkit-scrollbar {
