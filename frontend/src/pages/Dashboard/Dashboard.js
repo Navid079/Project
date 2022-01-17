@@ -8,18 +8,14 @@ import './Dashboard.css';
 import ListItem from '../../components/UI/ListItem/ListBullet';
 
 export default function Dashboard() {
+  let visible = 20;
+  let invisible = 20;
   return (
     <>
       <div className='dashboard'>
         <Navbar className='dashboard__navbar' />
         <main className='dashboard__body'>
-          <div className='dashboard__container'>
-            {/*----------- dashboard contents -----------*/}
-
-            <ListItem number={1} />
-
-            {/*-------- end of dashboard contents -------*/}
-          </div>
+          <div className='dashboard__container'></div>
           <Sidebar />
         </main>
         <Footer />
