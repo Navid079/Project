@@ -46,7 +46,7 @@
 }
 
 .index__errors {
-  width: 50%;
+  width: 60vw;
   text-align: right;
   direction: rtl;
   color: var(--clr-error);
@@ -99,6 +99,7 @@
   .index__link,
   .index__errors {
     font-size: 1.5rem;
+    width: 45vw;
   }
   .index__submit {
     --btn-height: 3rem;
@@ -163,6 +164,7 @@
     --txt-width: 30vw;
     --txt-height: 2.5rem;
   }
+  .index__errors,
   .index__link {
     width: 30vw;
   }
