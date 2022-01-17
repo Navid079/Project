@@ -1,0 +1,34 @@
+.error-message {
+  display: flex;
+  color: var(--clr-error);
+  margin: 2rem, 0;
+}
+
+.flipped {
+  flex-direction: row-reverse;
+}
+
+.error-message__icon {
+  width: 60%;
+  height: 60%;
+}
+
+.error-message__icon-container {
+  display: flex;
+  width: var(--err-height);
+  height: var(--err-height);
+  flex-shrink: 0;
+  margin: 0 1rem;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+.error-message__message {
+  flex-shrink: 0;
+  width: var(--err-width);
+  height: var(--err-height);
+  display: flex;
+  align-items: center;
+  text-align: right;
+  direction: rtl;
+}

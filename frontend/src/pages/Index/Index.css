@@ -46,11 +46,14 @@
 }
 
 .index__errors {
-  width: 60vw;
-  text-align: right;
-  direction: rtl;
-  color: var(--clr-error);
-  margin: 2rem 0;
+  display: flex;
+  flex-direction: column;
+  margin-top: 2rem;
+}
+
+.index__error {
+  --err-width: 60vw;
+  --err-height: 2rem;
 }
 
 .index__link {
@@ -96,10 +99,14 @@
     --txt-height: 3rem;
     --txt-font-size: 1.5rem;
   }
-  .index__link,
-  .index__errors {
+  .index__link {
     font-size: 1.5rem;
     width: 45vw;
+  }
+  .index__errors {
+    font-size: 1.5rem;
+    --err-width: 45vw;
+    --err-height: 3rem;
   }
   .index__submit {
     --btn-height: 3rem;
@@ -164,11 +171,13 @@
     --txt-width: 30vw;
     --txt-height: 2.5rem;
   }
-  .index__errors,
   .index__link {
     width: 30vw;
   }
-
+  .index__error {
+    --err-width: 30vw;
+    --err-height: 2.5rem;
+  }
   .index__submit-container {
     width: 30vw;
   }

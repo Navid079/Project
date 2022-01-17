@@ -1,6 +1,8 @@
+import ErrorMessage from '../../../components/Index/ErrorMessage';
+
 export const responseErrorHandler = (states, error) => {
   const conflict = error.data.conflict;
-  const message = [];
+  let message = [];
 
   if (error.page === 'login') {
     // ======== Login Page Response Errors ======== //
@@ -19,7 +21,11 @@ export const responseErrorHandler = (states, error) => {
         message.push('خطایی رخ داده است.');
       }
     }
-    message.push(<br key='1' />);
+    message = message.map(m => (
+      <ErrorMessage className='index__error' flipped={true}>
+        {m}
+      </ErrorMessage>
+    ));
     states.setLoginErrors(message);
   } else if (error.page === 'signup') {
     // ======== Signup Page Response Errors ======== //
@@ -52,6 +58,9 @@ export const responseErrorHandler = (states, error) => {
         message.push('خطایی رخ داده است');
       }
     }
+    message = message.map(m => (
+      <ErrorMessage className='index__error'>{m}</ErrorMessage>
+    ));
     message.push(<br key='1' />);
     states.setSignupErrors(message);
   }
