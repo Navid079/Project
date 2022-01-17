@@ -24,9 +24,6 @@
   color: white;
   transform: translateY(-1.25rem);
 }
-.dashboard__footer__plus:hover {
-  animation: bounce 1s ease 0s 3 normal forwards;
-}
 
 .dashboard__contact {
   display: flex;
@@ -43,10 +40,6 @@
   position: fixed;
   bottom: 4rem;
   left: 1rem;
-}
-
-.dashboard__contact:hover {
-  animation: bounce 1s ease 0s 3 normal forwards;
 }
 
 /* 
@@ -68,12 +61,12 @@
     font-size: 2.2rem;
     transform: translateY(-1.9rem);
   }
-
+  
   .dashboard__contact {
     width: 4.5rem;
     height: 4.5rem;
     font-size: 3rem;
-
+    
     bottom: 8.5rem;
     left: 2.6rem;
   }
@@ -89,27 +82,33 @@
     background-color: transparent;
     border: none;
   }
-
+  
   .dashboard__footer__plus {
     width: 4rem;
     height: 4rem;
     outline: 0;
-
+    
     position: fixed;
     bottom: 1.25rem;
     left: 2rem;
-
+    
     transform: translateY(0);
   }
-
+  .dashboard__footer__plus:hover {
+    animation: bounce 1s ease 0s 3 normal forwards;
+  }
   .dashboard__contact {
     width: 4rem;
     height: 4rem;
-
+    
     bottom: 7rem;
     left: 2rem;
-
+    
     font-size: 2.5rem;
+  }
+  
+  .dashboard__contact:hover {
+    animation: bounce 1s ease 0s 3 normal forwards;
   }
 }
 
