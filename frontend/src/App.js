@@ -10,8 +10,8 @@ function App() {
     <BrowserRouter>
       <div className='container'>
         <Routes>
-          {/* <Route exact path='/' element={<Index />}></Route> */}
-          <Route exact path='/' element={<Dashboard />}></Route>
+          <Route exact path='/' element={<Index />}></Route>
+          <Route exact path='/dashboard' element={<Dashboard />}></Route>
         </Routes>
       </div>
     </BrowserRouter>
