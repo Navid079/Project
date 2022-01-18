@@ -48,6 +48,7 @@
   --txt-height: 2rem;
   margin-bottom: 1rem;
   --txt-font-size: 1rem;
+  --txt-bcg: var(--clr-white);
 }
 
 .index__errors {
