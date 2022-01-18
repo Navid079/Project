@@ -19,8 +19,13 @@
 .index__body {
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: space-between;
   padding-bottom: 5rem;
+}
+
+.index__body::before,
+.index__body::after {
+  content: '';
 }
 
 .index__toggle {
