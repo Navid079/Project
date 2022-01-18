@@ -32,6 +32,13 @@
 */
 @media screen and (min-width: 1024px) {
   .dashboard__sidebar__item {
+    --dashboard-tab-width: 4rem;
+    --dashboard-tab-height: 4rem;
+  }
+}
+
+@media screen and (min-width: 1440px) {
+  .dashboard__sidebar__item {
     --dashboard-tab-width: 5rem;
     --dashboard-tab-height: 5rem;
   }
