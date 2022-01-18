@@ -1,0 +1,23 @@
+.accordion {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  width: fit-content;
+}
+
+.accordion__title {
+  color: var(--clr-light-grey);
+  font-size: 2rem;
+  margin-bottom: 1rem;
+}
+
+.accordion__body {
+  transform: scaleY(0);
+  transform-origin: top;
+  overflow: hidden;
+  transition: all 300ms linear;
+}
+
+.accordion__body--show {
+  transform: scaleY(1);
+}
