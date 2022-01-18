@@ -25,15 +25,16 @@
 .input__placeholder {
   position: absolute;
   top: 0;
-  right: 0;
+  right: 5%;
   height: var(--txt-height);
   font-size: var(--txt-font-size);
   font-weight: 100;
   color: lightslategrey;
   display: flex;
   align-items: center;
-  transform: translate(-20%, 0);
-  transition: transform 300ms linear;
+  transform: translate(0);
+  transition: transform 200ms linear,
+              font-size 300ms linear;
 }
 
 .text-input:focus ~ .input__placeholder {
@@ -42,6 +43,6 @@
   height: auto;
   font-size: calc(var(--txt-font-size) / 1.5);
   padding: 0 0.5rem;
-  transform: translate(-20%, -50%);
+  transform: translateY(-50%);
   background-color: var(--txt-bcg);
 }
