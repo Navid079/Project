@@ -8,6 +8,10 @@ const TextInput = ({
   reference,
   onKeyPress,
 }) => {
+  const placeholderNonInteractive = event => {
+    event.target.previousSibling.focus();
+  };
+
   return (
     <span className='text-input__container'>
       <input
@@ -17,7 +21,9 @@ const TextInput = ({
         onChange={onChange}
         ref={reference}
       />
-      <h6 className='input__placeholder'>{placeholder}</h6>
+      <h6 className='input__placeholder' onClick={placeholderNonInteractive}>
+        {placeholder}
+      </h6>
     </span>
   );
 };
