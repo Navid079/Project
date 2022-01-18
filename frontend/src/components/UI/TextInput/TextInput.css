@@ -1,3 +1,7 @@
+.text-input__container {
+  position: relative;
+}
+
 .text-input {
   width: var(--txt-width);
   height: var(--txt-height);
@@ -16,4 +20,29 @@
 
 .text-input:focus {
   outline: none;
+}
+
+.input__placeholder {
+  position: absolute;
+  top: 0;
+  right: 5%;
+  height: var(--txt-height);
+  font-size: var(--txt-font-size);
+  font-weight: 100;
+  color: lightslategrey;
+  display: flex;
+  align-items: center;
+  transform: translate(0);
+  transition: transform 200ms linear,
+              font-size 300ms linear;
+}
+
+.text-input:focus ~ .input__placeholder {
+  /* display: none; */
+  top: 0;
+  height: auto;
+  font-size: calc(var(--txt-font-size) / 1.5);
+  padding: 0 0.5rem;
+  transform: translateY(-50%);
+  background-color: var(--txt-bcg);
 }

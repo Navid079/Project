@@ -8,15 +8,23 @@ const TextInput = ({
   reference,
   onKeyPress,
 }) => {
+  const placeholderNonInteractive = event => {
+    event.target.previousSibling.focus();
+  };
+
   return (
-    <input
-      onKeyPress={onKeyPress}
-      className={`text-input ${className}`}
-      type={type || 'text'}
-      placeholder={placeholder}
-      onChange={onChange}
-      ref={reference}
-    />
+    <span className='text-input__container'>
+      <input
+        onKeyPress={onKeyPress}
+        className={`text-input ${className}`}
+        type={type || 'text'}
+        onChange={onChange}
+        ref={reference}
+      />
+      <h6 className='input__placeholder' onClick={placeholderNonInteractive}>
+        {placeholder}
+      </h6>
+    </span>
   );
 };
 
