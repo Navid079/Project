@@ -23,6 +23,8 @@
 }
 
 .input__placeholder {
+  user-select: none;
+  cursor: text;
   position: absolute;
   top: 0;
   right: 5%;
@@ -38,7 +40,7 @@
 }
 
 .text-input:focus ~ .input__placeholder {
-  /* display: none; */
+  cursor: default;
   top: 0;
   height: auto;
   font-size: calc(var(--txt-font-size) / 1.5);
