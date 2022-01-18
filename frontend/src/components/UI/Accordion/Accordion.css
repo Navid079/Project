@@ -6,10 +6,14 @@
 }
 
 .accordion__title {
-  color: var(--clr-light-grey);
+  color: var(--clr-primary-5);
   font-size: 2rem;
   margin-bottom: 1rem;
   margin-right: 1rem;
+}
+
+.accordion__title--inactive {
+  color: var(--clr-light-grey);
 }
 
 .accordion__body {
