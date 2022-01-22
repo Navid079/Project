@@ -2,16 +2,16 @@ import axios from 'axios';
 
 const api = process.env.REACT_APP_API_URL;
 
-const LoginApiCall = async (user, reducer) => {
+const LoginApiCall = async (user, dispatch) => {
   try {
     const res = await axios.post(`${api}/shop/login`, user);
-    reducer({ type: 'SET_USER', data: res.data.data });
-    reducer({ type: 'LOGIN' });
+    dispatch({ type: 'SET_USER', data: res.data.data });
+    dispatch({ type: 'LOGIN' });
     return true;
   } catch (error) {
     error.response.data = error.response.data.data;
     error.response.page = 'login';
-    reducer({ type: 'SET_ERROR', data: error.response });
+    dispatch({ type: 'SET_ERROR', data: error.response });
     return false;
   }
 };
