@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect } from 'react';
 import FormContext from '../../ContextManager/FormContextManager/FormContext';
 
 import Footer from '../../components/Dashboard/Footer';
@@ -10,14 +10,18 @@ import Accordion from '../../components/UI/Accordion/Accordion';
 import { Outlet, Route, Routes, useNavigate } from 'react-router-dom';
 
 export default function Dashboard() {
-
   const navigate = useNavigate();
-  const { dispatch } = useContext(FormContext);
+  const { dispatch, isLoggedIn } = useContext(FormContext);
 
   const logoutHandler = event => {
     dispatch({ type: 'LOGOUT' });
-    navigate('/')
+    navigate('/');
   };
+
+  useEffect(() => {
+    if (isLoggedIn) return;
+    navigate('/');
+  });
 
   return (
     <div className='dashboard'>
