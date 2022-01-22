@@ -1,5 +1,5 @@
 exports.defaultHandler = (err, req, res, next) => {
-  const data = req.body.data;
+  const data = req.body.data || {};
   try {
     const [statusCode, message, conflict] = err.message.split('~');
     const errorData = {

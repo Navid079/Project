@@ -5,7 +5,7 @@ const cors = require('cors');
 
 // Routers import
 const requestInitializer = require('./middlewares/requestInitializer');
-const authShopRouter = require('./routes/shop/auth');
+const shopRouter = require('./routes/shop');
 
 // Error handler import
 const errorHandler = require('./controllers/errorHandlers');
@@ -22,7 +22,7 @@ app.use(requestInitializer);
 
 // Routers
 // /shop/something endpoints are shop(seller) endpoints
-app.use('/shop', authShopRouter);
+app.use('/shop', shopRouter);
 
 app.use(errorHandler.endPointNotFound);
 
@@ -31,7 +31,7 @@ app.use(errorHandler.defaultHandler);
 
 // Database connection and server start
 mongoose
-  .connect('mongodb://localhost:27017/theProject', { useNewUrlParser: true })
+  .connect('mongodb://localhost:27017/theProject', { useNewUrlParser: true, useUnifiedTopology: true })
   .then(result => {
     app.listen(3005);
     console.log('Connected');

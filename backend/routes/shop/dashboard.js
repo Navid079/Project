@@ -8,7 +8,7 @@ const router = express.Router();
 
 // GET /shop/dashboard
 // This endpoint is used for fetching dashboard page data
-router.get('/', shopDashboardController.getShopDashboard);
+router.get(shopDashboardController.getShopDashboard);
 
 // GET /shop/dashboard/report
 // This endpoint is used for fetching report page data
