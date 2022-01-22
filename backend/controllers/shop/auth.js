@@ -17,7 +17,7 @@ exports.postShopSignup = (req, res, next) => {
 
   let createdUser;
   let createdToken;
-
+  // TODO: Change promises to async/await
   // Encrypting password and sending response to client
   bcrypt
     .hash(data.password, 12)
@@ -72,6 +72,7 @@ exports.postShopLogin = (req, res, next) => {
   let fetchedUser;
   let createdToken;
 
+  // TODO: Change Promises to async/await
   // Authenticating and sending reponse to client
   User.findOne(searchConfig)
     .then(user => {
@@ -113,7 +114,7 @@ exports.postShopLogin = (req, res, next) => {
 };
 
 // POST /shop/refresh
-// This middleware controls signing up of sellers
+// This middleware refreshes jwt
 exports.postShopRefresh = (req, res, next) => {
   const data = req.body.data;
   const token = req.body.data.compiledToken;
@@ -130,6 +131,7 @@ exports.postShopRefresh = (req, res, next) => {
 
   let fetchedUser;
 
+  // TODO: Change promises to async/await
   User.findById(refresh.usrId)
     .then(user => {
       fetchedUser = user;
