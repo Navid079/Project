@@ -3,8 +3,9 @@ import { Icon } from '@iconify/react';
 import './Navbar.css';
 import SearchInput from './SearchInput';
 import Tooltip from './Tooltip';
+import IconButton from '../UI/Button/IconButton';
 
-export default function Navbar({ className }) {
+export default function Navbar({ className, onLogout, onBack }) {
   return (
     <div className={`navbar ${className}`}>
       {/* search component */}
@@ -15,9 +16,11 @@ export default function Navbar({ className }) {
 
       <div className='navbar__container'>
         {/* logout button */}
-        <div className='navbar__logout'>
-          <Icon icon='bx:bx-log-out' />
-        </div>
+        <IconButton
+          className='navbar__logout'
+          icon='bx:bx-log-out'
+          onClick={onLogout}
+        />
 
         {/* profile photo */}
         <div className='navbar__profile'>
@@ -31,9 +34,11 @@ export default function Navbar({ className }) {
         </div>
 
         {/* back button */}
-        <div className='navbar__back'>
-          <Icon icon='eva:arrow-ios-back-outline' />
-        </div>
+        <IconButton
+          className='navbar__back'
+          icon='eva:arrow-ios-back-outline'
+          onClick={onBack}
+        />
       </div>
     </div>
   );

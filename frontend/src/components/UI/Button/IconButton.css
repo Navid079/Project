@@ -4,6 +4,8 @@
   outline: none;
   width: var(--btn-size);
   height: var(--btn-size);
+  display: block;
+  cursor: pointer;
 }
 
 .icon-button__icon {
