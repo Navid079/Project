@@ -71,11 +71,3 @@ exports.login = body('data').custom(data => {
     throw new Error('422~Not an email address~user');
   return true;
 });
-
-exports.refresh = body('data').custom(data => {
-  //Data is not correct
-  if (!data.devId) throw new Error('422~Requirement missing~devId');
-  if (!data.token) throw new Error('422~Requirement missing~token');
-  if (!data.refresh) throw new Error('422~Requirement missing~refresh');
-  return true;
-});
