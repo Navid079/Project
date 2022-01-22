@@ -18,7 +18,7 @@ const TextInput = ({
       <input
         onKeyPress={onKeyPress}
         className={`text-input ${className}`}
-        placeholder={noFloat ? placeholder : ''}
+        placeholder={noFloat ? placeholder : ' '}
         type={type || 'text'}
         onChange={onChange}
         ref={reference}
