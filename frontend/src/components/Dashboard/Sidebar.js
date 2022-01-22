@@ -26,28 +26,32 @@ export default function Sidebar() {
           className='dashboard__sidebar__item'
           showText={appendTab}
           icon='tabler:report-analytics'
-        >
+          link='/dashboard'
+          >
           داشبورد
         </DashboardTab>
         <DashboardTab
           className='dashboard__sidebar__item'
           showText={appendTab}
           icon='tabler:report-analytics'
-        >
+          link='/dashboard/report'
+          >
           گزارشات
         </DashboardTab>
         <DashboardTab
           className='dashboard__sidebar__item'
           showText={appendTab}
           icon='ion:newspaper'
-        >
+          link='/dashboard/newsletter'
+          >
           خبرنامه
         </DashboardTab>
         <DashboardTab
           className='dashboard__sidebar__item'
           showText={appendTab}
           icon='gridicons:product'
-        >
+          link='/dashboard/items'
+          >
           محصولات
         </DashboardTab>
       </div>
