@@ -4,6 +4,7 @@ const TextInput = ({
   className,
   type,
   placeholder,
+  noFloat,
   onChange,
   reference,
   onKeyPress,
@@ -17,13 +18,14 @@ const TextInput = ({
       <input
         onKeyPress={onKeyPress}
         className={`text-input ${className}`}
+        placeholder={noFloat ? placeholder : ' '}
         type={type || 'text'}
         onChange={onChange}
         ref={reference}
       />
-      <h6 className='input__placeholder' onClick={placeholderNonInteractive}>
+      {noFloat ? '' : <h6 className='input__placeholder' onClick={placeholderNonInteractive}>
         {placeholder}
-      </h6>
+      </h6>}
     </span>
   );
 };

@@ -36,14 +36,16 @@
   align-items: center;
   transform: translate(0);
   transition: transform 200ms linear,
-              font-size 300ms linear;
+              font-size 300ms linear,
+              opacity 150ms linear;
 }
 
-.text-input:focus ~ .input__placeholder {
+.text-input:focus ~ .input__placeholder,
+.text-input:not(:placeholder-shown):not(:focus) ~ .input__placeholder {
   cursor: default;
   top: 0;
   height: auto;
-  font-size: calc(var(--txt-font-size) / 1.5);
+  font-size: calc(var(--txt-font-size) / 1.8);
   padding: 0 0.5rem;
   transform: translateY(-50%);
   background-color: var(--txt-bcg);
