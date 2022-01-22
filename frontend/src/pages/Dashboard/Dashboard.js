@@ -5,12 +5,9 @@ import Navbar from '../../components/Dashboard/Navbar';
 import Sidebar from '../../components/Dashboard/Sidebar';
 
 import './Dashboard.css';
-import ListItem from '../../components/UI/ListItem/ListBullet';
 import Accordion from '../../components/UI/Accordion/Accordion';
 
 export default function Dashboard() {
-  let visible = 20;
-  let invisible = 20;
   return (
     <>
       <div className='dashboard'>
