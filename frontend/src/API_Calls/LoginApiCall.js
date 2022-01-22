@@ -6,6 +6,7 @@ const LoginApiCall = async (user, reducer) => {
   try {
     const res = await axios.post(`${api}/shop/login`, user);
     reducer({ type: 'SET_USER', data: res.data.data });
+    reducer({ type: 'LOGIN' });
     return true;
   } catch (error) {
     error.response.data = error.response.data.data;

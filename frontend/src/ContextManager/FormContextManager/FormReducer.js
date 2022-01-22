@@ -20,6 +20,16 @@ export const FormReducer = (state, action) => {
         ...state,
         error: {},
       };
+    case 'LOGIN':
+      return {
+        ...state,
+        isLoggedIn: true,
+      };
+    case 'LOGOUT':
+      return {
+        ...state,
+        isLoggedIn: false,
+      };
     default:
       return state;
   }
