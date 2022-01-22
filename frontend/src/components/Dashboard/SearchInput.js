@@ -11,6 +11,7 @@ export default function SearchInput() {
         className='search-input__input'
         type='search'
         placeholder='جستجو'
+        noFloat={true}
       ></TextInput>
       <Icon className='search-input__icon' icon='fluent:search-24-regular' />
     </div>
