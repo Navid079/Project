@@ -5,8 +5,11 @@ const INITIAL_STATE = {
   username: '',
   phone: '',
   email: '',
-  password: '',
-  confirm: '',
+  name: {
+    fisrst: '',
+    last: '',
+  },
+  isLoggedIn: false,
   error: {},
 };
 
@@ -18,12 +21,7 @@ export const FormContextProvider = ({ children }) => {
   return (
     <FormContext.Provider
       value={{
-        username: state.username,
-        phone: state.phone,
-        email: state.email,
-        password: state.password,
-        confirm: state.confirm,
-        error: state.error,
+        ...state,
         dispatch,
       }}
     >
