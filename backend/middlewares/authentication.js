@@ -7,15 +7,16 @@ const User = require('../models/User');
 
 exports.tokenCompiler = async (req, res, next) => {
   const data = req.headers.authorization;
-  const [token, devId] = data.split('~');
-
+  const [token, devId, refresh] = data.split('~');
+  req.body.data.token = token;
+  req.body.data.refresh = refresh;
   const spki = readFileSync('publickey.cert', 'utf-8');
   const publicKey = await jose.importSPKI(spki, 'RS256');
   try {
     const varificationResult = await jose.jwtVerify(token, publicKey, {
       issuer: 'theProject@email.com',
       audience: `${devId}`,
-      maxTokenAge: req.maxTokenAge || '15m',
+      maxTokenAge: req.maxTokenAge || '15s',
     });
     req.compiled.token = varificationResult.payload;
     return next();

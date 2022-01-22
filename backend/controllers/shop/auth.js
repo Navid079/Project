@@ -116,9 +116,8 @@ exports.postShopLogin = (req, res, next) => {
 // POST /shop/refresh
 // This middleware refreshes jwt
 exports.postShopRefresh = (req, res, next) => {
-  const data = req.body.data;
-  const token = req.body.data.compiledToken;
-  const refresh = data.compiledRefresh;
+  const token = req.compiled.token;
+  const refresh = req.compiled.refresh;
 
   const createdTime = token.iat * 1000;
   const now = +new Date();

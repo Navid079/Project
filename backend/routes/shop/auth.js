@@ -5,6 +5,7 @@ const express = require('express');
 const shopAuthController = require('../../controllers/shop/auth');
 const errorCompiler = require('../../middlewares/errorCompiler');
 const authentication = require('../../middlewares/authentication');
+const generalValidators = require('../../validators/general');
 const validators = require('../../validators/shop/auth');
 
 const router = express.Router();
@@ -31,7 +32,7 @@ router.post(
 // This endpoint is used for refreshing jwt
 router.post(
   '/refresh',
-  validators.refresh,
+  generalValidators.hasToken,
   errorCompiler,
   authentication.tokenCompiler,
   authentication.refreshCompiler,

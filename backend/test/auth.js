@@ -549,13 +549,13 @@ describe('POST /shop/login', () => {
         .end((err, res) => {
           res.should.have.status(422);
           res.body.should.be.a('object');
-          res.body.should.have
-            .property('message')
-            .eql('An error occured');
+          res.body.should.have.property('message').eql('An error occured');
           res.body.should.have.property('data');
           res.body.data.should.be.a('object');
           res.body.data.should.have.property('conflict').eql('devId');
-          res.body.data.should.have.property('message').eql('Requirement missing');
+          res.body.data.should.have
+            .property('message')
+            .eql('Requirement missing');
           done();
         });
     });
@@ -575,13 +575,13 @@ describe('POST /shop/login', () => {
         .end((err, res) => {
           res.should.have.status(422);
           res.body.should.be.a('object');
-          res.body.should.have
-            .property('message')
-            .eql('An error occured');
+          res.body.should.have.property('message').eql('An error occured');
           res.body.should.have.property('data');
           res.body.data.should.be.a('object');
           res.body.data.should.have.property('conflict').eql('user');
-          res.body.data.should.have.property('message').eql('Requirement missing');
+          res.body.data.should.have
+            .property('message')
+            .eql('Requirement missing');
           done();
         });
     });
@@ -601,13 +601,13 @@ describe('POST /shop/login', () => {
         .end((err, res) => {
           res.should.have.status(422);
           res.body.should.be.a('object');
-          res.body.should.have
-            .property('message')
-            .eql('An error occured');
+          res.body.should.have.property('message').eql('An error occured');
           res.body.should.have.property('data');
           res.body.data.should.be.a('object');
           res.body.data.should.have.property('conflict').eql('password');
-          res.body.data.should.have.property('message').eql('Requirement missing');
+          res.body.data.should.have
+            .property('message')
+            .eql('Requirement missing');
           done();
         });
     });
@@ -627,13 +627,13 @@ describe('POST /shop/login', () => {
         .end((err, res) => {
           res.should.have.status(422);
           res.body.should.be.a('object');
-          res.body.should.have
-            .property('message')
-            .eql('An error occured');
+          res.body.should.have.property('message').eql('An error occured');
           res.body.should.have.property('data');
           res.body.data.should.be.a('object');
           res.body.data.should.have.property('conflict').eql('userType');
-          res.body.data.should.have.property('message').eql('Requirement missing');
+          res.body.data.should.have
+            .property('message')
+            .eql('Requirement missing');
           done();
         });
     });
@@ -644,7 +644,7 @@ describe('POST /shop/login', () => {
           devId: 12345,
           password: 'aweakpassword',
           user: '09123456789',
-          userType: 'phone'
+          userType: 'phone',
         },
       };
       chai
@@ -654,9 +654,7 @@ describe('POST /shop/login', () => {
         .end((err, res) => {
           res.should.have.status(401);
           res.body.should.be.a('object');
-          res.body.should.have
-            .property('message')
-            .eql('An error occured');
+          res.body.should.have.property('message').eql('An error occured');
           res.body.should.have.property('data');
           res.body.data.should.be.a('object');
           res.body.data.should.have.property('conflict').eql('password');
@@ -672,7 +670,7 @@ describe('POST /shop/login', () => {
           devId: 12345,
           password: 'AWr0ngP@ssword',
           user: '09123456789',
-          userType: 'phone'
+          userType: 'phone',
         },
       };
       chai
@@ -682,9 +680,7 @@ describe('POST /shop/login', () => {
         .end((err, res) => {
           res.should.have.status(401);
           res.body.should.be.a('object');
-          res.body.should.have
-            .property('message')
-            .eql('An error occured');
+          res.body.should.have.property('message').eql('An error occured');
           res.body.should.have.property('data');
           res.body.data.should.be.a('object');
           res.body.data.should.have.property('conflict').eql('password');
@@ -700,7 +696,7 @@ describe('POST /shop/login', () => {
           devId: 12345,
           password: 'AWr0ngP@ssword',
           user: '09123456780',
-          userType: 'phone'
+          userType: 'phone',
         },
       };
       chai
@@ -710,9 +706,7 @@ describe('POST /shop/login', () => {
         .end((err, res) => {
           res.should.have.status(404);
           res.body.should.be.a('object');
-          res.body.should.have
-            .property('message')
-            .eql('An error occured');
+          res.body.should.have.property('message').eql('An error occured');
           res.body.should.have.property('data');
           res.body.data.should.be.a('object');
           res.body.data.should.have.property('conflict').eql('user');
@@ -728,7 +722,7 @@ describe('POST /shop/login', () => {
           devId: 12345,
           password: 'AWr0ngP@ssword',
           user: '0912345678',
-          userType: 'phone'
+          userType: 'phone',
         },
       };
       chai
@@ -738,13 +732,13 @@ describe('POST /shop/login', () => {
         .end((err, res) => {
           res.should.have.status(422);
           res.body.should.be.a('object');
-          res.body.should.have
-            .property('message')
-            .eql('An error occured');
+          res.body.should.have.property('message').eql('An error occured');
           res.body.should.have.property('data');
           res.body.data.should.be.a('object');
           res.body.data.should.have.property('conflict').eql('user');
-          res.body.data.should.have.property('message').eql('Not a phone number');
+          res.body.data.should.have
+            .property('message')
+            .eql('Not a phone number');
           res.body.data.should.have.property('value').eql('0912345678');
           done();
         });
@@ -756,7 +750,7 @@ describe('POST /shop/login', () => {
           devId: 12345,
           password: 'AWr0ngP@ssword',
           user: 'a@b.c',
-          userType: 'email'
+          userType: 'email',
         },
       };
       chai
@@ -766,13 +760,13 @@ describe('POST /shop/login', () => {
         .end((err, res) => {
           res.should.have.status(422);
           res.body.should.be.a('object');
-          res.body.should.have
-            .property('message')
-            .eql('An error occured');
+          res.body.should.have.property('message').eql('An error occured');
           res.body.should.have.property('data');
           res.body.data.should.be.a('object');
           res.body.data.should.have.property('conflict').eql('user');
-          res.body.data.should.have.property('message').eql('Not an email address');
+          res.body.data.should.have
+            .property('message')
+            .eql('Not an email address');
           res.body.data.should.have.property('value').eql('a@b.c');
           done();
         });
@@ -784,7 +778,7 @@ describe('POST /shop/login', () => {
           devId: 12345,
           password: 'AWr0ngP@ssword',
           user: 'ausername',
-          userType: 'abcd'
+          userType: 'abcd',
         },
       };
       chai
@@ -794,17 +788,85 @@ describe('POST /shop/login', () => {
         .end((err, res) => {
           res.should.have.status(422);
           res.body.should.be.a('object');
-          res.body.should.have
-            .property('message')
-            .eql('An error occured');
+          res.body.should.have.property('message').eql('An error occured');
           res.body.should.have.property('data');
           res.body.data.should.be.a('object');
           res.body.data.should.have.property('conflict').eql('userType');
-          res.body.data.should.have.property('message').eql('Not a username type');
+          res.body.data.should.have
+            .property('message')
+            .eql('Not a username type');
           res.body.data.should.have.property('value').eql('abcd');
           done();
         });
     });
-    
+  });
+});
+
+describe('POST /shop/refresh', () => {
+  let token;
+  let refresh;
+  before(done => {
+    const data = {
+      message: '',
+      data: {
+        devId: 12345,
+        username: 'navid',
+        email: 'navid@email.com',
+        phone: '09123456789',
+        password: 'AStrongp@ssw0rd',
+        confirm: 'AStrongp@ssw0rd',
+      },
+    };
+    chai
+      .request(app)
+      .post('/shop/signup')
+      .send(data)
+      .end((err, res) => {
+        token = res.body.data.token;
+        refresh = res.body.data.refresh;
+        done();
+      });
+  });
+  after(done => {
+    User.deleteMany({}, () => done());
+  });
+  describe('refresh', () => {
+    it('Avoids refreshing when token is valid', done => {
+      const header = `${token}~12345~${refresh}`;
+      chai
+        .request(app)
+        .post('/shop/refresh')
+        .set('Authorization', header)
+        .end((err, res) => {
+          res.should.have.status(425);
+          res.body.should.be.a('object');
+          res.body.should.have.property('message').eql('An error occured');
+          res.body.should.have.property('data');
+          res.body.data.should.be.a('object');
+          res.body.data.should.have
+            .property('message')
+            .eql('Token is not expired yet');
+          res.body.data.should.have.property('conflict').eql('token');
+          res.body.data.should.have.property('value').eql(token);
+          done();
+        });
+    });
+    it('Avoids refreshing if header is not set', done => {
+      chai
+        .request(app)
+        .post('/shop/refresh')
+        .end((err, res) => {
+          res.should.have.status(422);
+          res.body.should.be.a('object');
+          res.body.should.have.property('message').eql('An error occured');
+          res.body.should.have.property('data');
+          res.body.data.should.be.a('object');
+          res.body.data.should.have
+            .property('message')
+            .eql('Requirement missing');
+          res.body.data.should.have.property('conflict').eql('token');
+          done();
+        });
+    });
   });
 });
