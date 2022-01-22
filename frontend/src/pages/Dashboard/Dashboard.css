@@ -26,6 +26,16 @@
   padding: 1rem;
 }
 
+.dashboard__container::-webkit-scrollbar {
+  display: none;
+}
+
+/* Hide scrollbar for IE, Edge and Firefox */
+.dashboard__container {
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
+}
+
 /* 
 ==========================
 =   Tablet Media Query   =
@@ -56,15 +66,7 @@
     padding: 1rem 3rem;
   }
   /* Hide scrollbar for Chrome, Safari and Opera */
-  .dashboard__container::-webkit-scrollbar {
-    display: none;
-  }
-
-  /* Hide scrollbar for IE, Edge and Firefox */
-  .dashboard__container {
-    -ms-overflow-style: none; /* IE and Edge */
-    scrollbar-width: none; /* Firefox */
-  }
+  
 }
 @media screen and (min-width: 1440px) {
   .dashboard__body {
