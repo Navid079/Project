@@ -5,26 +5,20 @@ import Navbar from '../../components/Dashboard/Navbar';
 import Sidebar from '../../components/Dashboard/Sidebar';
 
 import './Dashboard.css';
-import ListItem from '../../components/UI/ListItem/ListBullet';
 import Accordion from '../../components/UI/Accordion/Accordion';
+import { Outlet, Route, Routes } from 'react-router-dom';
 
 export default function Dashboard() {
-  let visible = 20;
-  let invisible = 20;
   return (
-    <>
-      <div className='dashboard'>
-        <Navbar className='dashboard__navbar' />
-        <main className='dashboard__body'>
-          <div className='dashboard__container'>
-            <Accordion title='موضوع'>
-              این متن درون آکوردیون است
-            </Accordion>
-          </div>
-          <Sidebar />
-        </main>
-        <Footer />
-      </div>
-    </>
+    <div className='dashboard'>
+      <Navbar className='dashboard__navbar' />
+      <main className='dashboard__body'>
+        <div className='dashboard__container'>
+          <Outlet />
+        </div>
+        <Sidebar />
+      </main>
+      <Footer />
+    </div>
   );
 }
