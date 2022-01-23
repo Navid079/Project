@@ -16,6 +16,7 @@
   position: absolute;
   top: 0.05rem;
   left: 0.55rem;
+  user-select: none;
 }
 
 /* 
@@ -30,11 +31,11 @@
     outline: 2px solid var(--clr-primary-5);
     outline-offset: -7px;
   }
-}
 
-.progress-bullet__content {
-  font-size: 1.2rem;
-  left: 0.65rem;
+  .progress-bullet__content {
+    font-size: 1.2rem;
+    left: 0.65rem;
+  }
 }
 
 /* 
