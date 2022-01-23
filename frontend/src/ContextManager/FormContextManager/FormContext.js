@@ -6,7 +6,7 @@ const INITIAL_STATE = {
   phone: '',
   email: '',
   name: {
-    fisrst: '',
+    first: '',
     last: '',
   },
   isLoggedIn: false,
