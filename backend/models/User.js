@@ -10,15 +10,21 @@ const User = new Schema({
   // Schema Version is used for determining need for online migrations
   schemaVersion: {
     type: String,
-    default: 'V0.1-2.0',
+    default: 'V0.1-3.1',
   },
   username: {
     type: String,
     required: true,
   },
   name: {
-    type: Object,
-    required: false,
+    first: {
+      type: String,
+      default: '',
+    },
+    last: {
+      type: String,
+      default: '',
+    },
   },
   phone: {
     type: String,
