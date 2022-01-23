@@ -3,7 +3,8 @@ const { createSecretKey } = require('crypto');
 
 const jose = require('jose');
 
-const User = require('../models/User');
+const { User, version: userVersion, migrate: userMigrate } = require('../models/User');
+const versionComparer = require('../utils/versionComparer');
 
 exports.tokenCompiler = async (req, res, next) => {
   const data = req.headers.authorization;
@@ -57,5 +58,10 @@ exports.validUser = async (req, res, next) => {
   }
 
   req.compiled.user = user;
+
+  if (!versionComparer(user.schemaVersion, userVersion)) {
+    userMigrate(user);
+  }
+
   return next();
 };

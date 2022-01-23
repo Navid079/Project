@@ -3,12 +3,14 @@ const { validationResult } = require('express-validator');
 const bcrypt = require('bcrypt');
 
 // Database models
-const User = require('../../models/User');
+const { User, version: userVersion, migrate: userMigrate } = require('../../models/User');
+
 
 //Utility functions
 const phoneNormalizer = require('../../utils/phoneNormalizer');
 const createJWT = require('../../utils/createJWT');
 const createRefreshToken = require('../../utils/createRefreshToken');
+const versionComparer = require('../../utils/versionComparer');
 
 // POST /shop/signup
 // This middleware controls signing up of sellers
@@ -80,6 +82,9 @@ exports.postShopLogin = (req, res, next) => {
         throw new Error('404~User not found~user');
       }
       fetchedUser = user;
+      if (!versionComparer(user.schemaVersion, userVersion)) {
+        userMigrate(user);
+      }
       return bcrypt.compare(data.password, user.password);
     })
     .then(result => {

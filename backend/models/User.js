@@ -2,6 +2,7 @@
 const mongoose = require('mongoose');
 
 const Schema = mongoose.Schema;
+const schemaVersion = 'V0.1-3.1';
 
 // User model schema
 // This schema is used for seller users
@@ -10,7 +11,7 @@ const User = new Schema({
   // Schema Version is used for determining need for online migrations
   schemaVersion: {
     type: String,
-    default: 'V0.1-3.1',
+    default: schemaVersion,
   },
   username: {
     type: String,
@@ -56,4 +57,26 @@ const User = new Schema({
   },
 });
 
-module.exports = mongoose.model('User', User);
+exports.migrate = async user => {
+  switch (user.schemaVersion) {
+    case 'V0.1-2.0':
+      user.name = {
+        first: '',
+        last: '',
+      };
+      break;
+    case 'V0.1-3.0':
+      user.name = {
+        first: '',
+        last: '',
+      };
+      break;
+    default:
+      return;
+  }
+  user.schemaVersion = schemaVersion;
+  await user.save();
+};
+
+exports.User = mongoose.model('User', User);
+exports.version = schemaVersion;
