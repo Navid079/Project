@@ -1,14 +1,21 @@
 .progress-bullet {
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  position: relative;
+}
+
+.progress-bullet__bg {
   width: 1.5rem;
   height: 1.5rem;
-  color: var(--clr-primary-5);
-  font-size: 0.9rem;
   outline: 1px solid var(--clr-primary-5);
   outline-offset: -5px;
   border-radius: 100px;
+  animation: rotate 10s linear infinite;
+}
+.progress-bullet__content {
+  color: var(--clr-primary-5);
+  font-size: 0.9rem;
+  position: absolute;
+  top: 0.05rem;
+  left: 0.55rem;
 }
 
 /* 
@@ -17,13 +24,17 @@
 ==========================
 */
 @media screen and (min-width: 768px) {
-  .progress-bullet {
+  .progress-bullet__bg {
     width: 1.9rem;
     height: 1.9rem;
-    font-size: 1.2rem;
     outline: 2px solid var(--clr-primary-5);
     outline-offset: -7px;
   }
+}
+
+.progress-bullet__content {
+  font-size: 1.2rem;
+  left: 0.65rem;
 }
 
 /* 
@@ -32,21 +43,30 @@
 ==========================
 */
 @media screen and (min-width: 1024px) {
-  .progress-bullet {
+  .progress-bullet__bg {
     width: 2.6rem;
     height: 2.6rem;
-    font-size: 1.4rem;
     outline: 3px solid var(--clr-primary-5);
     outline-offset: -9px;
+  }
+
+  .progress-bullet__content {
+    font-size: 1.4rem;
+    left: 1rem;
+    top: 0.2rem;
   }
 }
 
 @media screen and (min-width: 1440px) {
-  .progress-bullet {
+  .progress-bullet__bg {
     width: 3.25rem;
     height: 3.25rem;
-    font-size: 2rem;
     outline: 4px solid var(--clr-primary-5);
     outline-offset: -11px;
+  }
+
+  .progress-bullet__content {
+    font-size: 2rem;
+    left: 1.2rem;
   }
 }
