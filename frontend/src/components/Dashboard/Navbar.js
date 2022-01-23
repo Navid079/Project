@@ -1,5 +1,4 @@
 import React from 'react';
-import { Icon } from '@iconify/react';
 import './Navbar.css';
 import SearchInput from './SearchInput';
 import Tooltip from './Tooltip';

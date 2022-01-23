@@ -6,9 +6,7 @@ import Navbar from '../../components/Dashboard/Navbar';
 import Sidebar from '../../components/Dashboard/Sidebar';
 
 import './Dashboard.css';
-import Accordion from '../../components/UI/Accordion/Accordion';
-import { Outlet, Route, Routes, useNavigate } from 'react-router-dom';
-import OrderedList from '../../components/UI/OrderedList/OrderedList';
+import { Outlet, useNavigate } from 'react-router-dom';
 
 export default function Dashboard() {
   const navigate = useNavigate();
@@ -19,46 +17,17 @@ export default function Dashboard() {
     navigate('/');
   };
 
-  // useEffect(() => {
-  //   if (isLoggedIn) return;
-  //   navigate('/');
-  // });
-
-  const listChildren = [
-    { progress: 30, item: <h1>Heading 1</h1> },
-    { progress: 100, item: <h3>Heading 3</h3> },
-    {
-      progress: 65,
-      item: (
-        <Accordion title='Accordion'>
-          Accordion Body
-          <br />
-          <br />
-          <br />
-          Text
-        </Accordion>
-      ),
-    },
-    {
-      progress: 49,
-      item: (
-        <div>
-          Complex Child
-          <div>
-            <p>Lorem Ipsum</p>
-          </div>
-        </div>
-      ),
-    },
-  ];
+  useEffect(() => {
+    if (isLoggedIn) return;
+    navigate('/');
+  });
 
   return (
     <div className='dashboard'>
       <Navbar className='dashboard__navbar' onLogout={logoutHandler} />
       <main className='dashboard__body'>
         <div className='dashboard__container'>
-          {/* <Outlet /> */}
-          <OrderedList>{listChildren}</OrderedList>
+          <Outlet />
         </div>
         <Sidebar />
       </main>
