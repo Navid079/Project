@@ -19,17 +19,25 @@ export default function Dashboard() {
     navigate('/');
   };
 
-  useEffect(() => {
-    if (isLoggedIn) return;
-    navigate('/');
-  });
+  // useEffect(() => {
+  //   if (isLoggedIn) return;
+  //   navigate('/');
+  // });
 
   const listChildren = [
     { progress: 30, item: <h1>Heading 1</h1> },
     { progress: 100, item: <h3>Heading 3</h3> },
     {
       progress: 65,
-      item: <Accordion title='Accordion'>Accordion Body</Accordion>,
+      item: (
+        <Accordion title='Accordion'>
+          Accordion Body
+          <br />
+          <br />
+          <br />
+          Text
+        </Accordion>
+      ),
     },
     {
       progress: 49,
