@@ -1,4 +1,5 @@
 import React from 'react';
+import ListBullet from '../ListItem/ListBullet';
 
 import './OrderedList.css';
 
