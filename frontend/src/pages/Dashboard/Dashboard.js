@@ -6,8 +6,7 @@ import Navbar from '../../components/Dashboard/Navbar';
 import Sidebar from '../../components/Dashboard/Sidebar';
 
 import './Dashboard.css';
-import Accordion from '../../components/UI/Accordion/Accordion';
-import { Outlet, Route, Routes, useNavigate } from 'react-router-dom';
+import { Outlet, useNavigate } from 'react-router-dom';
 
 export default function Dashboard() {
   const navigate = useNavigate();
