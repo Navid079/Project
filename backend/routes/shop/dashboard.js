@@ -7,19 +7,19 @@ const shopDashboardController = require('../../controllers/shop/dashboard');
 const router = express.Router();
 
 // GET /shop/dashboard
-// This endpoint is used for fetching dashboard page data
+// This endpoint is used for getting dashboard page data
 router.get(shopDashboardController.getShopDashboard);
 
 // GET /shop/dashboard/report
-// This endpoint is used for fetching report page data
+// This endpoint is used for getting report page data
 router.get('/report', shopDashboardController.getShopReport);
 
 // GET /shop/dashboard/newsletter
-// This endpoint is used for fetching newsletters
+// This endpoint is used for getting newsletters
 router.get('/newsletter', shopDashboardController.getShopNewsletter);
 
 // GET /shop/dashboard/items
-// This endpoint is used for fetching shop items
+// This endpoint is used for getting shop items
 router.get('/items', shopDashboardController.getShopItems);
 
 module.exports = router;

@@ -64,7 +64,7 @@ const User = new Schema({
     default: 'none',
   },
   mediaLink: [String],
-  profilePicture: {
+  avatar: {
     type: String,
     default: 'avatar.jpg',
   },
@@ -97,7 +97,7 @@ exports.migrate = async user => {
       user.nationalCode = '';
       user.idNumber = '';
       user.mediaLink = [];
-      user.profilePicture = 'avatar.jpg';
+      user.avatar = 'avatar.jpg';
     default:
       return;
   }

@@ -4,6 +4,7 @@ const express = require('express');
 // Sub-routes
 const auth = require('./shop/auth');
 const dashboard = require('./shop/dashboard');
+const profile = require('./shop/profile');
 
 // Middlewares
 const validators = require('../validators/general');
@@ -25,6 +26,18 @@ router.use(
   authentication.tokenCompiler,
   authentication.validUser,
   dashboard
+);
+
+// /shop/profile/<profile endpoint>
+// These endpoints are used for profile RU actions
+// *signup and deactivate (CD) are handled in auth router
+router.use(
+  '/profile',
+  validators.hasToken,
+  errorCompiler,
+  authentication.tokenCompiler,
+  authentication.validUser,
+  profile
 );
 
 module.exports = router;
