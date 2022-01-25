@@ -45,15 +45,15 @@ const User = new Schema({
   },
   postalCode: {
     type: String,
-    required: false
+    required: false,
   },
   nationalCode: {
     type: String,
-    required: false
+    required: false,
   },
   idNumber: {
     type: String,
-    required: false
+    required: false,
   },
   gpsLocation: {
     type: String,
@@ -66,7 +66,7 @@ const User = new Schema({
   mediaLink: [String],
   profilePicture: {
     type: String,
-    default: 'avatar.jpg'
+    default: 'avatar.jpg',
   },
   validated: {
     type: Boolean,
@@ -88,6 +88,16 @@ exports.migrate = async user => {
         last: '',
       };
       break;
+    case 'V0.1-3.1':
+      user.name = {
+        first: '',
+        last: '',
+      };
+      user.postalCode = '';
+      user.nationalCode = '';
+      user.idNumber = '';
+      user.mediaLink = [];
+      user.profilePicture = 'avatar.jpg';
     default:
       return;
   }
