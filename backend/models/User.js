@@ -2,7 +2,7 @@
 const mongoose = require('mongoose');
 
 const Schema = mongoose.Schema;
-const schemaVersion = 'V0.1-3.1';
+const schemaVersion = 'V0.1-4.0';
 
 // User model schema
 // This schema is used for seller users
@@ -43,6 +43,18 @@ const User = new Schema({
     type: String,
     required: false,
   },
+  postalCode: {
+    type: String,
+    required: false
+  },
+  nationalCode: {
+    type: String,
+    required: false
+  },
+  idNumber: {
+    type: String,
+    required: false
+  },
   gpsLocation: {
     type: String,
     required: false,
@@ -50,6 +62,11 @@ const User = new Schema({
   category: {
     type: String,
     default: 'none',
+  },
+  mediaLink: [String],
+  profilePicture: {
+    type: String,
+    default: 'avatar.jpg'
   },
   validated: {
     type: Boolean,
