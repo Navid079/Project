@@ -3,6 +3,7 @@ const express = require('express');
 
 // Controller and middlewares
 const controller = require('../../controllers/shop/profile');
+const imageParser = require('../../middlewares/imageParser');
 
 const router = express.Router();
 
@@ -16,7 +17,11 @@ router.get('/', controller.getShopProfile);
 
 // POST /shop/profile/media/<profile attribute>
 // This endpoint is used for uploading user's profile media attributes
-router.post('/media/:attribute', controller.postShopProfileMediaParam);
+router.post('/media/:attribute', imageParser.mediaParser, controller.postShopProfileMediaParam);
+
+// POST /shop/profile/avatar
+// This endpoint is used for uploading user's avatar
+router.post('/avatar', imageParser.avatarParser, controller.postShopProfileAvatar);
 
 // GET /shop/profile/avatar
 // This endpoint is used for getting user's avatar
