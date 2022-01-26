@@ -1,14 +1,14 @@
 // Third-party libraries
-const { validationResult } = require("express-validator");
-const bcrypt = require("bcrypt");
+const { validationResult } = require('express-validator');
+const bcrypt = require('bcrypt');
 
 // Database models
-const User = require("../../models/User");
+const User = require('../../models/User');
 
 //Utility functions
-const phoneNormalizer = require("../../utils/phoneNormalizer");
-const createJWT = require("../../utils/createJWT");
-const createRefreshToken = require("../../utils/createRefreshToken");
+const phoneNormalizer = require('../../utils/phoneNormalizer');
+const createJWT = require('../../utils/createJWT');
+const createRefreshToken = require('../../utils/createRefreshToken');
 
 // POST /shop/signup
 // This middleware controls signing up of sellers
@@ -33,7 +33,7 @@ exports.postShopSignup = async (req, res, next) => {
     );
 
     res.status(201).json({
-      message: "User created",
+      message: 'User created',
       data: {
         user: {
           username: data.username,
@@ -55,7 +55,7 @@ exports.postShopLogin = async (req, res, next) => {
   const data = req.body.data;
 
   // Normalize phone number (as it is saved this way in database)
-  if (data.userType === "phone") data.user = phoneNormalizer(data.user);
+  if (data.userType === 'phone') data.user = phoneNormalizer(data.user);
 
   const searchConfig = {};
   searchConfig[data.userType] = data.user;
@@ -65,11 +65,11 @@ exports.postShopLogin = async (req, res, next) => {
   try {
     const user = await User.findOne(searchConfig);
     if (!user) {
-      throw new Error("404~User not found~user");
+      throw new Error('404~User not found~user');
     }
     const bcryptResult = await bcrypt.compare(data.password, user.password);
     if (!bcryptResult) {
-      throw new Error("401~Wrong password~password");
+      throw new Error('401~Wrong password~password');
     }
     const token = await createJWT(user._id, data.devId);
     const refresh = await createRefreshToken(
@@ -78,12 +78,13 @@ exports.postShopLogin = async (req, res, next) => {
       user.password
     );
     res.status(200).json({
-      message: "Logged in successfully",
+      message: 'Logged in successfully',
       data: {
         user: {
           username: user.username,
           email: user.email,
           phone: user.phone,
+          validated: user.validated,
         },
         token: token,
         refresh: refresh,
@@ -106,18 +107,18 @@ exports.postShopRefresh = async (req, res, next) => {
   const tokenAge = Math.floor((now - createdTime) / 60000);
 
   if (tokenAge < 15) {
-    throw new Error("425~Token is not expired yet~token");
+    throw new Error('425~Token is not expired yet~token');
   }
 
   try {
     const user = await User.findById(refresh.usrId);
     if (!user || user.password != refresh.password) {
-      throw new Error("401~Invalid refresh Token~refresh");
+      throw new Error('401~Invalid refresh Token~refresh');
     }
 
     const token = await createJWT(user._id, data.devId);
     res.status(200).json({
-      message: "Token Refreshed",
+      message: 'Token Refreshed',
       data: {
         user: {
           name: user.name,

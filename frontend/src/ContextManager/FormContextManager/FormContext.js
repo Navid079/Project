@@ -10,6 +10,7 @@ const INITIAL_STATE = {
     last: '',
   },
   isLoggedIn: false,
+  validated: false,
   error: {},
 };
 
