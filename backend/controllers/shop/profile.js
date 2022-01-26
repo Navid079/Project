@@ -1,5 +1,28 @@
 exports.patchShopProfile = async (req, res, next) => {
-  // TODO: complete and test this endpoint
+  const user = req.compiled.user;
+  const data = req.body.data;
+
+  for (const [attribute, value] in Object.entries(data)) {
+    user[attribute] = value;
+  }
+
+  await user.save();
+  const response = {
+    message: 'User profile updated successfully',
+    data: {
+      name: {
+        first: user.name.first,
+        last: user.name.last,
+      },
+      shopAddress: user.shopAddress,
+      postalCode: user.postalCode,
+      nationalCode: user.nationalCode,
+      idNumber: user.idNumber,
+      validated: user.validated,
+    },
+  };
+
+  return res.status(200).json(response);
 };
 
 exports.getShopProfile = (req, res, next) => {
