@@ -13,6 +13,10 @@ function App() {
           <Route exact path='/' element={<Index />}></Route>
           <Route exact path='/dashboard' element={<Dashboard />}>
             <Route path='' element={<h1>Dashboard</h1>} />
+            <Route
+              path='not-validated'
+              element={<h1>Your account is not validated. Please wait</h1>}
+            />
             <Route path='report' element={<h1>Report</h1>} />
             <Route path='newsletter' element={<h1>Newsletter</h1>} />
             <Route path='items' element={<h1>Items</h1>} />

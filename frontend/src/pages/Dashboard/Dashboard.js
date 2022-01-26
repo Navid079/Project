@@ -10,7 +10,7 @@ import { Outlet, useNavigate } from 'react-router-dom';
 
 export default function Dashboard() {
   const navigate = useNavigate();
-  const { dispatch, isLoggedIn } = useContext(FormContext);
+  const { dispatch, isLoggedIn, validated } = useContext(FormContext);
 
   const logoutHandler = event => {
     dispatch({ type: 'LOGOUT' });
@@ -18,8 +18,11 @@ export default function Dashboard() {
   };
 
   useEffect(() => {
-    if (isLoggedIn) return;
-    navigate('/');
+    const currentLocation = window.location.pathname;
+    if (isLoggedIn && validated) return;
+    if (!isLoggedIn) return navigate('/');
+    if (!validated && currentLocation !== '/dashboard/not-validated')
+      return navigate('/dashboard/not-validated');
   });
 
   return (
