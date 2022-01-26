@@ -26,7 +26,24 @@ exports.patchShopProfile = async (req, res, next) => {
 };
 
 exports.getShopProfile = (req, res, next) => {
-  // TODO: complete and test this endpoint
+  const user = req.compiled.user;
+
+  const response = {
+    message: 'User profile fetched',
+    data: {
+      name: {
+        first: user.name.first,
+        last: user.name.last,
+      },
+      shopAddress: user.shopAddress,
+      postalCode: user.postalCode,
+      nationalCode: user.nationalCode,
+      idNumber: user.idNumber,
+      validated: user.validated,
+    },
+  };
+
+  return res.status(200).json(response);
 };
 
 exports.postShopProfileMediaParam = (req, res, next) => {
