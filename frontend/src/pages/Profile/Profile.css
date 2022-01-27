@@ -25,7 +25,7 @@
   --txt-width: 11rem;
   --txt-height: 2rem;
   --txt-font-size: 0.8rem;
-  --txt-bcg: var(--clr-white);
+  --txt-bcg: var(--clr-white-hover);
   margin: 0.5rem 0.175rem;
 }
 
@@ -59,6 +59,53 @@
 
   .profile__small-input {
     --txt-width: 8.5rem;
+  }
+
+  .profile__large-input {
+    --txt-width: 100%;
+  }
+}
+
+/* 
+==========================
+=     PC Media Query     =
+==========================
+*/
+@media screen and (min-width: 1024px) {
+  .profile {
+    --acd-font-size: 1.5rem;
+  }
+
+  .profile__input {
+    --txt-width: 20rem;
+    --txt-height: 2.5rem;
+    --txt-font-size: 1.3rem;
+    margin: 0.7rem 0.5rem;
+  }
+
+  .profile__small-input {
+    --txt-width: 12rem;
+  }
+
+  .profile__large-input {
+    --txt-width: 100%;
+  }
+}
+
+@media screen and (min-width: 1440px) {
+  .profile {
+    --acd-font-size: 2.2rem;
+  }
+
+  .profile__input {
+    --txt-width: 23.8rem;
+    --txt-height: 3.8rem;
+    --txt-font-size: 1.9rem;
+    margin: 1rem 0.7rem;
+  }
+
+  .profile__small-input {
+    --txt-width: 14.6rem;
   }
 
   .profile__large-input {

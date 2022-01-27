@@ -11,6 +11,7 @@ import { avatarGetApiCall } from '../../API_Calls/AvatarApiCall';
 import { profileGetApiCall } from '../../API_Calls/ProfileApiCall';
 
 import profileIsCompleted from '../../utils/profileIsCompleted'
+import Profile from '../Profile/Profile';
 
 export default function Dashboard() {
   const navigate = useNavigate();
@@ -23,23 +24,23 @@ export default function Dashboard() {
     navigate('/');
   };
   
-  useEffect(() => {
-    console.log(context);
-    profileGetApiCall(auth, dispatch);
-    avatarGetApiCall(auth, dispatch);
-    if (!profileIsCompleted(context)) {
-      navigate('/dashboard/not-completed')
-      dispatch({ type: 'NOT_COMPLETED' })
-    }
-  }, [auth, dispatch]);
+  // useEffect(() => {
+  //   console.log(context);
+  //   profileGetApiCall(auth, dispatch);
+  //   avatarGetApiCall(auth, dispatch);
+  //   if (!profileIsCompleted(context)) {
+  //     navigate('/dashboard/not-completed')
+  //     dispatch({ type: 'NOT_COMPLETED' })
+  //   }
+  // }, [auth, dispatch]);
 
-  useEffect(() => {
-    const currentLocation = window.location.pathname;
-    if (isLoggedIn && validated) return;
-    if (!isLoggedIn) return navigate('/');
-    if (!validated && currentLocation !== '/dashboard/not-completed' && currentLocation !== '/dashboard/not-validated')
-      return navigate('/dashboard/not-validated');
-  });
+  // useEffect(() => {
+  //   const currentLocation = window.location.pathname;
+  //   if (isLoggedIn && validated) return;
+  //   if (!isLoggedIn) return navigate('/');
+  //   if (!validated && currentLocation !== '/dashboard/not-completed' && currentLocation !== '/dashboard/not-validated')
+  //     return navigate('/dashboard/not-validated');
+  // });
 
   const avatarUrl = `url('data:image/png;base64,${avatar}')`;
 
@@ -53,6 +54,7 @@ export default function Dashboard() {
       <main className='dashboard__body'>
         <div className='dashboard__container'>
           <Outlet />
+          <Profile></Profile>
         </div>
         <Sidebar />
       </main>
