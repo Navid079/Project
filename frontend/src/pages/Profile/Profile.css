@@ -39,6 +39,29 @@
   --txt-width: 100%;
 }
 
+/* 
+==========================
+=   Tablet Media Query   =
+==========================
+*/
 @media screen and (min-width: 768px) {
+  .profile {
+    width: 100%;
+    padding-top: 6rem;
+  }
 
+  .profile__input {
+    --txt-width: 14rem;
+    --txt-height: 2.3rem;
+    --txt-font-size: 1rem;
+    margin: 0.6rem 0.4rem;
+  }
+
+  .profile__small-input {
+    --txt-width: 8.5rem;
+  }
+
+  .profile__large-input {
+    --txt-width: 100%;
+  }
 }
