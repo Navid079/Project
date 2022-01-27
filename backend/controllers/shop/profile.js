@@ -78,8 +78,10 @@ exports.postShopProfileAvatar = async (req, res, next) => {
   const user = req.compiled.user;
   const avatar = req.file.filename;
 
-  const previousAvatar = avatarLocation + user.avatar;
-  fileRemover(previousAvatar);
+  if (user.avatar !== 'avatar.jpg') {
+    const previousAvatar = avatarLocation + user.avatar;
+    fileRemover(previousAvatar);
+  }
 
   user.avatar = avatar;
 
