@@ -1,7 +1,5 @@
 import React from 'react';
-import { Icon } from '@iconify/react';
 import Accordion from './../../components/UI/Accordion/Accordion';
-import Toggle from './../../components/UI/Toggle';
 import TextInput from './../../components/UI/TextInput/TextInput';
 import OrderedList from '../../components/UI/OrderedList/OrderedList'
 

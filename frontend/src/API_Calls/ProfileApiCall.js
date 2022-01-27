@@ -27,8 +27,8 @@ export const profilePatchApiCall = async (auth, data, dispatch) => {
         Authorization: auth,
       },
     });
-    const data = res.data.data.user;
-    dispatch({ type: 'SET_ATTR', data });
+    const attributes = res.data.data.user;
+    dispatch({ type: 'SET_ATTR', attributes });
   } catch (error) {
     error.response.data = error.response.data.data;
     error.response.page = 'profile';
