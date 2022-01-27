@@ -12,6 +12,7 @@ export default function SearchInput() {
         type='search'
         placeholder='جستجو'
         noFloat={true}
+        noBorder
       ></TextInput>
       <Icon className='search-input__icon' icon='fluent:search-24-regular' />
     </div>
