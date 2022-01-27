@@ -33,7 +33,7 @@
 
 .profile__large-input {
   width: 100%;
-  /* NOTE: change --txt-width to calc(100% - <--txt-width for .profile__small-input> - <margin-left for .profile__input> */
+  /* NOTE: change --txt-width to calc(100% - <--txt-width for .profile__small-input> - <margin-left for .profile__input> in PC media query */
   --txt-width: 100%;
 }
 
