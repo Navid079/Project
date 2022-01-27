@@ -24,7 +24,6 @@ export default function Dashboard() {
   };
   
   useEffect(() => {
-    console.log(context);
     profileGetApiCall(auth, dispatch);
     avatarGetApiCall(auth, dispatch);
     if (!profileIsCompleted(context)) {

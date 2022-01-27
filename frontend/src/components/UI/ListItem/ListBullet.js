@@ -15,8 +15,6 @@ export default function ListBullet({ className, number, progress }) {
     spacePercentage
   )}%25' stroke-dashoffset='0' stroke-linecap='butt'/%3e%3c/svg%3e")`;
 
-  console.log(bg);
-
   return (
     <div className={`progress-bullet ${className}`}>
       <div

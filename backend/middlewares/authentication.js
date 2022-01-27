@@ -21,7 +21,7 @@ exports.tokenCompiler = async (req, res, next) => {
     const varificationResult = await jose.jwtVerify(token, publicKey, {
       issuer: 'theProject@email.com',
       audience: `${devId}`,
-      maxTokenAge: req.maxTokenAge || '15s',
+      maxTokenAge: req.maxTokenAge || '15h',
     });
     req.compiled.token = varificationResult.payload;
     return next();

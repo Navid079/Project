@@ -23,7 +23,7 @@ export const avatarGetApiCall = async (auth, dispatch) => {
 
 export const avatarSetApiCall = async (auth, data, dispatch) => {
   try {
-    const res = await axios.post(`${api}/shop/profile/avatar`, data, {
+    await axios.post(`${api}/shop/profile/avatar`, data, {
       headers: {
         Authorization: auth,
       },
