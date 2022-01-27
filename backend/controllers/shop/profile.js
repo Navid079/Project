@@ -57,7 +57,7 @@ exports.getShopProfile = (req, res, next) => {
   return res.status(200).json(response);
 };
 
-exports.postShopProfileMediaParam = (req, res, next) => {
+exports.postShopProfileMediaParam = async (req, res, next) => {
   const user = req.compiled.user;
   user.mediaLink.push(req.file.filename);
   await user.save();
@@ -68,7 +68,7 @@ exports.postShopProfileMediaParam = (req, res, next) => {
   });
 };
 
-exports.postShopProfileAvatar = (req, res, next) => {
+exports.postShopProfileAvatar = async (req, res, next) => {
   const user = req.compiled.user;
   const avatar = req.file.filename;
 
