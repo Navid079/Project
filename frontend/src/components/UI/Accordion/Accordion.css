@@ -2,12 +2,12 @@
   display: flex;
   flex-direction: column;
   align-items: flex-end;
-  width: fit-content;
+  width: 100%;
 }
 
 .accordion__title {
   color: var(--clr-primary-5);
-  font-size: 2rem;
+  font-size: var(--acd-font-size);
   margin-bottom: 1rem;
   margin-right: 1rem;
   cursor: pointer;

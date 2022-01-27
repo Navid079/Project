@@ -13,17 +13,22 @@ export const FormReducer = (state, action) => {
         error: {},
       };
     case 'LOGIN':
+      const devId = process.env.REACT_APP_DEV_ID;
+      const auth = `${action.data.token}~${devId}~${action.data.refresh}`;
       return {
         ...state,
+        auth,
+        refresh: action.data.refresh,
         username: action.data.user.username,
         phone: action.data.user.phone,
         email: action.data.user.email,
-        name: action.data.user.name,
+        validated: action.data.user.validated || false,
         isLoggedIn: true,
       };
     case 'LOGOUT':
       return {
         ...state,
+        auth: '',
         username: '',
         phone: '',
         email: '',
@@ -31,7 +36,19 @@ export const FormReducer = (state, action) => {
           first: '',
           last: '',
         },
+        shopAddress: '',
+        postalCode: '',
+        nationalCode: '',
+        idNumber: '',
+        avatar: '',
         isLoggedIn: false,
+        validated: false,
+        error: {},
+      };
+    case 'SET_ATTR':
+      return {
+        ...state,
+        ...action.data,
       };
     default:
       return state;

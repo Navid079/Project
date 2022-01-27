@@ -2,6 +2,7 @@ import React, { createContext, useReducer } from 'react';
 import { FormReducer } from './FormReducer';
 
 const INITIAL_STATE = {
+  auth: '',
   username: '',
   phone: '',
   email: '',
@@ -9,7 +10,13 @@ const INITIAL_STATE = {
     first: '',
     last: '',
   },
+  shopAddress: '',
+  postalCode: '',
+  nationalCode: '',
+  idNumber: '',
+  avatar: '',
   isLoggedIn: false,
+  validated: false,
   error: {},
 };
 

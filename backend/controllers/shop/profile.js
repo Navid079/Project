@@ -2,8 +2,8 @@ const path = require('path');
 
 const fileRemover = require('../../utils/fileRemover');
 
-const imageLocation = path.join(__dirname, 'media', 'images');
-const avatarLocation = path.join(__dirname, 'media', 'avatar');
+const imageLocation = path.join(process.cwd(), 'media', 'images');
+const avatarLocation = path.join(process.cwd(), 'media', 'avatar');
 
 exports.patchShopProfile = async (req, res, next) => {
   const user = req.compiled.user;
@@ -78,8 +78,10 @@ exports.postShopProfileAvatar = async (req, res, next) => {
   const user = req.compiled.user;
   const avatar = req.file.filename;
 
-  const previousAvatar = avatarLocation + user.avatar;
-  fileRemover(previousAvatar);
+  if (user.avatar !== 'avatar.jpg') {
+    const previousAvatar = avatarLocation + user.avatar;
+    fileRemover(previousAvatar);
+  }
 
   user.avatar = avatar;
 
@@ -93,7 +95,7 @@ exports.postShopProfileAvatar = async (req, res, next) => {
 exports.getShopProfileAvatar = (req, res, next) => {
   const user = req.compiled.user;
   const avatar = user.avatar;
-  const avatarPath = avatarLocation + avatar;
+  const avatarPath = path.join(avatarLocation, avatar);
 
   res.status(200).sendFile(avatarPath);
 };
@@ -102,7 +104,7 @@ exports.getShopProfileMedia = (req, res, next) => {
   const file = req.data.file;
   const user = req.compiled.user;
 
-  const mediaPath = imageLocation + file;
+  const mediaPath = path.join(imageLocation, file);
 
   res.status(200).sendFile(mediaPath);
 };

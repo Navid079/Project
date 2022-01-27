@@ -9,16 +9,11 @@
 }
 
 .search-input__input {
-  width: 5.1rem;
-  height: 1rem;
-  border: none;
-  padding: 0;
-}
-
-.search-input__input::placeholder {
-  font-size: 0.6rem;
+  --txt-width: 5.1rem;
+  --txt-height: 1rem;
+  --txt-font-size: 0.6rem;
   font-weight: 100;
-  color: var(--clr-light-grey);
+  padding: 0;
 }
 
 .search-input__icon {
@@ -41,12 +36,9 @@
   }
 
   .search-input__input {
-    width: 10.5rem;
-    height: 2.1rem;
-  }
-
-  .search-input__input::placeholder {
-    font-size: 1rem;
+    --txt-width: 10.5rem;
+    --txt-height: 2.1rem;
+    --txt-font-size: 1rem;
   }
 
   .search-input__icon {
@@ -67,8 +59,8 @@
   }
 
   .search-input__input {
-    width: 14rem;
-    height: 2.5rem;
+    --txt-width: 14rem;
+    --txt-height: 2.5rem;
   }
 }
 @media screen and (min-width: 1440px) {
@@ -78,7 +70,7 @@
   }
 
   .search-input__input {
-    width: 13rem;
-    height: 2.6rem;
+    --txt-width: 13rem;
+    --txt-height: 2.6rem;
   }
 }

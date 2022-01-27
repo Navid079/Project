@@ -3,7 +3,11 @@ const { createSecretKey } = require('crypto');
 
 const jose = require('jose');
 
-const { User, version: userVersion, migrate: userMigrate } = require('../models/User');
+const {
+  User,
+  version: userVersion,
+  migrate: userMigrate,
+} = require('../models/User');
 const versionComparer = require('../utils/versionComparer');
 
 exports.tokenCompiler = async (req, res, next) => {
@@ -52,7 +56,7 @@ exports.refreshCompiler = async (req, res, next) => {
 exports.validUser = async (req, res, next) => {
   const token = req.compiled.token;
 
-  const user = await User.findById(token.userId);
+  const user = await User.findById(token.usrId).exec();
   if (!user) {
     return next(new Error('404~User not found~userId'));
   }

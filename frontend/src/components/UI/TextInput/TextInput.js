@@ -5,6 +5,7 @@ const TextInput = ({
   type,
   placeholder,
   noFloat,
+  noBorder,
   onChange,
   reference,
   onKeyPress,
@@ -14,18 +15,22 @@ const TextInput = ({
   };
 
   return (
-    <span className='text-input__container'>
+    <span className={`text-input__container ${className}`}>
       <input
         onKeyPress={onKeyPress}
-        className={`text-input ${className}`}
+        className={`text-input ${noBorder ? 'text-input--no-border' : ''}`}
         placeholder={noFloat ? placeholder : ' '}
         type={type || 'text'}
         onChange={onChange}
         ref={reference}
       />
-      {noFloat ? '' : <h6 className='input__placeholder' onClick={placeholderNonInteractive}>
-        {placeholder}
-      </h6>}
+      {noFloat ? (
+        ''
+      ) : (
+        <h6 className='input__placeholder' onClick={placeholderNonInteractive}>
+          {placeholder}
+        </h6>
+      )}
     </span>
   );
 };
