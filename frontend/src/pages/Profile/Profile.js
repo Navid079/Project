@@ -18,6 +18,104 @@ export default function Profile() {
   const shopAddress = useRef();
   const postalCode = useRef();
 
+  const userProfile = useRef({
+    firstName: '',
+    lastName: '',
+    nationalCode: '',
+    idNumber: '',
+    shopAddress: '',
+    postalCode: '',
+  });
+
+  const inputBlurHandler = event => {
+    switch (event.target) {
+      case firstName.current:
+        if (
+          userProfile.current.firstName === '' &&
+          firstName.current.value != ''
+        ) {
+          setPersonalProgress(personalProgress + 15);
+        } else if (
+          userProfile.current.firstName !== '' &&
+          firstName.current.value === ''
+        ) {
+          setPersonalProgress(personalProgress - 15);
+        }
+        userProfile.current.firstName = firstName.current.value;
+        break;
+      case lastName.current:
+        if (
+          userProfile.current.lastName === '' &&
+          lastName.current.value != ''
+        ) {
+          setPersonalProgress(personalProgress + 15);
+        } else if (
+          userProfile.current.lastName !== '' &&
+          lastName.current.value === ''
+        ) {
+          setPersonalProgress(personalProgress - 15);
+        }
+        userProfile.current.lastName = lastName.current.value;
+        break;
+      case nationalCode.current:
+        if (
+          userProfile.current.nationalCode === '' &&
+          nationalCode.current.value != ''
+        ) {
+          setPersonalProgress(personalProgress + 15);
+        } else if (
+          userProfile.current.nationalCode !== '' &&
+          nationalCode.current.value === ''
+        ) {
+          setPersonalProgress(personalProgress - 15);
+        }
+        userProfile.current.nationalCode = nationalCode.current.value;
+        break;
+      case idNumber.current:
+        if (
+          userProfile.current.idNumber === '' &&
+          idNumber.current.value != ''
+        ) {
+          setPersonalProgress(personalProgress + 15);
+        } else if (
+          userProfile.current.idNumber !== '' &&
+          idNumber.current.value === ''
+        ) {
+          setPersonalProgress(personalProgress - 15);
+        }
+        userProfile.current.idNumber = idNumber.current.value;
+        break;
+      case shopAddress.current:
+        if (
+          userProfile.current.shopAddress === '' &&
+          shopAddress.current.value != ''
+        ) {
+          setPersonalProgress(personalProgress + 25);
+        } else if (
+          userProfile.current.shopAddress !== '' &&
+          shopAddress.current.value === ''
+        ) {
+          setPersonalProgress(personalProgress - 25);
+        }
+        userProfile.current.shopAddress = shopAddress.current.value;
+        break;
+      case postalCode.current:
+        if (
+          userProfile.current.postalCode === '' &&
+          postalCode.current.value != ''
+        ) {
+          setPersonalProgress(personalProgress + 15);
+        } else if (
+          userProfile.current.postalCode !== '' &&
+          postalCode.current.value === ''
+        ) {
+          setPersonalProgress(personalProgress - 15);
+        }
+        userProfile.current.postalCode = postalCode.current.value;
+        break;
+    }
+  };
+
   const personalSection = (
     <Accordion title='تکمیل اطلاعات شخصی' inactive>
       <div className='profile__accordion-body'>
@@ -26,33 +124,39 @@ export default function Profile() {
             className='profile__input profile__small-input'
             placeholder='نام'
             reference={firstName}
+            onBlur={inputBlurHandler}
           />
           <TextInput
             className='profile__input profile__small-input'
             placeholder='نام خانوادگی'
             reference={lastName}
+            onBlur={inputBlurHandler}
           />
         </div>
         <TextInput
           className='profile__input'
           placeholder='کد ملی'
           reference={nationalCode}
+          onBlur={inputBlurHandler}
         />
         <TextInput
           className='profile__input'
           placeholder='شماره شناسنامه'
           reference={idNumber}
+          onBlur={inputBlurHandler}
         />
         <div className='profile__input-container'>
           <TextInput
             className='profile__input profile__large-input'
             placeholder='آدرس'
             reference={shopAddress}
+            onBlur={inputBlurHandler}
           />
           <TextInput
             className='profile__input profile__small-input'
             placeholder='کد پستی'
             reference={postalCode}
+            onBlur={inputBlurHandler}
           />
           <TextInput
             className='profile__input profile__small-input'

@@ -7,6 +7,7 @@ const TextInput = ({
   noFloat,
   noBorder,
   onChange,
+  onBlur,
   reference,
   onKeyPress,
 }) => {
@@ -22,6 +23,7 @@ const TextInput = ({
         placeholder={noFloat ? placeholder : ' '}
         type={type || 'text'}
         onChange={onChange}
+        onBlur={onBlur}
         ref={reference}
       />
       {noFloat ? (
