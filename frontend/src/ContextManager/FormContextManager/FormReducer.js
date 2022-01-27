@@ -22,7 +22,6 @@ export const FormReducer = (state, action) => {
         username: action.data.user.username,
         phone: action.data.user.phone,
         email: action.data.user.email,
-        name: action.data.user.name,
         validated: action.data.user.validated || false,
         isLoggedIn: true,
       };

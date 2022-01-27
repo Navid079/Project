@@ -96,7 +96,6 @@ exports.getShopProfileAvatar = (req, res, next) => {
   const user = req.compiled.user;
   const avatar = user.avatar;
   const avatarPath = path.join(avatarLocation, avatar);
-  console.log(avatarPath);
 
   res.status(200).sendFile(avatarPath);
 };

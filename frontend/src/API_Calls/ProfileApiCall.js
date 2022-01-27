@@ -2,9 +2,9 @@ import axios from 'axios';
 
 const api = process.env.REACT_APP_API_URL;
 
-export const profileGetApiCall = (auth, dispatch) => {
+export const profileGetApiCall = async (auth, dispatch) => {
   try {
-    const res = axios.get(`${api}/shop/profile`, {
+    const res = await axios.get(`${api}/shop/profile`, {
       headers: {
         Authorization: auth,
       },
@@ -12,6 +12,7 @@ export const profileGetApiCall = (auth, dispatch) => {
     const data = res.data.data.user;
     dispatch({ type: 'SET_ATTR', data });
   } catch (error) {
+    console.log(error);
     error.response.data = error.response.data.data;
     error.response.page = 'profile';
     dispatch({ type: 'SET_ERROR', data: error.response });
@@ -19,9 +20,9 @@ export const profileGetApiCall = (auth, dispatch) => {
   }
 };
 
-export const profilePatchApiCall = (auth, data, dispatch) => {
+export const profilePatchApiCall = async (auth, data, dispatch) => {
   try {
-    const res = axios.patch(`${api}/shop/profile`, data, {
+    const res = await axios.patch(`${api}/shop/profile`, data, {
       headers: {
         Authorization: auth,
       },

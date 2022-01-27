@@ -1,6 +1,5 @@
 const versionComparer = (version, currentVersion) => {
   version = version.slice(1);
-  console.log(currentVersion);
   currentVersion = currentVersion.slice(1);
 
   const [supVersion, subVersion] = version.split('-');
