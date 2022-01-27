@@ -100,6 +100,8 @@ exports.getShopProfileAvatar = (req, res, next) => {
 
 exports.getShopProfileMedia = (req, res, next) => {
   const file = req.data.file;
+  const user = req.compiled.user;
+
   const mediaPath = imageLocation + file;
 
   res.status(200).sendFile(mediaPath);
