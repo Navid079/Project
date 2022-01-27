@@ -1,12 +1,22 @@
-import React from 'react';
+import React, { useRef, useState } from 'react';
 import Accordion from './../../components/UI/Accordion/Accordion';
 import TextInput from './../../components/UI/TextInput/TextInput';
-import OrderedList from '../../components/UI/OrderedList/OrderedList'
+import OrderedList from '../../components/UI/OrderedList/OrderedList';
 
 import './Profile.css';
 import UploadButton from '../../components/Profile/UploadButton';
 
 export default function Profile() {
+  const [personalProgress, setPersonalProgress] = useState(0);
+  const [uploadProgress, setUploadProgress] = useState(0);
+  const [visualProgress, setVisualProgress] = useState(100);
+
+  const firstName = useRef();
+  const lastName = useRef();
+  const nationalCode = useRef();
+  const idNumber = useRef();
+  const shopAddress = useRef();
+  const postalCode = useRef();
 
   const personalSection = (
     <Accordion title='تکمیل اطلاعات شخصی' inactive>
@@ -15,22 +25,34 @@ export default function Profile() {
           <TextInput
             className='profile__input profile__small-input'
             placeholder='نام'
+            reference={firstName}
           />
           <TextInput
             className='profile__input profile__small-input'
             placeholder='نام خانوادگی'
+            reference={lastName}
           />
         </div>
-        <TextInput className='profile__input' placeholder='کد ملی' />
-        <TextInput className='profile__input' placeholder='شماره شناسنامه' />
+        <TextInput
+          className='profile__input'
+          placeholder='کد ملی'
+          reference={nationalCode}
+        />
+        <TextInput
+          className='profile__input'
+          placeholder='شماره شناسنامه'
+          reference={idNumber}
+        />
         <div className='profile__input-container'>
           <TextInput
             className='profile__input profile__large-input'
             placeholder='آدرس'
+            reference={shopAddress}
           />
           <TextInput
             className='profile__input profile__small-input'
             placeholder='کد پستی'
+            reference={postalCode}
           />
           <TextInput
             className='profile__input profile__small-input'
@@ -52,12 +74,12 @@ export default function Profile() {
   const visualSection = <Accordion title='اطلاعات نمایشی' inactive></Accordion>;
 
   const listItems = [
-    {item: personalSection, progress: 0},
-    {item: uploadSection, progress: 0},
-    {item: visualSection, progress: 0},
-  ]
+    { item: personalSection, progress: personalProgress },
+    { item: uploadSection, progress: uploadProgress },
+    { item: visualSection, progress: visualProgress },
+  ];
 
-  const list = <OrderedList>{listItems}</OrderedList>
+  const list = <OrderedList>{listItems}</OrderedList>;
 
   return <div className='profile'>{list}</div>;
 }
