@@ -3,12 +3,14 @@ const { validationResult } = require('express-validator');
 const bcrypt = require('bcrypt');
 
 // Database models
-const User = require('../../models/User');
+const { User, version: userVersion, migrate: userMigrate } = require('../../models/User');
+
 
 //Utility functions
 const phoneNormalizer = require('../../utils/phoneNormalizer');
 const createJWT = require('../../utils/createJWT');
 const createRefreshToken = require('../../utils/createRefreshToken');
+const versionComparer = require('../../utils/versionComparer');
 
 // POST /shop/signup
 // This middleware controls signing up of sellers
@@ -61,7 +63,6 @@ exports.postShopLogin = async (req, res, next) => {
   searchConfig[data.userType] = data.user;
 
   // Authenticating and sending reponse to client
-
   try {
     const user = await User.findOne(searchConfig);
     if (!user) {

@@ -2,6 +2,7 @@
 const mongoose = require('mongoose');
 
 const Schema = mongoose.Schema;
+const schemaVersion = 'V0.1-4.0';
 
 // User model schema
 // This schema is used for seller users
@@ -10,15 +11,21 @@ const User = new Schema({
   // Schema Version is used for determining need for online migrations
   schemaVersion: {
     type: String,
-    default: 'V0.1-2.0',
+    default: schemaVersion,
   },
   username: {
     type: String,
     required: true,
   },
   name: {
-    type: Object,
-    required: false,
+    first: {
+      type: String,
+      default: '',
+    },
+    last: {
+      type: String,
+      default: '',
+    },
   },
   phone: {
     type: String,
@@ -36,6 +43,18 @@ const User = new Schema({
     type: String,
     required: false,
   },
+  postalCode: {
+    type: String,
+    required: false,
+  },
+  nationalCode: {
+    type: String,
+    required: false,
+  },
+  idNumber: {
+    type: String,
+    required: false,
+  },
   gpsLocation: {
     type: String,
     required: false,
@@ -44,10 +63,47 @@ const User = new Schema({
     type: String,
     default: 'none',
   },
+  mediaLink: [String],
+  avatar: {
+    type: String,
+    default: 'avatar.jpg',
+  },
   validated: {
     type: Boolean,
     default: false,
   },
 });
 
-module.exports = mongoose.model('User', User);
+exports.migrate = async user => {
+  switch (user.schemaVersion) {
+    case 'V0.1-2.0':
+      user.name = {
+        first: '',
+        last: '',
+      };
+      break;
+    case 'V0.1-3.0':
+      user.name = {
+        first: '',
+        last: '',
+      };
+      break;
+    case 'V0.1-3.1':
+      user.name = {
+        first: '',
+        last: '',
+      };
+      user.postalCode = '';
+      user.nationalCode = '';
+      user.idNumber = '';
+      user.mediaLink = [];
+      user.avatar = 'avatar.jpg';
+    default:
+      return;
+  }
+  user.schemaVersion = schemaVersion;
+  await user.save();
+};
+
+exports.User = mongoose.model('User', User);
+exports.version = schemaVersion;
