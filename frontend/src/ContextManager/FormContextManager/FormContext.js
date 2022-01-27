@@ -2,6 +2,7 @@ import React, { createContext, useReducer } from 'react';
 import { FormReducer } from './FormReducer';
 
 const INITIAL_STATE = {
+  auth: '',
   username: '',
   phone: '',
   email: '',

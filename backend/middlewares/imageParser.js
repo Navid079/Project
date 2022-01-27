@@ -3,8 +3,8 @@ const crypto = require('crypto');
 
 const multer = require('multer');
 
-const avatarLocation = path.join(__dirname, 'media', 'avatar');
-const imageLocation = path.join(__dirname, 'media', 'images');
+const avatarLocation = path.join(process.cwd(), 'media', 'avatar');
+const imageLocation = path.join(process.cwd(), 'media', 'images');
 
 const avatarStorage = multer.diskStorage({
   destination: (req, file, callback) => {

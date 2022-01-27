@@ -13,8 +13,12 @@ export const FormReducer = (state, action) => {
         error: {},
       };
     case 'LOGIN':
+      const devId = process.env.REACT_APP_DEV_ID;
+      const auth = `${action.data.token}~${devId}~${action.data.refresh}`;
       return {
         ...state,
+        auth,
+        refresh: action.data.refresh,
         username: action.data.user.username,
         phone: action.data.user.phone,
         email: action.data.user.email,
@@ -25,6 +29,7 @@ export const FormReducer = (state, action) => {
     case 'LOGOUT':
       return {
         ...state,
+        auth: '',
         username: '',
         phone: '',
         email: '',
@@ -37,7 +42,7 @@ export const FormReducer = (state, action) => {
     case 'SET_ATTR':
       return {
         ...state,
-        ...action.data.user,
+        ...action.data,
       };
     default:
       return state;
