@@ -37,7 +37,14 @@ export const FormReducer = (state, action) => {
           first: '',
           last: '',
         },
+        shopAddress: '',
+        postalCode: '',
+        nationalCode: '',
+        idNumber: '',
+        avatar: '',
         isLoggedIn: false,
+        validated: false,
+        error: {},
       };
     case 'SET_ATTR':
       return {
