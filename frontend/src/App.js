@@ -10,8 +10,7 @@ function App() {
   return (
     <BrowserRouter>
       <div className='container'>
-      <Dashboard></Dashboard>
-        {/* <Routes>
+        <Routes>
           <Route exact path='/' element={<Index />}></Route>
           <Route exact path='/dashboard' element={<Dashboard />}>
             <Route path='' element={<h1>Dashboard</h1>} />
@@ -24,7 +23,7 @@ function App() {
             <Route path='newsletter' element={<h1>Newsletter</h1>} />
             <Route path='items' element={<h1>Items</h1>} />
           </Route>
-        </Routes> */}
+        </Routes>
       </div>
     </BrowserRouter>
   );
