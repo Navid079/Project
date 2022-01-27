@@ -1,3 +1,9 @@
+const path = require('path');
+
+const fileRemover = require('../../utils/fileRemover');
+
+const avatarLocation = path.join(__dirname, 'media', 'avatar');
+
 exports.patchShopProfile = async (req, res, next) => {
   const user = req.compiled.user;
   const data = req.body.data;
@@ -62,7 +68,19 @@ exports.postShopProfileMediaParam = (req, res, next) => {
 };
 
 exports.postShopProfileAvatar = (req, res, next) => {
-  // TODO: complete and test this endpoint
+  const user = req.compiled.user;
+  const avatar = req.file.filename;
+
+  const previousAvatar = avatarLocation + user.avatar;
+  fileRemover(previousAvatar);
+
+  user.avatar = avatar;
+
+  await user.save();
+  return res.status(201).json({
+    message: 'avatar updated',
+    data: {},
+  });
 };
 
 exports.getShopProfileAvatar = (req, res, next) => {
