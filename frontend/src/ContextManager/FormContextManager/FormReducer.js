@@ -34,6 +34,11 @@ export const FormReducer = (state, action) => {
         },
         isLoggedIn: false,
       };
+    case 'SET_ATTR':
+      return {
+        ...state,
+        ...action.data.user,
+      };
     default:
       return state;
   }
