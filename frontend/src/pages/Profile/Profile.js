@@ -1,10 +1,15 @@
-import React, { useRef, useState } from 'react';
+import React, { useContext, useEffect, useRef, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import Accordion from './../../components/UI/Accordion/Accordion';
 import TextInput from './../../components/UI/TextInput/TextInput';
 import OrderedList from '../../components/UI/OrderedList/OrderedList';
 
 import './Profile.css';
 import UploadButton from '../../components/Profile/UploadButton';
+import FormContext from '../../ContextManager/FormContextManager/FormContext';
+
+import { profilePatchApiCall } from '../../API_Calls/ProfileApiCall';
+import profileIsComplete from '../../utils/profileIsCompleted';
 
 export default function Profile() {
   const [personalProgress, setPersonalProgress] = useState(0);
@@ -17,6 +22,15 @@ export default function Profile() {
   const idNumber = useRef();
   const shopAddress = useRef();
   const postalCode = useRef();
+
+  const context = useContext(FormContext);
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    if (profileIsComplete(context)) {
+      navigate('/dashboard');
+    }
+  });
 
   const userProfile = useRef({
     firstName: '',
@@ -114,6 +128,12 @@ export default function Profile() {
         userProfile.current.postalCode = postalCode.current.value;
         break;
     }
+    const requestBody = {
+      message: '',
+      data: userProfile.current,
+    };
+
+    profilePatchApiCall(context.auth, requestBody, context.dispatch);
   };
 
   const personalSection = (

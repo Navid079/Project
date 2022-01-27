@@ -9,6 +9,8 @@ exports.patchProfile = body('data').custom(data => {
     'idNumber',
     'firstName',
     'lastName',
+    'token',
+    'refresh',
   ];
   for (const attribute of attributes) {
     if (!acceptedAttributes.includes(attribute)) {

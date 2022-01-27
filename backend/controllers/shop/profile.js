@@ -9,8 +9,12 @@ exports.patchShopProfile = async (req, res, next) => {
   const user = req.compiled.user;
   const data = req.body.data;
 
-  for (const [attribute, value] in Object.entries(data)) {
-    if (attribute === 'firstName') {
+  const attributes = Object.keys(data);
+  for (const attribute of attributes) {
+    const value = data[attribute];
+    console.log(attribute);
+    if (attribute === 'token' || attribute === 'refresh') continue;
+    else if (attribute === 'firstName') {
       user.name.first = value;
     } else if (attribute === 'lastName') {
       user.name.last = value;
@@ -18,7 +22,7 @@ exports.patchShopProfile = async (req, res, next) => {
       user[attribute] = value;
     }
   }
-
+  console.log(user);
   await user.save();
   const response = {
     message: 'User profile updated successfully',

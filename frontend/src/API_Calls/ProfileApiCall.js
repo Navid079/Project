@@ -12,7 +12,6 @@ export const profileGetApiCall = async (auth, dispatch) => {
     const data = res.data.data.user;
     dispatch({ type: 'SET_ATTR', data });
   } catch (error) {
-    console.log(error);
     error.response.data = error.response.data.data;
     error.response.page = 'profile';
     dispatch({ type: 'SET_ERROR', data: error.response });
