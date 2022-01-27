@@ -2,6 +2,7 @@ const path = require('path');
 
 const fileRemover = require('../../utils/fileRemover');
 
+const imageLocation = path.join(__dirname, 'media', 'images');
 const avatarLocation = path.join(__dirname, 'media', 'avatar');
 
 exports.patchShopProfile = async (req, res, next) => {
@@ -84,9 +85,16 @@ exports.postShopProfileAvatar = (req, res, next) => {
 };
 
 exports.getShopProfileAvatar = (req, res, next) => {
-  // TODO: complete and test this endpoint
+  const user = req.compiled.user;
+  const avatar = user.avatar;
+  const avatarPath = avatarLocation + avatar;
+
+  res.status(200).sendFile(avatarPath);
 };
 
 exports.getShopProfileMedia = (req, res, next) => {
-  // TODO: complete and test this endpoint
+  const file = req.data.file;
+  const mediaPath = imageLocation + file;
+
+  res.status(200).sendFile(mediaPath);
 };
