@@ -11,6 +11,7 @@ import { avatarGetApiCall } from '../../API_Calls/AvatarApiCall';
 import { profileGetApiCall } from '../../API_Calls/ProfileApiCall';
 
 import profileIsCompleted from '../../utils/profileIsCompleted'
+import Profile from '../Profile/Profile';
 
 export default function Dashboard() {
   const navigate = useNavigate();
