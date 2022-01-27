@@ -10,15 +10,17 @@ exports.patchShopProfile = async (req, res, next) => {
   const response = {
     message: 'User profile updated successfully',
     data: {
-      name: {
-        first: user.name.first,
-        last: user.name.last,
+      user: {
+        name: {
+          first: user.name.first,
+          last: user.name.last,
+        },
+        shopAddress: user.shopAddress,
+        postalCode: user.postalCode,
+        nationalCode: user.nationalCode,
+        idNumber: user.idNumber,
+        validated: user.validated,
       },
-      shopAddress: user.shopAddress,
-      postalCode: user.postalCode,
-      nationalCode: user.nationalCode,
-      idNumber: user.idNumber,
-      validated: user.validated,
     },
   };
 
@@ -31,15 +33,17 @@ exports.getShopProfile = (req, res, next) => {
   const response = {
     message: 'User profile fetched',
     data: {
-      name: {
-        first: user.name.first,
-        last: user.name.last,
+      user: {
+        name: {
+          first: user.name.first,
+          last: user.name.last,
+        },
+        shopAddress: user.shopAddress,
+        postalCode: user.postalCode,
+        nationalCode: user.nationalCode,
+        idNumber: user.idNumber,
+        validated: user.validated,
       },
-      shopAddress: user.shopAddress,
-      postalCode: user.postalCode,
-      nationalCode: user.nationalCode,
-      idNumber: user.idNumber,
-      validated: user.validated,
     },
   };
 
@@ -47,6 +51,17 @@ exports.getShopProfile = (req, res, next) => {
 };
 
 exports.postShopProfileMediaParam = (req, res, next) => {
+  const user = req.compiled.user;
+  user.mediaLink.push(req.file.filename);
+  await user.save();
+
+  res.status(201).json({
+    message: 'Media successfully uploaded',
+    data: {},
+  });
+};
+
+exports.postShopProfileAvatar = (req, res, next) => {
   // TODO: complete and test this endpoint
 };
 
