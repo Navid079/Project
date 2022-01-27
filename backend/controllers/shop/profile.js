@@ -10,7 +10,13 @@ exports.patchShopProfile = async (req, res, next) => {
   const data = req.body.data;
 
   for (const [attribute, value] in Object.entries(data)) {
-    user[attribute] = value;
+    if (attribute === 'firstName') {
+      user.name.first = value;
+    } else if (attribute === 'lastName') {
+      user.name.last = value;
+    } else {
+      user[attribute] = value;
+    }
   }
 
   await user.save();
