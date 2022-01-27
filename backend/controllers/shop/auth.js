@@ -3,12 +3,23 @@ const { validationResult } = require("express-validator");
 const bcrypt = require("bcrypt");
 
 // Database models
+<<<<<<< HEAD
 const User = require("../../models/User");
 
 //Utility functions
 const phoneNormalizer = require("../../utils/phoneNormalizer");
 const createJWT = require("../../utils/createJWT");
 const createRefreshToken = require("../../utils/createRefreshToken");
+=======
+const { User, version: userVersion, migrate: userMigrate } = require('../../models/User');
+
+
+//Utility functions
+const phoneNormalizer = require('../../utils/phoneNormalizer');
+const createJWT = require('../../utils/createJWT');
+const createRefreshToken = require('../../utils/createRefreshToken');
+const versionComparer = require('../../utils/versionComparer');
+>>>>>>> profileEndpoint
 
 // POST /shop/signup
 // This middleware controls signing up of sellers
@@ -61,6 +72,7 @@ exports.postShopLogin = async (req, res, next) => {
   searchConfig[data.userType] = data.user;
 
   // Authenticating and sending reponse to client
+<<<<<<< HEAD
 
   try {
     const user = await User.findOne(searchConfig);
@@ -84,6 +96,44 @@ exports.postShopLogin = async (req, res, next) => {
           username: user.username,
           email: user.email,
           phone: user.phone,
+=======
+  User.findOne(searchConfig)
+    .then(user => {
+      if (!user) {
+        throw new Error('404~User not found~user');
+      }
+      fetchedUser = user;
+      if (!versionComparer(user.schemaVersion, userVersion)) {
+        userMigrate(user);
+      }
+      return bcrypt.compare(data.password, user.password);
+    })
+    .then(result => {
+      if (!result) {
+        throw new Error('401~Wrong password~password');
+      }
+      return createJWT(fetchedUser._id, data.devId);
+    })
+    .then(token => {
+      createdToken = token;
+      return createRefreshToken(
+        fetchedUser._id,
+        data.devId,
+        fetchedUser.password
+      );
+    })
+    .then(refresh => {
+      res.status(200).json({
+        message: 'Logged in successfully',
+        data: {
+          user: {
+            username: fetchedUser.username,
+            email: fetchedUser.email,
+            phone: fetchedUser.phone,
+          },
+          token: createdToken,
+          refresh: refresh,
+>>>>>>> profileEndpoint
         },
         token: token,
         refresh: refresh,
