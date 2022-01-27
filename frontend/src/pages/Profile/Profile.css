@@ -1,8 +1,15 @@
+.profile {
+  width: 95%;
+  height: 100%;
+  overflow-x: hidden;
+  padding-right: 5%;
+}
+
 .profile__accordion-body {
   display: flex;
   flex-direction: column;
   align-items: flex-end;
-  width: 100%
+  width: 100%;
 }
 
 .profile__input-container {
@@ -26,5 +33,10 @@
 
 .profile__large-input {
   width: 100%;
+  /* NOTE: change --txt-width to calc(100% - <--txt-width for .profile__small-input> - <margin-left for .profile__input> */
   --txt-width: 100%;
+}
+
+@media screen and (min-width: 768px) {
+
 }
