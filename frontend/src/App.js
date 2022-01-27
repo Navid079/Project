@@ -2,6 +2,7 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 
 import Index from './pages/Index/Index';
 import Dashboard from './pages/Dashboard/Dashboard';
+import Profile from './pages/Profile/Profile'
 
 import './App.css';
 
@@ -19,7 +20,7 @@ function App() {
             />
             <Route
               path='not-completed'
-              element={<h1>Please complete your profile</h1>}
+              element={<Profile />}
             />
             <Route path='report' element={<h1>Report</h1>} />
             <Route path='newsletter' element={<h1>Newsletter</h1>} />

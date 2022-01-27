@@ -14,10 +14,10 @@ const TextInput = ({
   };
 
   return (
-    <span className='text-input__container'>
+    <span className={`text-input__container ${className}`}>
       <input
         onKeyPress={onKeyPress}
-        className={`text-input ${className}`}
+        className='text-input'
         placeholder={noFloat ? placeholder : ' '}
         type={type || 'text'}
         onChange={onChange}
