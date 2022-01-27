@@ -3,6 +3,8 @@
   height: 100%;
   overflow-x: hidden;
   padding-right: 5%;
+  background-color: var(--clr-white-hover);
+  border-radius: 1rem;
 }
 
 .profile__accordion-body {
