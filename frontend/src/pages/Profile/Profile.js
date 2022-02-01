@@ -41,7 +41,7 @@ export default function Profile() {
     postalCode: '',
   });
 
-  const inputBlurHandler = event => {
+  const inputBlurHandler = (event) => {
     switch (event.target) {
       case firstName.current:
         if (

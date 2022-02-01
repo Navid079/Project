@@ -3,6 +3,7 @@
   height: 100%;
   overflow-x: hidden;
   padding-right: 5%;
+  padding-top: 5%;
   background-color: var(--clr-white-hover);
   border-radius: 1rem;
 }
