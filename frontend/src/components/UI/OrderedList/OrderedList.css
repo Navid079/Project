@@ -15,6 +15,7 @@
 .ordered-list__list-bullet {
   transform: translateX(50%);
   align-self: flex-start;
+  flex-shrink: 0;
 }
 
 .ordered-list__list-bullet::before {
@@ -30,9 +31,4 @@
 
 .ordered-list__list-item:last-child {
   margin: 0;
-}
-
-.ordered-list__list-item:last-child .ordered-list__list-bullet {
-  align-self: stretch;
-  border: 1px solid black;
 }
