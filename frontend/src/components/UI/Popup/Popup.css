@@ -1,0 +1,30 @@
+.popup {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  position: fixed;
+  top: 30%;
+  left: 20%;
+  height: 25%;
+  width: 45%;
+  border-radius: 1rem;
+  z-index: 100;
+  background-color: #eff6ff;
+  padding: 5%;
+  direction: rtl;
+}
+.popup h1 {
+  font-size: 0.8rem;
+  color: var(--clr-light-grey);
+}
+.popup h2 {
+  font-size: 0.7rem;
+  color: var(--clr-primary-5);
+}
+
+.popup__icon {
+  height: 1rem;
+  width: 1rem;
+  color: var(--clr-primary-5);
+  align-self: flex-end;
+}
